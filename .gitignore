@@ -1,0 +1,14 @@
+RobotEdu-Client/.classpath
+RobotEdu-Client/.project
+RobotEdu-Client/.settings/
+RobotEdu-Client/bin/
+RobotEdu-Client/target/
+RobotEdu-Client/.idea/
+
+RobotEdu-Server/.classpath
+RobotEdu-Server/.project
+RobotEdu-Server/.settings/
+RobotEdu-Server/bin/
+RobotEdu-Server/target/
+RobotEdu-Server/.idea/
+
