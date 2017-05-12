@@ -24,6 +24,10 @@ public class Constants {
      */
     public static final String WEICHAT = "weichat";
 
+    /**
+     * token 过期时间
+     */
+    public static final Long TOKEN_EXPIRE_TIME = 1000 * 60 * 5L;
 
     // ============== flag =========
     /**

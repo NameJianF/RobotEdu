@@ -131,4 +131,30 @@ public abstract class AbstractController implements IWriteResponse {
 
         this.writeResponse(response, result);
     }
+
+    /**
+     * op is invalid
+     *
+     * @param response
+     */
+    protected void opIsEmpty(HttpServletResponse response) {
+        BaseResult result = new BaseResult();
+        result.setCode(ErrorCode.UNKNOWN.getCode());
+        result.setMsg("op is invalid");
+
+        this.writeResponse(response, result);
+    }
+
+    /**
+     * json is invalid
+     *
+     * @param response
+     */
+    protected void jsonIsEmpty(HttpServletResponse response) {
+        BaseResult result = new BaseResult();
+        result.setCode(ErrorCode.UNKNOWN.getCode());
+        result.setMsg("json is invalid");
+
+        this.writeResponse(response, result);
+    }
 }

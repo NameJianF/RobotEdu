@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_robotedu-client" default="compile.module.robotedu-client">
+  <dirname property="module.robotedu-client.basedir" file="${ant.file.module_robotedu-client}"/>
+  
+  <property name="module.jdk.home.robotedu-client" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.robotedu-client" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.robotedu-client" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.robotedu-client" value="-encoding UTF-8 -source 8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="robotedu-client.output.dir" value="${module.robotedu-client.basedir}/target/classes"/>
+  <property name="robotedu-client.testoutput.dir" value="${module.robotedu-client.basedir}/target/test-classes"/>
+  
+  <path id="robotedu-client.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="robotedu-client.module.production.classpath">
+    <path refid="${module.jdk.classpath.robotedu-client}"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.2.31.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:20040616.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:1.3.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.4.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-email:1.4.classpath"/>
+    <path refid="library.maven:_com.sun.mail:javax.mail:1.5.2.classpath"/>
+    <path refid="library.maven:_javax.activation:activation:1.1.1.classpath"/>
+    <path refid="library.maven:_commons-httpclient:commons-httpclient:3.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.2.classpath"/>
+  </path>
+  
+  <path id="robotedu-client.runtime.production.module.classpath">
+    <pathelement location="${robotedu-client.output.dir}"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.2.31.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:20040616.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:1.3.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.4.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-email:1.4.classpath"/>
+    <path refid="library.maven:_com.sun.mail:javax.mail:1.5.2.classpath"/>
+    <path refid="library.maven:_javax.activation:activation:1.1.1.classpath"/>
+    <path refid="library.maven:_commons-httpclient:commons-httpclient:3.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.2.classpath"/>
+  </path>
+  
+  <path id="robotedu-client.module.classpath">
+    <path refid="${module.jdk.classpath.robotedu-client}"/>
+    <pathelement location="${robotedu-client.output.dir}"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.2.31.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:20040616.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:1.3.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.4.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-email:1.4.classpath"/>
+    <path refid="library.maven:_com.sun.mail:javax.mail:1.5.2.classpath"/>
+    <path refid="library.maven:_javax.activation:activation:1.1.1.classpath"/>
+    <path refid="library.maven:_commons-httpclient:commons-httpclient:3.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.2.classpath"/>
+  </path>
+  
+  <path id="robotedu-client.runtime.module.classpath">
+    <pathelement location="${robotedu-client.testoutput.dir}"/>
+    <pathelement location="${robotedu-client.output.dir}"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_com.alibaba:fastjson:1.2.31.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:20040616.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:1.3.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.4.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-email:1.4.classpath"/>
+    <path refid="library.maven:_com.sun.mail:javax.mail:1.5.2.classpath"/>
+    <path refid="library.maven:_javax.activation:activation:1.1.1.classpath"/>
+    <path refid="library.maven:_commons-httpclient:commons-httpclient:3.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.2.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.robotedu-client">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.robotedu-client">
+    <patternset refid="excluded.from.module.robotedu-client"/>
+  </patternset>
+  
+  <path id="robotedu-client.module.sourcepath">
+    <dirset dir="${module.robotedu-client.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="robotedu-client.module.test.sourcepath">
+    <dirset dir="${module.robotedu-client.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.robotedu-client" depends="compile.module.robotedu-client.production,compile.module.robotedu-client.tests" description="Compile module RobotEdu-Client"/>
+  
+  <target name="compile.module.robotedu-client.production" depends="register.custom.compilers" description="Compile module RobotEdu-Client; production classes">
+    <mkdir dir="${robotedu-client.output.dir}"/>
+    <javac2 destdir="${robotedu-client.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.robotedu-client}/javac">
+      <compilerarg line="${compiler.args.robotedu-client}"/>
+      <bootclasspath refid="robotedu-client.module.bootclasspath"/>
+      <classpath refid="robotedu-client.module.production.classpath"/>
+      <src refid="robotedu-client.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.robotedu-client"/>
+    </javac2>
+    
+    <copy todir="${robotedu-client.output.dir}">
+      <fileset dir="${module.robotedu-client.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.robotedu-client.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.robotedu-client.tests" depends="register.custom.compilers,compile.module.robotedu-client.production" description="compile module RobotEdu-Client; test classes" unless="skip.tests">
+    <mkdir dir="${robotedu-client.testoutput.dir}"/>
+    <javac2 destdir="${robotedu-client.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.robotedu-client}/javac">
+      <compilerarg line="${compiler.args.robotedu-client}"/>
+      <bootclasspath refid="robotedu-client.module.bootclasspath"/>
+      <classpath refid="robotedu-client.module.classpath"/>
+      <src refid="robotedu-client.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.robotedu-client"/>
+    </javac2>
+    
+    <copy todir="${robotedu-client.testoutput.dir}">
+      <fileset dir="${module.robotedu-client.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.robotedu-client" description="cleanup module">
+    <delete dir="${robotedu-client.output.dir}"/>
+    <delete dir="${robotedu-client.testoutput.dir}"/>
+  </target>
+</project>
