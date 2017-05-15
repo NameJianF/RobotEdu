@@ -6,6 +6,7 @@ RobotEdu-Client/target/
 RobotEdu-Client/.idea/
 RobotEdu-Client/out/
 
+
 RobotEdu-Server/.classpath
 RobotEdu-Server/.project
 RobotEdu-Server/.settings/
@@ -13,4 +14,3 @@ RobotEdu-Server/bin/
 RobotEdu-Server/live-itrip-admin/target/
 RobotEdu-Server/live-itrip-common/target/
 RobotEdu-Server/.idea/
-

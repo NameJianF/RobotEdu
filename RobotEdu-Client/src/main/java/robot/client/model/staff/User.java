@@ -1,9 +1,11 @@
 package robot.client.model.staff;
 
+import robot.client.model.BaseModel;
+
 /**
  * Created by Feng on 2017/5/12.
  */
-public class User {
+public class User extends BaseModel {
 
     private Long id;
 
