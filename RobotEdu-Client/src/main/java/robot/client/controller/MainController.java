@@ -1,4 +1,4 @@
-package robot.client.controler;
+package robot.client.controller;
 
 public class MainController {
 

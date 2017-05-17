@@ -3,4 +3,4 @@
  * <p>
  * 学生上课/刷卡 记录信息管理
  */
-package robot.client.model.classrec;
+package robot.client.model.swipe;

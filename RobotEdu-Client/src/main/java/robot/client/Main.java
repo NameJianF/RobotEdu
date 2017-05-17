@@ -5,10 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.apache.commons.dbutils.handlers.ArrayListHandler;
-import robot.client.api.staff.StaffApi;
 import robot.client.common.Config;
 import robot.client.db.DbHelper;
+import robot.client.service.SystemService;
 import robot.client.util.Logger;
 
 import java.io.BufferedInputStream;
@@ -16,9 +15,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Properties;
-import java.util.List;
 
 public class Main extends Application {
 
@@ -47,9 +44,11 @@ public class Main extends Application {
     public static void main(String[] args) throws SQLException {
 
         Logger.debug(" >>>>>> Application Start ... <<<<<< ");
+        // 初始化数据库
         DbHelper.initConnection();
+        // 初始化系统服务
+        SystemService.getInstance().init();
 //        DbHelper.testDb();
-
 //        new StaffApi().login("fjf789@126.com", "123456");
         launch(args);
     }

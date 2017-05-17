@@ -4,6 +4,7 @@ import com.mysql.jdbc.Connection;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.ArrayListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import robot.client.common.Config;
 import robot.client.util.Logger;
 
@@ -25,6 +26,11 @@ public class DbHelper {
     public static void initConnection() throws SQLException {
         conn = (Connection) DriverManager.getConnection(Config.JDBC_URL, Config.JDBC_USERNAME, Config.JDBC_PASSWORD);
     }
+
+//    public static Connection getConnection() {
+//        return conn;
+//    }
+
 
     /**
      * 查询
@@ -67,7 +73,7 @@ public class DbHelper {
      *
      * @param sql
      * @param params
-     * @return
+     * @return rowEffects
      * @throws SQLException
      */
     public static int[] batch(String sql, Object[][] params) throws SQLException {
@@ -76,6 +82,59 @@ public class DbHelper {
             return runner.batch(conn, sql, params);
         }
         return null;
+    }
+
+    /**
+     * INSERT
+     *
+     * @param sql
+     * @return new row id
+     * @throws SQLException
+     */
+    public static Long insert(String sql) throws SQLException {
+        if (conn != null) {
+            QueryRunner runner = new QueryRunner();
+            runner.update(conn, sql);
+            //获取新增记录的自增主键
+            return (Long) runner.query(conn, "SELECT LAST_INSERT_ID()", new ScalarHandler(1));
+        }
+        return -1L;
+    }
+
+    /**
+     * INSERT
+     *
+     * @param sql
+     * @param param
+     * @return new row id
+     * @throws SQLException
+     */
+    public static Long insert(String sql, Object param) throws SQLException {
+        if (conn != null) {
+            QueryRunner runner = new QueryRunner();
+            runner.update(conn, sql, param);
+            //获取新增记录的自增主键
+            return (Long) runner.query(conn, "SELECT LAST_INSERT_ID()", new ScalarHandler(1));
+        }
+        return -1L;
+    }
+
+    /**
+     * INSERT
+     *
+     * @param sql
+     * @param params
+     * @return new row id
+     * @throws SQLException
+     */
+    public static Long insert(String sql, Object... params) throws SQLException {
+        if (conn != null) {
+            QueryRunner runner = new QueryRunner();
+            runner.update(conn, sql, params);
+            //获取新增记录的自增主键
+            return (Long) runner.query(conn, "SELECT LAST_INSERT_ID()", new ScalarHandler(1));
+        }
+        return -1L;
     }
 
     /**
@@ -131,11 +190,12 @@ public class DbHelper {
         return null;
     }
 
+
     /**
-     * 执行INSERT、UPDATE、DELETE
+     * UPDATE
      *
      * @param sql
-     * @return
+     * @return rowEffects
      * @throws SQLException
      */
     public static int update(String sql) throws SQLException {
@@ -147,11 +207,11 @@ public class DbHelper {
     }
 
     /**
-     * 执行INSERT、UPDATE、DELETE
+     * UPDATE
      *
      * @param sql
      * @param param
-     * @return
+     * @return rowEffects
      * @throws SQLException
      */
     public static int update(String sql, Object param) throws SQLException {
@@ -163,11 +223,11 @@ public class DbHelper {
     }
 
     /**
-     * 执行INSERT、UPDATE、DELETE
+     * UPDATE
      *
      * @param sql
      * @param params
-     * @return
+     * @return rowEffects
      * @throws SQLException
      */
     public static int update(String sql, Object... params) throws SQLException {
@@ -176,6 +236,78 @@ public class DbHelper {
             return runner.update(conn, sql, params);
         }
         return -1;
+    }
+
+    /**
+     * DELETE
+     *
+     * @param sql
+     * @return rowEffects
+     * @throws SQLException
+     */
+    public static int delete(String sql) throws SQLException {
+        if (conn != null) {
+            QueryRunner runner = new QueryRunner();
+            return runner.update(conn, sql);
+        }
+        return -1;
+    }
+
+    /**
+     * DELETE
+     *
+     * @param sql
+     * @param param
+     * @return rowEffects
+     * @throws SQLException
+     */
+    public static int delete(String sql, Object param) throws SQLException {
+        if (conn != null) {
+            QueryRunner runner = new QueryRunner();
+            return runner.update(conn, sql, param);
+        }
+        return -1;
+    }
+
+    /**
+     * DELETE
+     *
+     * @param sql
+     * @param params
+     * @return rowEffects
+     * @throws SQLException
+     */
+    public static int delete(String sql, Object... params) throws SQLException {
+        if (conn != null) {
+            QueryRunner runner = new QueryRunner();
+            return runner.update(conn, sql, params);
+        }
+        return -1;
+    }
+
+    /**
+     * 提交事务
+     */
+    public static void commit() throws SQLException {
+        if (conn != null) {
+            conn.commit();
+        }
+    }
+
+    /**
+     * 回滚事务
+     */
+    public static void rollback() throws SQLException {
+        if (conn != null) {
+            conn.rollback();
+        }
+    }
+
+    /**
+     * 关闭连接
+     */
+    public static void close() throws SQLException {
+        conn.close();
     }
 
     public static void testDb() {
