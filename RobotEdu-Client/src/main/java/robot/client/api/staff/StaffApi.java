@@ -6,16 +6,40 @@ import org.apache.commons.lang3.StringUtils;
 import robot.client.api.AbstractApi;
 import robot.client.common.Config;
 import robot.client.common.ErrorCode;
+import robot.client.model.staff.EduStaffInfo;
 import robot.client.model.staff.User;
+import robot.client.observer.Observer;
+import robot.client.service.SystemService;
 import robot.client.util.Logger;
+import robot.client.util.SigUtils;
 
 /**
  * Created by Feng on 2017/5/12.
  */
-public class StaffApi extends AbstractApi {
+public class StaffApi extends AbstractApi implements Observer {
 
-    private static final String ACTION_APIKEY_URL = "sso.action";
+    private static final String ACTION_URL_SSO = "sso.action";
 
+    public static String getUrl() {
+        return Config.SERVER_URL + ACTION_URL_SSO;
+    }
+
+    /**
+     * post　json
+     *
+     * @return
+     */
+    public void postJsonString(EduStaffInfo info) {
+        // 获取sig
+        String sig = SigUtils.getSig(JSON.toJSONString(info), Config.MODULE_APP_SECRET);
+        // 设置sig
+        info.setSig(sig);
+        String json = JSON.toJSONString(info);
+        SystemService.UploadDatas datas = new SystemService.UploadDatas();
+        datas.setUrl(getUrl());
+        datas.setJson(json);
+        SystemService.getInstance().addUploadDatas(datas);
+    }
 
     /**
      * 登录
@@ -41,7 +65,7 @@ public class StaffApi extends AbstractApi {
 
             jsonObject.put("data", data);
 
-            String res = this.postJsonString(jsonObject, ACTION_APIKEY_URL);
+            String res = this.postJsonString(jsonObject, ACTION_URL_SSO);
 
             if (StringUtils.isEmpty(res)) {
                 return ErrorCode.USERNAME_PWD_INVALID;
@@ -59,5 +83,10 @@ public class StaffApi extends AbstractApi {
         }
 
         return ErrorCode.UNKNOWN;
+    }
+
+    @Override
+    public void upload(Object object) {
+        this.postJsonString((EduStaffInfo) object);
     }
 }

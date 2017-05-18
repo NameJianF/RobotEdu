@@ -1,5 +1,6 @@
 package robot.client.model.swipe;
 
+import robot.client.common.Config;
 import robot.client.model.BaseModel;
 
 public class EduSwipeCardRecords extends BaseModel {
@@ -10,6 +11,10 @@ public class EduSwipeCardRecords extends BaseModel {
     private String upload;
 
     private Long createTime;
+
+    public static String getUrl() {
+        return Config.SERVER_URL + "";
+    }
 
     public Long getId() {
         return id;

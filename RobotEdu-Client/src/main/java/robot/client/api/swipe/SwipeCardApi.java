@@ -1,19 +1,17 @@
-package robot.client.api.card;
+package robot.client.api.swipe;
 
 import com.alibaba.fastjson.JSON;
 import robot.client.api.AbstractApi;
 import robot.client.common.Config;
-import robot.client.model.card.EduCardInfo;
+import robot.client.model.swipe.EduSwipeCardRecords;
 import robot.client.observer.Observer;
 import robot.client.service.SystemService;
 import robot.client.util.SigUtils;
 
-
 /**
- * Created by Feng on 2017/5/17.
+ * Created by Feng on 2017/5/18.
  */
-public class CardApi extends AbstractApi implements Observer {
-
+public class SwipeCardApi extends AbstractApi implements Observer {
     public static String getUrl() {
         return Config.SERVER_URL + "";
     }
@@ -23,12 +21,12 @@ public class CardApi extends AbstractApi implements Observer {
      *
      * @return
      */
-    public void postJsonString(EduCardInfo cardInfo) {
+    public void postJsonString(EduSwipeCardRecords info) {
         // 获取sig
-        String sig = SigUtils.getSig(JSON.toJSONString(cardInfo), Config.MODULE_APP_SECRET);
+        String sig = SigUtils.getSig(JSON.toJSONString(info), Config.MODULE_APP_SECRET);
         // 设置sig
-        cardInfo.setSig(sig);
-        String json = JSON.toJSONString(cardInfo);
+        info.setSig(sig);
+        String json = JSON.toJSONString(info);
         SystemService.UploadDatas datas = new SystemService.UploadDatas();
         datas.setUrl(getUrl());
         datas.setJson(json);
@@ -37,6 +35,6 @@ public class CardApi extends AbstractApi implements Observer {
 
     @Override
     public void upload(Object object) {
-        this.postJsonString((EduCardInfo) object);
+        this.postJsonString((EduSwipeCardRecords) object);
     }
 }

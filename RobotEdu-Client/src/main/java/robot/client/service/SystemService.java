@@ -16,6 +16,9 @@ import java.util.concurrent.LinkedBlockingDeque;
  */
 public class SystemService {
 
+    private final Object lockUploadObject = new Object();
+//    private final Object lockDownloadObject = new Object();
+
     private static SystemService instance;
 
     public static SystemService getInstance() {
@@ -50,12 +53,17 @@ public class SystemService {
     }
 
     public void addUploadDatas(UploadDatas data) {
-        queueUploadDatas.add(data);
+        synchronized (lockUploadObject) {
+            queueUploadDatas.add(data);
+        }
     }
 
     private void uploadDatas() {
         try {
-            UploadDatas data = queueUploadDatas.take();
+            UploadDatas data = null;
+            synchronized (lockUploadObject) {
+                data = queueUploadDatas.take();
+            }
             if (data != null) {
                 Logger.info(String.format("URL:%s,Request JSON:%s", data.getUrl(), data.getJson()));
                 String strResponse = HttpUtils.httpRequest(data.getUrl(), HttpUtils.REQUEST_METHOD_POST, data.getJson());

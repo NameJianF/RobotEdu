@@ -1,5 +1,6 @@
 package robot.client.model.staff;
 
+import robot.client.common.Config;
 import robot.client.model.BaseModel;
 
 public class EduStaffInfo extends BaseModel {
@@ -24,6 +25,10 @@ public class EduStaffInfo extends BaseModel {
     private Long createTime;
 
     private Long updateTime;
+
+    public static String getUrl() {
+        return Config.SERVER_URL + "";
+    }
 
     public Integer getId() {
         return id;

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import robot.client.common.Config;
 import robot.client.db.DbHelper;
+import robot.client.service.DatabaseService;
 import robot.client.service.SystemService;
 import robot.client.util.Logger;
 
@@ -48,6 +49,9 @@ public class Main extends Application {
         DbHelper.initConnection();
         // 初始化系统服务
         SystemService.getInstance().init();
+
+        // 启动后，执行一次数据上报
+        DatabaseService.getInstance().init();
 //        DbHelper.testDb();
 //        new StaffApi().login("fjf789@126.com", "123456");
         launch(args);

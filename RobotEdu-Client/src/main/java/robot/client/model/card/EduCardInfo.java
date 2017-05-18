@@ -1,8 +1,9 @@
 package robot.client.model.card;
 
+import robot.client.common.Config;
 import robot.client.model.BaseModel;
 
-public class EduCardInfo extends BaseModel{
+public class EduCardInfo extends BaseModel {
     private Integer id;
 
     private Long cardNo;

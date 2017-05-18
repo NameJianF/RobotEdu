@@ -7,15 +7,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0"
             prefWidth="410.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="robot.client.controler.LoginControler">
+            fx:controller="robot.client.controller.LoginController">
     <children>
-        <Button layoutX="85.0" layoutY="189.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="96.0"
-                text="Button"/>
-        <Button layoutX="220.0" layoutY="189.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="96.0"
-                text="Button"/>
-        <Label layoutX="85.0" layoutY="72.0" text="Label"/>
-        <Label layoutX="85.0" layoutY="126.0" text="Label"/>
-        <TextField layoutX="155.0" layoutY="68.0"/>
-        <TextField layoutX="155.0" layoutY="122.0"/>
+        <Label id="labelUserName" layoutX="85.0" layoutY="72.0" text="用户名"/>
+        <Label id="labelPwd" layoutX="85.0" layoutY="126.0" text="密码"/>
+        <TextField id="textfieldUserName" layoutX="155.0" layoutY="68.0"/>
+        <TextField id="textfieldPwd" layoutX="155.0" layoutY="122.0"/>
+
+        <Button id="btnLogin" layoutX="85.0" layoutY="189.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="96.0"
+                text="登录" onMouseClicked="#loginClick"/>
+        <Button id="btnCancel" layoutX="220.0" layoutY="189.0" mnemonicParsing="false" prefHeight="23.0"
+                prefWidth="96.0" text="取消" onMouseClicked="#cancelClick"/>
     </children>
 </AnchorPane>
