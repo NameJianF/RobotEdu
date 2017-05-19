@@ -11,6 +11,12 @@ import robot.client.util.SigUtils;
  * Created by Feng on 2017/5/12.
  */
 public abstract class AbstractApi {
+    protected final String ACTION_URL_SSO = "sso.action";
+
+
+    public String getUrl() {
+        return Config.SERVER_URL + "edu.action";
+    }
 
     protected JSONObject getBaseJsonObject() {
         JSONObject object = new JSONObject();

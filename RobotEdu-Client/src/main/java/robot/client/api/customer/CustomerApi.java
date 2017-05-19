@@ -13,10 +13,6 @@ import robot.client.util.SigUtils;
  */
 public class CustomerApi extends AbstractApi implements Observer {
 
-    public static String getUrl() {
-        return Config.SERVER_URL + "";
-    }
-
     /**
      * post　json
      *
@@ -29,6 +25,8 @@ public class CustomerApi extends AbstractApi implements Observer {
         customerInfo.setSig(sig);
         String json = JSON.toJSONString(customerInfo);
         SystemService.UploadDatas datas = new SystemService.UploadDatas();
+        datas.setRowId(customerInfo.getId().longValue());
+        datas.setTableName(EduCustomerInfo.tableName);
         datas.setUrl(getUrl());
         datas.setJson(json);
         SystemService.getInstance().addUploadDatas(datas);
@@ -36,6 +34,8 @@ public class CustomerApi extends AbstractApi implements Observer {
 
     @Override
     public void upload(Object object) {
-        this.postJsonString((EduCustomerInfo) object);
+        EduCustomerInfo info = (EduCustomerInfo) object;
+        info.setOp("customerInfo.add");
+        this.postJsonString(info);
     }
 }

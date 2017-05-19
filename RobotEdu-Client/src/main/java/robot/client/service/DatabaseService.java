@@ -62,7 +62,7 @@ public class DatabaseService {
 
     private void selectUploadCardInfos() {
         try {
-            String sql = "select * from edu_card_info WHERE upload = '0';";
+            String sql = "select * from " + EduCardInfo.tableName + " WHERE upload = '0';";
             ResultSetHandler<List<EduCardInfo>> handler = new BeanListHandler<>(EduCardInfo.class);
             List<EduCardInfo> list = DbHelper.query(sql, handler);
             if (list != null && list.size() > 0) {
@@ -79,7 +79,7 @@ public class DatabaseService {
 
     private void selectUploadCustomerInfos() {
         try {
-            String sql = "select * from edu_customer_info WHERE upload = '0';";
+            String sql = "select * from " + EduCustomerInfo.tableName + " WHERE upload = '0';";
             ResultSetHandler<List<EduCustomerInfo>> handler = new BeanListHandler<>(EduCustomerInfo.class);
             List<EduCustomerInfo> list = DbHelper.query(sql, handler);
             if (list != null && list.size() > 0) {
@@ -96,7 +96,7 @@ public class DatabaseService {
 
     private void selectUploadSwipeRecords() {
         try {
-            String sql = "select * from edu_swipe_card_records WHERE upload = '0';";
+            String sql = "select * from " + EduSwipeCardRecords.tableName + " WHERE upload = '0';";
             ResultSetHandler<List<EduSwipeCardRecords>> handler = new BeanListHandler<>(EduSwipeCardRecords.class);
             List<EduSwipeCardRecords> list = DbHelper.query(sql, handler);
             if (list != null && list.size() > 0) {
@@ -113,7 +113,7 @@ public class DatabaseService {
 
     private void selectUploadStaffInfos() {
         try {
-            String sql = "select * from edu_staff_info WHERE upload = '0';";
+            String sql = "select * from " + EduStaffInfo.tableName + " WHERE upload = '0';";
             ResultSetHandler<List<EduStaffInfo>> handler = new BeanListHandler<>(EduStaffInfo.class);
             List<EduStaffInfo> list = DbHelper.query(sql, handler);
             if (list != null && list.size() > 0) {

@@ -12,9 +12,6 @@ import robot.client.util.SigUtils;
  * Created by Feng on 2017/5/18.
  */
 public class SwipeCardApi extends AbstractApi implements Observer {
-    public static String getUrl() {
-        return Config.SERVER_URL + "";
-    }
 
     /**
      * post　json
@@ -28,6 +25,8 @@ public class SwipeCardApi extends AbstractApi implements Observer {
         info.setSig(sig);
         String json = JSON.toJSONString(info);
         SystemService.UploadDatas datas = new SystemService.UploadDatas();
+        datas.setRowId(info.getId());
+        datas.setTableName(EduSwipeCardRecords.tableName);
         datas.setUrl(getUrl());
         datas.setJson(json);
         SystemService.getInstance().addUploadDatas(datas);
@@ -35,6 +34,8 @@ public class SwipeCardApi extends AbstractApi implements Observer {
 
     @Override
     public void upload(Object object) {
-        this.postJsonString((EduSwipeCardRecords) object);
+        EduSwipeCardRecords info = (EduSwipeCardRecords) object;
+        info.setOp("swipeCardRecords.add");
+        this.postJsonString(info);
     }
 }

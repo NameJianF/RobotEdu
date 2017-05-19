@@ -1,13 +1,9 @@
-package robot.client.model.customer;
+package live.itrip.admin.model;
 
-import robot.client.common.Config;
-import robot.client.model.BaseModel;
-
-public class EduCustomerInfo extends BaseModel {
-
-    public static final String tableName = "edu_customer_info";
-
+public class EduCustomerInfo extends BaseModel{
     private Integer id;
+
+    private String shopNo;
 
     private String adviser;
 
@@ -35,15 +31,13 @@ public class EduCustomerInfo extends BaseModel {
 
     private String remarks;
 
-    private String upload;
+    private Long clientCreateTime;
+
+    private Long clientUpdateTime;
 
     private Long createTime;
 
     private Long updateTime;
-
-    public static String getUrl() {
-        return Config.SERVER_URL + "";
-    }
 
     public Integer getId() {
         return id;
@@ -51,6 +45,14 @@ public class EduCustomerInfo extends BaseModel {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getShopNo() {
+        return shopNo;
+    }
+
+    public void setShopNo(String shopNo) {
+        this.shopNo = shopNo == null ? null : shopNo.trim();
     }
 
     public String getAdviser() {
@@ -157,12 +159,20 @@ public class EduCustomerInfo extends BaseModel {
         this.remarks = remarks == null ? null : remarks.trim();
     }
 
-    public String getUpload() {
-        return upload;
+    public Long getClientCreateTime() {
+        return clientCreateTime;
     }
 
-    public void setUpload(String upload) {
-        this.upload = upload == null ? null : upload.trim();
+    public void setClientCreateTime(Long clientCreateTime) {
+        this.clientCreateTime = clientCreateTime;
+    }
+
+    public Long getClientUpdateTime() {
+        return clientUpdateTime;
+    }
+
+    public void setClientUpdateTime(Long clientUpdateTime) {
+        this.clientUpdateTime = clientUpdateTime;
     }
 
     public Long getCreateTime() {

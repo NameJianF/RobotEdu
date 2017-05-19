@@ -1,9 +1,14 @@
 package robot.client.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import robot.client.api.http.HttpUtils;
+import robot.client.common.ErrorCode;
+import robot.client.db.DbHelper;
 import robot.client.util.Logger;
 
+import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -15,10 +20,6 @@ import java.util.concurrent.LinkedBlockingDeque;
  * 2.数据下载
  */
 public class SystemService {
-
-    private final Object lockUploadObject = new Object();
-//    private final Object lockDownloadObject = new Object();
-
     private static SystemService instance;
 
     public static SystemService getInstance() {
@@ -53,21 +54,33 @@ public class SystemService {
     }
 
     public void addUploadDatas(UploadDatas data) {
-        synchronized (lockUploadObject) {
-            queueUploadDatas.add(data);
-        }
+        queueUploadDatas.add(data);
     }
 
     private void uploadDatas() {
         try {
             UploadDatas data = null;
-            synchronized (lockUploadObject) {
-                data = queueUploadDatas.take();
-            }
+            data = queueUploadDatas.take();
             if (data != null) {
                 Logger.info(String.format("URL:%s,Request JSON:%s", data.getUrl(), data.getJson()));
                 String strResponse = HttpUtils.httpRequest(data.getUrl(), HttpUtils.REQUEST_METHOD_POST, data.getJson());
                 Logger.info(String.format("URL:%s,Response JSON:%s", data.getUrl(), strResponse));
+
+                JSONObject jsonObject = JSON.parseObject(strResponse);
+                if (jsonObject != null && jsonObject.containsKey("code")) {
+                    if (ErrorCode.SUCCESS.getCode().equals(jsonObject.getInteger("code"))) {
+                        // update database
+                        String sql = String.format(" update %s set upload = '0' where id = %s", data.getTableName(), data.getRowId());
+                        try {
+                            int ret = DbHelper.update(sql);
+                            if (ret <= 0) {
+                                Logger.debug("sql exec error: " + sql);
+                            }
+                        } catch (SQLException e) {
+                            Logger.debug(e.getMessage(), e);
+                        }
+                    }
+                }
             }
         } catch (InterruptedException e) {
             Logger.error(e.getMessage(), e);
@@ -81,6 +94,8 @@ public class SystemService {
     public static class UploadDatas {
         private String url;
         private String json;
+        private String tableName;
+        private Long rowId;
 
         public String getUrl() {
             return url;
@@ -96,6 +111,22 @@ public class SystemService {
 
         public void setJson(String json) {
             this.json = json;
+        }
+
+        public String getTableName() {
+            return tableName;
+        }
+
+        public void setTableName(String tableName) {
+            this.tableName = tableName;
+        }
+
+        public Long getRowId() {
+            return rowId;
+        }
+
+        public void setRowId(Long rowId) {
+            this.rowId = rowId;
         }
     }
 }

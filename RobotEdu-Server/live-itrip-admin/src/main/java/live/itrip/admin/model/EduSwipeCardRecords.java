@@ -1,24 +1,15 @@
-package robot.client.model.swipe;
+package live.itrip.admin.model;
 
-import robot.client.common.Config;
-import robot.client.model.BaseModel;
-
-public class EduSwipeCardRecords extends BaseModel {
-
-    public static final String tableName = "edu_swipe_card_records";
-
-
+public class EduSwipeCardRecords extends BaseModel{
     private Long id;
+
+    private String shopNo;
 
     private Integer cardNo;
 
-    private String upload;
+    private Long clientCreateTime;
 
     private Long createTime;
-
-    public static String getUrl() {
-        return Config.SERVER_URL + "";
-    }
 
     public Long getId() {
         return id;
@@ -26,6 +17,14 @@ public class EduSwipeCardRecords extends BaseModel {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getShopNo() {
+        return shopNo;
+    }
+
+    public void setShopNo(String shopNo) {
+        this.shopNo = shopNo == null ? null : shopNo.trim();
     }
 
     public Integer getCardNo() {
@@ -36,12 +35,12 @@ public class EduSwipeCardRecords extends BaseModel {
         this.cardNo = cardNo;
     }
 
-    public String getUpload() {
-        return upload;
+    public Long getClientCreateTime() {
+        return clientCreateTime;
     }
 
-    public void setUpload(String upload) {
-        this.upload = upload == null ? null : upload.trim();
+    public void setClientCreateTime(Long clientCreateTime) {
+        this.clientCreateTime = clientCreateTime;
     }
 
     public Long getCreateTime() {

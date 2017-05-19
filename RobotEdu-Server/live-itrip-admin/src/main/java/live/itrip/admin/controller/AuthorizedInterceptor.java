@@ -31,7 +31,8 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
                         || action.equals("/user.action")
                         || action.startsWith("/index.action")
                         || action.startsWith("/login.action")
-                        || action.startsWith("/sso.action")) {
+                        || action.startsWith("/sso.action")
+                        || action.startsWith("/edu.action")) {
                     return true;
                 } else if (action.startsWith("/view/")) {
                     return true;

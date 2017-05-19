@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="live.itrip.admin.dao.EduTeacherCustomerMapper">
+    <resultMap id="BaseResultMap" type="live.itrip.admin.model.EduTeacherCustomer">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="shop_no" property="shopNo" jdbcType="VARCHAR"/>
+        <result column="staff_no" property="staffNo" jdbcType="VARCHAR"/>
+        <result column="staff_name" property="staffName" jdbcType="VARCHAR"/>
+        <result column="customer_id" property="customerId" jdbcType="INTEGER"/>
+        <result column="child_name" property="childName" jdbcType="VARCHAR"/>
+        <result column="client_create_time" property="clientCreateTime" jdbcType="BIGINT"/>
+        <result column="client_update_time" property="clientUpdateTime" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+        <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, shop_no, staff_no, staff_name, customer_id, child_name, client_create_time, client_update_time, 
+    create_time, update_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from edu_teacher_customer
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from edu_teacher_customer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="live.itrip.admin.model.EduTeacherCustomer" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into edu_teacher_customer (id, shop_no, staff_no, 
+      staff_name, customer_id, child_name, 
+      client_create_time, client_update_time, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{staffNo,jdbcType=VARCHAR}, 
+      #{staffName,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, #{childName,jdbcType=VARCHAR}, 
+      #{clientCreateTime,jdbcType=BIGINT}, #{clientUpdateTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=BIGINT})
+  </insert>
+    <insert id="insertSelective" parameterType="live.itrip.admin.model.EduTeacherCustomer" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into edu_teacher_customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="shopNo != null">
+                shop_no,
+            </if>
+            <if test="staffNo != null">
+                staff_no,
+            </if>
+            <if test="staffName != null">
+                staff_name,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="childName != null">
+                child_name,
+            </if>
+            <if test="clientCreateTime != null">
+                client_create_time,
+            </if>
+            <if test="clientUpdateTime != null">
+                client_update_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="shopNo != null">
+                #{shopNo,jdbcType=VARCHAR},
+            </if>
+            <if test="staffNo != null">
+                #{staffNo,jdbcType=VARCHAR},
+            </if>
+            <if test="staffName != null">
+                #{staffName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerId != null">
+                #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="childName != null">
+                #{childName,jdbcType=VARCHAR},
+            </if>
+            <if test="clientCreateTime != null">
+                #{clientCreateTime,jdbcType=BIGINT},
+            </if>
+            <if test="clientUpdateTime != null">
+                #{clientUpdateTime,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="live.itrip.admin.model.EduTeacherCustomer">
+        update edu_teacher_customer
+        <set>
+            <if test="shopNo != null">
+                shop_no = #{shopNo,jdbcType=VARCHAR},
+            </if>
+            <if test="staffNo != null">
+                staff_no = #{staffNo,jdbcType=VARCHAR},
+            </if>
+            <if test="staffName != null">
+                staff_name = #{staffName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerId != null">
+                customer_id = #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="childName != null">
+                child_name = #{childName,jdbcType=VARCHAR},
+            </if>
+            <if test="clientCreateTime != null">
+                client_create_time = #{clientCreateTime,jdbcType=BIGINT},
+            </if>
+            <if test="clientUpdateTime != null">
+                client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="live.itrip.admin.model.EduTeacherCustomer">
+    update edu_teacher_customer
+    set shop_no = #{shopNo,jdbcType=VARCHAR},
+      staff_no = #{staffNo,jdbcType=VARCHAR},
+      staff_name = #{staffName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      child_name = #{childName,jdbcType=VARCHAR},
+      client_create_time = #{clientCreateTime,jdbcType=BIGINT},
+      client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -14,10 +14,6 @@ import robot.client.util.SigUtils;
  */
 public class CardApi extends AbstractApi implements Observer {
 
-    public static String getUrl() {
-        return Config.SERVER_URL + "";
-    }
-
     /**
      * post　json
      *
@@ -30,6 +26,8 @@ public class CardApi extends AbstractApi implements Observer {
         cardInfo.setSig(sig);
         String json = JSON.toJSONString(cardInfo);
         SystemService.UploadDatas datas = new SystemService.UploadDatas();
+        datas.setRowId(cardInfo.getId().longValue());
+        datas.setTableName(EduCardInfo.tableName);
         datas.setUrl(getUrl());
         datas.setJson(json);
         SystemService.getInstance().addUploadDatas(datas);
@@ -37,6 +35,8 @@ public class CardApi extends AbstractApi implements Observer {
 
     @Override
     public void upload(Object object) {
-        this.postJsonString((EduCardInfo) object);
+        EduCardInfo info = (EduCardInfo) object;
+        info.setOp("cardInfo.add");
+        this.postJsonString(info);
     }
 }

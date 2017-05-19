@@ -1,13 +1,9 @@
-package robot.client.model.card;
-
-import robot.client.model.BaseModel;
+package live.itrip.admin.model;
 
 public class EduCardInfo extends BaseModel {
-
-
-    public static final String tableName = "edu_card_info";
-
     private Integer id;
+
+    private String shopNo;
 
     private Long cardNo;
 
@@ -25,7 +21,9 @@ public class EduCardInfo extends BaseModel {
 
     private String flag;
 
-    private String upload;
+    private Long clientCreateTime;
+
+    private Long clientUpdateTime;
 
     private Long createTime;
 
@@ -37,6 +35,14 @@ public class EduCardInfo extends BaseModel {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getShopNo() {
+        return shopNo;
+    }
+
+    public void setShopNo(String shopNo) {
+        this.shopNo = shopNo == null ? null : shopNo.trim();
     }
 
     public Long getCardNo() {
@@ -103,12 +109,20 @@ public class EduCardInfo extends BaseModel {
         this.flag = flag == null ? null : flag.trim();
     }
 
-    public String getUpload() {
-        return upload;
+    public Long getClientCreateTime() {
+        return clientCreateTime;
     }
 
-    public void setUpload(String upload) {
-        this.upload = upload == null ? null : upload.trim();
+    public void setClientCreateTime(Long clientCreateTime) {
+        this.clientCreateTime = clientCreateTime;
+    }
+
+    public Long getClientUpdateTime() {
+        return clientUpdateTime;
+    }
+
+    public void setClientUpdateTime(Long clientUpdateTime) {
+        this.clientUpdateTime = clientUpdateTime;
     }
 
     public Long getCreateTime() {
