@@ -27,6 +27,7 @@ public class EduCardInfoService extends BaseService implements IEduCardInfoServi
     public void insert(String shopNo, String decodeJson, HttpServletResponse response, HttpServletRequest request) {
         BaseResult result = new BaseResult();
         EduCardInfo info = JSON.parseObject(decodeJson, EduCardInfo.class);
+        info.setId(null);
         info.setShopNo(shopNo);
         info.setClientCreateTime(info.getCreateTime());
         info.setClientUpdateTime(info.getUpdateTime());

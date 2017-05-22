@@ -26,6 +26,7 @@ public class EduSwipeCardRecordsService extends BaseService implements IEduSwipe
     public void insert(String shopNo, String decodeJson, HttpServletResponse response, HttpServletRequest request) {
         BaseResult result = new BaseResult();
         EduSwipeCardRecords info = JSON.parseObject(decodeJson, EduSwipeCardRecords.class);
+        info.setId(null);
         info.setShopNo(shopNo);
         info.setClientCreateTime(info.getCreateTime());
         info.setCreateTime(System.currentTimeMillis());

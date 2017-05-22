@@ -3,6 +3,8 @@ package robot.client.model.swipe;
 import robot.client.common.Config;
 import robot.client.model.BaseModel;
 
+import java.util.Map;
+
 public class EduSwipeCardRecords extends BaseModel {
 
     public static final String tableName = "edu_swipe_card_records";
@@ -50,5 +52,16 @@ public class EduSwipeCardRecords extends BaseModel {
 
     public void setCreateTime(Long createTime) {
         this.createTime = createTime;
+    }
+
+
+    public static EduSwipeCardRecords getBean(Map<String, Object> item) {
+        EduSwipeCardRecords bean = new EduSwipeCardRecords();
+        bean.setId((Long) item.get("id"));
+        bean.setCardNo((Integer) item.get("card_no"));
+        bean.setUpload((String) item.get("upload"));
+        bean.setCreateTime((Long) item.get("create_time"));
+
+        return bean;
     }
 }

@@ -35,11 +35,16 @@ public class SystemService {
     private Thread threadUploadDatas;
     private Thread threadDownloadDatas;
 
+    private Boolean stopUploadDatas = false;
+    private Boolean stopDownloadDatas = false;
+
     public void init() {
         threadUploadDatas = new Thread(new Runnable() {
             @Override
             public void run() {
-                uploadDatas();
+                while (!stopUploadDatas) {
+                    uploadDatas();
+                }
             }
         }, "threadUploadDatas");
         threadUploadDatas.start();
@@ -47,7 +52,9 @@ public class SystemService {
         threadDownloadDatas = new Thread(new Runnable() {
             @Override
             public void run() {
-                downloadDatas();
+                while (!stopDownloadDatas) {
+                    downloadDatas();
+                }
             }
         }, "threadDownloadDatas");
         threadDownloadDatas.start();
@@ -70,7 +77,7 @@ public class SystemService {
                 if (jsonObject != null && jsonObject.containsKey("code")) {
                     if (ErrorCode.SUCCESS.getCode().equals(jsonObject.getInteger("code"))) {
                         // update database
-                        String sql = String.format(" update %s set upload = '0' where id = %s", data.getTableName(), data.getRowId());
+                        String sql = String.format(" update %s set upload = '1' where id = %s", data.getTableName(), data.getRowId());
                         try {
                             int ret = DbHelper.update(sql);
                             if (ret <= 0) {
@@ -87,9 +94,25 @@ public class SystemService {
         }
     }
 
+    /**
+     * 停止上传数据
+     */
+    public void stopUpload() {
+        this.stopUploadDatas = true;
+    }
+
+
     private void downloadDatas() {
 
     }
+
+    /**
+     * 停止下载数据
+     */
+    public void stopDownload() {
+        this.stopDownloadDatas = true;
+    }
+
 
     public static class UploadDatas {
         private String url;

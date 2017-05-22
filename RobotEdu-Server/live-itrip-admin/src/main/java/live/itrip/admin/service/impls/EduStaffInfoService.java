@@ -27,6 +27,7 @@ public class EduStaffInfoService extends BaseService implements IEduStaffInfoSer
     public void insert(String shopNo, String decodeJson, HttpServletResponse response, HttpServletRequest request) {
         BaseResult result = new BaseResult();
         EduStaffInfo info = JSON.parseObject(decodeJson, EduStaffInfo.class);
+        info.setId(null);
         info.setShopNo(shopNo);
         info.setClientCreateTime(info.getCreateTime());
         info.setClientUpdateTime(info.getUpdateTime());

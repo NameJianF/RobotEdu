@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import robot.client.common.App;
 import robot.client.common.Config;
 import robot.client.db.DbHelper;
 import robot.client.service.DatabaseService;
@@ -32,12 +34,19 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        URL uri = getClass().getResource("/ui/main.fxml");
+        App.primaryStage = primaryStage;
 
-        Parent root = FXMLLoader.load(uri);
-        primaryStage.setTitle("Robot-Edu");
+        URL url = getClass().getResource("/ui/main.fxml");
+
+        Parent root = FXMLLoader.load(url);
+        primaryStage.setTitle("机器人教育");
         primaryStage.setScene(new Scene(root, 500, 400));
-        primaryStage.setFullScreen(true);
+//        primaryStage.setFullScreen(true);
+
+        String logoUrl = getClass().getResource("/img/logo.png").toExternalForm();
+        Image logo = new Image(logoUrl);
+        primaryStage.getIcons().add(logo);
+
         primaryStage.show();
     }
 

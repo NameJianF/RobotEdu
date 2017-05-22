@@ -3,6 +3,8 @@ package robot.client.model.customer;
 import robot.client.common.Config;
 import robot.client.model.BaseModel;
 
+import java.util.Map;
+
 public class EduCustomerInfo extends BaseModel {
 
     public static final String tableName = "edu_customer_info";
@@ -117,7 +119,7 @@ public class EduCustomerInfo extends BaseModel {
         this.momEmail = momEmail == null ? null : momEmail.trim();
     }
 
-    public String getDadName() {
+    public String getDadName(Object dad_name) {
         return dadName;
     }
 
@@ -179,5 +181,28 @@ public class EduCustomerInfo extends BaseModel {
 
     public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public static EduCustomerInfo getBean(Map<String, Object> item) {
+        EduCustomerInfo bean = new EduCustomerInfo();
+        bean.setId((Integer) item.get("id"));
+        bean.setAdviser((String) item.get("adviser"));
+        bean.setChildName((String) item.get("child_name"));
+        bean.setChildSex((String) item.get("child_sex"));
+        bean.setBirthday((String) item.get("birthday"));
+        bean.setChildName((String) item.get("child_image"));
+        bean.setMomName((String) item.get("mom_name"));
+        bean.setMomMobile((String) item.get("mom_mobile"));
+        bean.setMomEmail((String) item.get("mom_email"));
+        bean.getDadName(item.get("dad_name"));
+        bean.setDadMobile((String) item.get("dad_mobile"));
+        bean.setDadEmail((String) item.get("dad_email"));
+        bean.setAddress((String) item.get("address"));
+        bean.setRemarks((String) item.get("remarks"));
+        bean.setUpload((String) item.get("upload"));
+        bean.setCreateTime((Long) item.get("create_time"));
+        bean.setUpdateTime((Long) item.get("update_time"));
+
+        return bean;
     }
 }

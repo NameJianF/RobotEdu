@@ -2,6 +2,8 @@ package robot.client.model.course;
 
 import robot.client.model.BaseModel;
 
+import java.util.Map;
+
 public class EduTeacherCustomer extends BaseModel {
     private Long id;
 
@@ -81,5 +83,19 @@ public class EduTeacherCustomer extends BaseModel {
 
     public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public static EduTeacherCustomer getBean(Map<String, Object> item) {
+        EduTeacherCustomer bean = new EduTeacherCustomer();
+        bean.setId((Long) item.get("id"));
+        bean.setStaffNo((String) item.get("staff_no"));
+        bean.setStaffName((String) item.get("staff_name"));
+        bean.setCustomerId((Integer) item.get("customer_id"));
+        bean.setChildName((String) item.get("child_name"));
+        bean.setUpload((String) item.get("upload"));
+        bean.setCreateTime((Long) item.get("create_time"));
+        bean.setUpdateTime((Long) item.get("update_time"));
+
+        return bean;
     }
 }

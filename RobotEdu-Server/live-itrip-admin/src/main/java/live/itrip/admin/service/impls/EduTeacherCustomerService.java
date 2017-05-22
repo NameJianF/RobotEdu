@@ -26,6 +26,7 @@ public class EduTeacherCustomerService extends BaseService implements IEduTeache
     public void insert(String shopNo, String decodeJson, HttpServletResponse response, HttpServletRequest request) {
         BaseResult result = new BaseResult();
         EduTeacherCustomer info = JSON.parseObject(decodeJson, EduTeacherCustomer.class);
+        info.setId(null);
         info.setShopNo(shopNo);
         info.setClientCreateTime(info.getCreateTime());
         info.setClientUpdateTime(info.getUpdateTime());
