@@ -1,4 +1,4 @@
-package robot.client.controller;
+package robot.client.controller.customer;
 
 import robot.client.api.customer.CustomerApi;
 import robot.client.model.customer.EduCustomerInfo;
@@ -7,8 +7,8 @@ import robot.client.observer.Subject;
 /**
  * Created by Feng on 2017/5/18.
  */
-public class CustomerContorller extends Subject {
-    public CustomerContorller() {
+public class EditContorller extends Subject {
+    public EditContorller() {
         this.attach(new CustomerApi());
     }
 

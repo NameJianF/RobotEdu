@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" style="-fx-background-color: lightred;" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn maxWidth="120.0" prefWidth="100.0" text="卡号"/>
+                <TableColumn maxWidth="200.0" prefWidth="100.0" text="宝宝姓名"/>
+                <TableColumn maxWidth="200.0" prefWidth="150.0" text="刷卡时间"/>
+                <TableColumn maxWidth="200.0" prefWidth="150.0" text="下课时间"/>
+            </columns>
+        </TableView>
+    </center>
+    <padding>
+        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+    </padding>
+    <top>
+        <BorderPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <left>
+                <TextField prefWidth="200.0" promptText="上课刷卡" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets left="20.0"/>
+                    </BorderPane.margin>
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </TextField>
+            </left>
+            <right>
+                <HBox prefHeight="40.0" prefWidth="300.0" BorderPane.alignment="CENTER_RIGHT">
+                    <children>
+                        <TextField prefHeight="23.0" prefWidth="200.0" promptText="卡号/手机号">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" text="查询">
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets right="20.0" top="5.0"/>
+                    </padding>
+                </HBox>
+            </right>
+        </BorderPane>
+    </top>
+</BorderPane>

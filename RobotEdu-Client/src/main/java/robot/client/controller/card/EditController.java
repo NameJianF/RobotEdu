@@ -1,4 +1,4 @@
-package robot.client.controller;
+package robot.client.controller.card;
 
 import robot.client.api.card.CardApi;
 import robot.client.model.card.EduCardInfo;
@@ -7,9 +7,9 @@ import robot.client.observer.Subject;
 /**
  * Created by Feng on 2017/5/18.
  */
-public class CardInfoController extends Subject {
+public class EditController extends Subject {
 
-    public CardInfoController() {
+    public EditController() {
         this.attach(new CardApi());
     }
 

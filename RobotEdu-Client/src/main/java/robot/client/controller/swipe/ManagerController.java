@@ -1,4 +1,4 @@
-package robot.client.controller;
+package robot.client.controller.swipe;
 
 import robot.client.api.swipe.SwipeCardApi;
 import robot.client.model.swipe.EduSwipeCardRecords;
@@ -7,9 +7,9 @@ import robot.client.observer.Subject;
 /**
  * Created by Feng on 2017/5/18.
  */
-public class SwipeController extends Subject {
+public class ManagerController extends Subject {
 
-    public SwipeController() {
+    public ManagerController() {
         this.attach(new SwipeCardApi());
     }
 

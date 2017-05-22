@@ -1,4 +1,4 @@
-package robot.client.controller;
+package robot.client.controller.staff;
 
 import robot.client.api.staff.StaffApi;
 import robot.client.model.staff.EduStaffInfo;
@@ -7,9 +7,9 @@ import robot.client.observer.Subject;
 /**
  * Created by Feng on 2017/5/18.
  */
-public class StaffController extends Subject {
+public class EditController extends Subject {
 
-    public StaffController() {
+    public EditController() {
         this.attach(new StaffApi());
     }
 
