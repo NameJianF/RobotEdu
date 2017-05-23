@@ -1,11 +1,9 @@
 package robot.client.util;
 
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.layout.BorderPane;
-import org.apache.commons.logging.Log;
-import robot.client.Main;
+import robot.client.AppMain;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +16,7 @@ public class PageUtil {
 
     public static BorderPane getBorderPane(String fxml) {
         Logger.debug("FXML path:" + fxml);
-        URL url = Main.class.getResource(fxml);
+        URL url = AppMain.class.getResource(fxml);
         FXMLLoader loader = new FXMLLoader();// 创建对象
         loader.setBuilderFactory(new JavaFXBuilderFactory());// 设置BuilderFactory
         loader.setLocation(url);  // 设置路径基准
@@ -41,4 +39,6 @@ public class PageUtil {
 
         return page;
     }
+
+
 }

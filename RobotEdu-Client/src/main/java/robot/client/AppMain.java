@@ -1,13 +1,11 @@
 package robot.client;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import robot.client.common.App;
 import robot.client.common.Config;
@@ -24,10 +22,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class Main extends Application {
-    @FXML
-    Pane paneMainCenter;
-
+public class AppMain extends Application {
     /**
      * load system config
      */
@@ -46,17 +41,12 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(url);
         primaryStage.setTitle("机器人教育");
-        primaryStage.setScene(new Scene(root, 500, 400));
+        primaryStage.setScene(new Scene(root, 1000, 600));
 //        primaryStage.setFullScreen(true);
 
         String logoUrl = getClass().getResource("/img/logo.png").toExternalForm();
         Image logo = new Image(logoUrl);
         primaryStage.getIcons().add(logo);
-
-        BorderPane ctlCardsInfo = PageUtil.getBorderPane("/ui/card/manager.fxml");
-        if (ctlCardsInfo != null) {
-//            paneMainCenter.getChildren().add(ctlCardsInfo);
-        }
 
         primaryStage.show();
     }
@@ -83,7 +73,7 @@ public class Main extends Application {
      */
     private static void loadConfig() {
         Properties prop = new Properties();
-        URL uri = Main.class.getClass().getResource("/config.properties");
+        URL uri = AppMain.class.getClass().getResource("/config.properties");
 
         String fileName = uri.getFile();
         try {

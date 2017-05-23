@@ -3,6 +3,7 @@ package robot.client.controller.card;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,12 +14,14 @@ import robot.client.model.card.DataEduCardInfo;
 import robot.client.model.card.EduCardInfo;
 import robot.client.observer.Subject;
 
+import java.net.URL;
 import java.util.LinkedList;
+import java.util.ResourceBundle;
 
 /**
  * Created by Feng on 2017/5/18.
  */
-public class ManagerController extends Subject {
+public class ManagerController extends Subject implements Initializable {
 
     @FXML
     private TableView cardInfoTableView;
@@ -27,7 +30,11 @@ public class ManagerController extends Subject {
 
     public ManagerController() {
         this.attach(new CardApi());
-//        this.loadDatas();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.loadDatas();
     }
 
     private void loadDatas() {
@@ -53,7 +60,6 @@ public class ManagerController extends Subject {
         observableList.get(9).setCellValueFactory(new PropertyValueFactory("createTime"));
         observableList.get(10).setCellValueFactory(new PropertyValueFactory("updateTime"));
 
-
         cardInfoTableView.setItems(dataSource);
     }
 
@@ -64,4 +70,5 @@ public class ManagerController extends Subject {
         EduCardInfo cardInfo = new EduCardInfo();
         this.nodifyObservers(cardInfo);
     }
+
 }
