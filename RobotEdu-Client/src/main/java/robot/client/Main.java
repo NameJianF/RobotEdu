@@ -1,10 +1,13 @@
 package robot.client;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import robot.client.common.App;
 import robot.client.common.Config;
@@ -12,6 +15,7 @@ import robot.client.db.DbHelper;
 import robot.client.service.DatabaseService;
 import robot.client.service.SystemService;
 import robot.client.util.Logger;
+import robot.client.util.PageUtil;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -21,6 +25,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class Main extends Application {
+    @FXML
+    Pane paneMainCenter;
 
     /**
      * load system config
@@ -46,6 +52,11 @@ public class Main extends Application {
         String logoUrl = getClass().getResource("/img/logo.png").toExternalForm();
         Image logo = new Image(logoUrl);
         primaryStage.getIcons().add(logo);
+
+        BorderPane ctlCardsInfo = PageUtil.getBorderPane("/ui/card/manager.fxml");
+        if (ctlCardsInfo != null) {
+//            paneMainCenter.getChildren().add(ctlCardsInfo);
+        }
 
         primaryStage.show();
     }

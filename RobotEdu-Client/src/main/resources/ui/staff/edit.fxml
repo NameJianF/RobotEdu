@@ -1,22 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0"
-            prefWidth="410.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="robot.client.controller.LoginController">
+<GridPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="robot.client.controller.staff.EditController">
+    <columnConstraints>
+        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
     <children>
-        <Label id="labelUserName" layoutX="85.0" layoutY="72.0" text="用户名"/>
-        <Label id="labelPwd" layoutX="85.0" layoutY="126.0" text="密码"/>
-        <TextField id="textfieldUserName" layoutX="155.0" layoutY="68.0"/>
-        <TextField id="textfieldPwd" layoutX="155.0" layoutY="122.0"/>
-
-        <Button id="btnLogin" layoutX="85.0" layoutY="189.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="96.0"
-                text="登录" onMouseClicked="#loginClick"/>
-        <Button id="btnCancel" layoutX="220.0" layoutY="189.0" mnemonicParsing="false" prefHeight="23.0"
-                prefWidth="96.0" text="取消" onMouseClicked="#cancelClick"/>
+        <Label text="工号" GridPane.rowIndex="1">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Label text="宝宝性别" GridPane.rowIndex="2">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Label text="姓名" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Label text="手机" GridPane.rowIndex="3">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Label text="员工类别" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <ComboBox prefHeight="23.0" prefWidth="201.0" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+        <TextField GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+        <TextField GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="6"
+              GridPane.rowIndex="6">
+            <children>
+                <Button mnemonicParsing="false" prefWidth="80.0" text="保存">
+                    <HBox.margin>
+                        <Insets right="20.0"/>
+                    </HBox.margin>
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" prefWidth="80.0" text="取消">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+        <Label text="生日" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+        <TextField GridPane.columnIndex="6" GridPane.rowIndex="3"/>
+        <Label text="住址" GridPane.rowIndex="4"/>
+        <TextField GridPane.columnIndex="2" GridPane.columnSpan="5" GridPane.rowIndex="4"/>
+        <ComboBox prefHeight="23.0" prefWidth="212.0" GridPane.columnIndex="6" GridPane.rowIndex="2"/>
     </children>
-</AnchorPane>
+</GridPane>

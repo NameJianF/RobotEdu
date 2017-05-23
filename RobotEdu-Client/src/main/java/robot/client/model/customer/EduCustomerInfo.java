@@ -119,7 +119,7 @@ public class EduCustomerInfo extends BaseModel {
         this.momEmail = momEmail == null ? null : momEmail.trim();
     }
 
-    public String getDadName(Object dad_name) {
+    public String getDadName(String dad_name) {
         return dadName;
     }
 
@@ -194,7 +194,7 @@ public class EduCustomerInfo extends BaseModel {
         bean.setMomName((String) item.get("mom_name"));
         bean.setMomMobile((String) item.get("mom_mobile"));
         bean.setMomEmail((String) item.get("mom_email"));
-        bean.getDadName(item.get("dad_name"));
+        bean.getDadName((String) item.get("dad_name"));
         bean.setDadMobile((String) item.get("dad_mobile"));
         bean.setDadEmail((String) item.get("dad_email"));
         bean.setAddress((String) item.get("address"));
