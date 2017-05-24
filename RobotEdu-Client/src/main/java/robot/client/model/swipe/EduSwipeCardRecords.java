@@ -11,11 +11,8 @@ public class EduSwipeCardRecords extends BaseModel {
 
 
     private Long id;
-
     private Integer cardNo;
-
     private String upload;
-
     private Long createTime;
 
     public static String getUrl() {

@@ -49,6 +49,8 @@ public class AppMain extends Application {
         primaryStage.getIcons().add(logo);
 
         primaryStage.show();
+
+
     }
 
 
@@ -65,6 +67,9 @@ public class AppMain extends Application {
 //        DbHelper.testDb();
 //        new StaffApi().login("fjf789@126.com", "123456");
         launch(args);
+
+        Logger.debug(" >>>>>> Application Closed ... <<<<<< ");
+        System.exit(0);
     }
 
 

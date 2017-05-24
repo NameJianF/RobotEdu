@@ -9,25 +9,15 @@ public class EduStaffInfo extends BaseModel {
     public static final String tableName = "edu_swipe_card_records";
 
     private Integer id;
-
     private String staffNo;
-
     private String staffType;
-
     private String staffName;
-
     private String mobile;
-
     private String sex;
-
     private String birthday;
-
     private String address;
-
     private String upload;
-
     private Long createTime;
-
     private Long updateTime;
 
     public static String getUrl() {

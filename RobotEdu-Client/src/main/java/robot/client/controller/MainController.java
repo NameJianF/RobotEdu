@@ -40,7 +40,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        changeMainBorderPane(FLAG_CARD);
+        changeMainBorderPane(FLAG_SWIPE);
     }
 
     private void changeMainBorderPane(String flag) {
@@ -99,4 +99,6 @@ public class MainController implements Initializable {
     private void settingManagerClick(MouseEvent event) {
         changeMainBorderPane(FLAG_CARD);
     }
+
+
 }

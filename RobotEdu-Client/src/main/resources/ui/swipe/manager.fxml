@@ -25,9 +25,6 @@
         <BorderPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <left>
                 <TextField prefWidth="200.0" promptText="上课刷卡" BorderPane.alignment="CENTER">
-                    <BorderPane.margin>
-                        <Insets left="20.0"/>
-                    </BorderPane.margin>
                     <font>
                         <Font size="15.0"/>
                     </font>

@@ -85,7 +85,7 @@ public class DatabaseService {
 
     private void selectUploadCustomerInfos() {
         try {
-            String sql = "select * from " + EduCustomerInfo.tableName + " WHERE upload = '0';";
+            String sql = "select * from " + TableNames.EDU_CUSTOMER_INFO + " WHERE upload = '0';";
             ResultSetHandler<List<EduCustomerInfo>> handler = new BeanListHandler<>(EduCustomerInfo.class);
             List<EduCustomerInfo> list = DbHelper.query(sql, handler);
             if (list != null && list.size() > 0) {

@@ -3,6 +3,7 @@ package robot.client.api.customer;
 import com.alibaba.fastjson.JSON;
 import robot.client.api.AbstractApi;
 import robot.client.common.Config;
+import robot.client.common.TableNames;
 import robot.client.model.customer.EduCustomerInfo;
 import robot.client.observer.Observer;
 import robot.client.service.SystemService;
@@ -26,7 +27,7 @@ public class CustomerApi extends AbstractApi implements Observer {
         String json = JSON.toJSONString(customerInfo);
         SystemService.UploadDatas datas = new SystemService.UploadDatas();
         datas.setRowId(customerInfo.getId().longValue());
-        datas.setTableName(EduCustomerInfo.tableName);
+        datas.setTableName(TableNames.EDU_CUSTOMER_INFO);
         datas.setUrl(getUrl());
         datas.setJson(json);
         SystemService.getInstance().addUploadDatas(datas);

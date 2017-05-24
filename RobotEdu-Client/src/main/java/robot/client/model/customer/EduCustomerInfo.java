@@ -6,41 +6,31 @@ import robot.client.model.BaseModel;
 import java.util.Map;
 
 public class EduCustomerInfo extends BaseModel {
-
-    public static final String tableName = "edu_customer_info";
+    public EduCustomerInfo() {
+        this.setApikey(Config.MODULE_APP_KEY);
+        this.setTimestamp(System.currentTimeMillis());
+        if (Config.LoginUser != null) {
+            this.setSid(Config.LoginUser.getSid());
+        }
+    }
 
     private Integer id;
-
     private String adviser;
-
+    private Long cardNo;
     private String childName;
-
     private String childSex;
-
     private String birthday;
-
     private String childImage;
-
     private String momName;
-
     private String momMobile;
-
     private String momEmail;
-
     private String dadName;
-
     private String dadMobile;
-
     private String dadEmail;
-
     private String address;
-
     private String remarks;
-
     private String upload;
-
     private Long createTime;
-
     private Long updateTime;
 
     public static String getUrl() {
@@ -61,6 +51,18 @@ public class EduCustomerInfo extends BaseModel {
 
     public void setAdviser(String adviser) {
         this.adviser = adviser == null ? null : adviser.trim();
+    }
+
+    public Long getCardNo() {
+        return cardNo;
+    }
+
+    public void setCardNo(Long cardNo) {
+        this.cardNo = cardNo;
+    }
+
+    public String getDadName() {
+        return dadName;
     }
 
     public String getChildName() {
@@ -117,10 +119,6 @@ public class EduCustomerInfo extends BaseModel {
 
     public void setMomEmail(String momEmail) {
         this.momEmail = momEmail == null ? null : momEmail.trim();
-    }
-
-    public String getDadName(String dad_name) {
-        return dadName;
     }
 
     public void setDadName(String dadName) {
@@ -187,6 +185,7 @@ public class EduCustomerInfo extends BaseModel {
         EduCustomerInfo bean = new EduCustomerInfo();
         bean.setId((Integer) item.get("id"));
         bean.setAdviser((String) item.get("adviser"));
+        bean.setCardNo((Long) item.get("card_no"));
         bean.setChildName((String) item.get("child_name"));
         bean.setChildSex((String) item.get("child_sex"));
         bean.setBirthday((String) item.get("birthday"));
@@ -194,7 +193,7 @@ public class EduCustomerInfo extends BaseModel {
         bean.setMomName((String) item.get("mom_name"));
         bean.setMomMobile((String) item.get("mom_mobile"));
         bean.setMomEmail((String) item.get("mom_email"));
-        bean.getDadName((String) item.get("dad_name"));
+        bean.setDadName((String) item.get("dad_name"));
         bean.setDadMobile((String) item.get("dad_mobile"));
         bean.setDadEmail((String) item.get("dad_email"));
         bean.setAddress((String) item.get("address"));
