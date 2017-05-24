@@ -3,6 +3,7 @@ package robot.client.api.swipe;
 import com.alibaba.fastjson.JSON;
 import robot.client.api.AbstractApi;
 import robot.client.common.Config;
+import robot.client.common.TableNames;
 import robot.client.model.swipe.EduSwipeCardRecords;
 import robot.client.observer.Observer;
 import robot.client.service.SystemService;
@@ -26,7 +27,7 @@ public class SwipeCardApi extends AbstractApi implements Observer {
         String json = JSON.toJSONString(info);
         SystemService.UploadDatas datas = new SystemService.UploadDatas();
         datas.setRowId(info.getId());
-        datas.setTableName(EduSwipeCardRecords.tableName);
+        datas.setTableName(TableNames.EDU_SWIPE_CARD_RECORDS);
         datas.setUrl(getUrl());
         datas.setJson(json);
         SystemService.getInstance().addUploadDatas(datas);

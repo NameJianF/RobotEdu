@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -9,7 +10,7 @@
             prefWidth="600.0" style="-fx-background-color: lightred;" xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="robot.client.controller.swipe.ManagerController">
     <center>
-        <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <TableView fx:id="tableViewSwipe" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn maxWidth="120.0" prefWidth="100.0" text="卡号"/>
                 <TableColumn maxWidth="200.0" prefWidth="100.0" text="宝宝姓名"/>
@@ -24,16 +25,17 @@
     <top>
         <BorderPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <left>
-                <TextField prefWidth="200.0" promptText="上课刷卡" BorderPane.alignment="CENTER">
+                <TextField prefWidth="200.0" promptText="上课刷卡" BorderPane.alignment="CENTER" fx:id="txtSwipeNo"
+                           onKeyPressed="#onCardTextFieldKeyEnter">
                     <font>
                         <Font size="15.0"/>
                     </font>
                 </TextField>
             </left>
             <right>
-                <HBox prefHeight="40.0" prefWidth="300.0" BorderPane.alignment="CENTER_RIGHT">
+                <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="300.0" BorderPane.alignment="CENTER_RIGHT">
                     <children>
-                        <TextField prefHeight="23.0" prefWidth="200.0" promptText="卡号/手机号">
+                        <TextField prefHeight="23.0" prefWidth="200.0" promptText="卡号/手机号" fx:id="txtSelectCardNo">
                             <font>
                                 <Font size="14.0"/>
                             </font>
@@ -48,7 +50,7 @@
                         </Button>
                     </children>
                     <padding>
-                        <Insets right="20.0" top="5.0"/>
+                        <Insets top="5.0"/>
                     </padding>
                 </HBox>
             </right>

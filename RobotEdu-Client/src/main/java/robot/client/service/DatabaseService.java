@@ -66,7 +66,6 @@ public class DatabaseService {
     private void selectUploadCardInfos() {
         try {
             String sql = "select * from " + TableNames.EDU_CARD_INFO + " WHERE upload = '0'; ";
-//            ResultSetHandler<List<EduCardInfo>> handler = new BeanListHandler<>(EduCardInfo.class);
             List list = DbHelper.query(sql, new MapListHandler());
             if (list != null && list.size() > 0) {
                 CardApi api = new CardApi();
@@ -86,8 +85,7 @@ public class DatabaseService {
     private void selectUploadCustomerInfos() {
         try {
             String sql = "select * from " + TableNames.EDU_CUSTOMER_INFO + " WHERE upload = '0';";
-            ResultSetHandler<List<EduCustomerInfo>> handler = new BeanListHandler<>(EduCustomerInfo.class);
-            List<EduCustomerInfo> list = DbHelper.query(sql, handler);
+            List list = DbHelper.query(sql, new MapListHandler());
             if (list != null && list.size() > 0) {
                 CustomerApi api = new CustomerApi();
                 Iterator iterator = list.iterator();
@@ -105,9 +103,9 @@ public class DatabaseService {
 
     private void selectUploadSwipeRecords() {
         try {
-            String sql = "select * from " + EduSwipeCardRecords.tableName + " WHERE upload = '0';";
-            ResultSetHandler<List<EduSwipeCardRecords>> handler = new BeanListHandler<>(EduSwipeCardRecords.class);
-            List<EduSwipeCardRecords> list = DbHelper.query(sql, handler);
+            String sql = "select * from " + TableNames.EDU_SWIPE_CARD_RECORDS + " WHERE upload = '0';";
+            List list = DbHelper.query(sql, new MapListHandler());
+
             if (list != null && list.size() > 0) {
                 SwipeCardApi api = new SwipeCardApi();
                 Iterator iterator = list.iterator();
@@ -126,8 +124,8 @@ public class DatabaseService {
     private void selectUploadStaffInfos() {
         try {
             String sql = "select * from " + EduStaffInfo.tableName + " WHERE upload = '0';";
-            ResultSetHandler<List<EduStaffInfo>> handler = new BeanListHandler<>(EduStaffInfo.class);
-            List<EduStaffInfo> list = DbHelper.query(sql, handler);
+            List list = DbHelper.query(sql, new MapListHandler());
+
             if (list != null && list.size() > 0) {
                 StaffApi api = new StaffApi();
                 Iterator iterator = list.iterator();

@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
@@ -104,6 +105,8 @@ public class ManagerContorller extends Subject implements Initializable {
         stage.setTitle("添加宝宝信息");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(App.primaryStage.getScene().getWindow());
+
+        stage.getIcons().add(PageUtil.getLogo());
         stage.showAndWait();
 
         this.loadDatas(null);

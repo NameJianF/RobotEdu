@@ -2,6 +2,7 @@ package robot.client.util;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import robot.client.AppMain;
@@ -14,6 +15,12 @@ import java.net.URL;
  * Created by Feng on 2017/5/23.
  */
 public class PageUtil {
+
+    public static Image getLogo() {
+        String logoUrl = AppMain.class.getResource("/img/logo.png").toExternalForm();
+        Image logo = new Image(logoUrl);
+        return logo;
+    }
 
     public static BorderPane getBorderPane(String fxml) {
         Logger.debug("FXML path:" + fxml);

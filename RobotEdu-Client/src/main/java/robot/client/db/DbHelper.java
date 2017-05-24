@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import robot.client.common.Config;
 import robot.client.util.Logger;
 
+import java.math.BigInteger;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -96,7 +97,8 @@ public class DbHelper {
             QueryRunner runner = new QueryRunner();
             runner.update(conn, sql);
             //获取新增记录的自增主键
-            return (Long) runner.query(conn, "SELECT LAST_INSERT_ID()", new ScalarHandler(1));
+            java.math.BigInteger id = (BigInteger) runner.query(conn, "SELECT LAST_INSERT_ID()", new ScalarHandler(1));
+            return id.longValue();
         }
         return -1L;
     }
@@ -114,7 +116,8 @@ public class DbHelper {
             QueryRunner runner = new QueryRunner();
             runner.update(conn, sql, param);
             //获取新增记录的自增主键
-            return (Long) runner.query(conn, "SELECT LAST_INSERT_ID()", new ScalarHandler(1));
+            java.math.BigInteger id = (BigInteger) runner.query(conn, "SELECT LAST_INSERT_ID()", new ScalarHandler(1));
+            return id.longValue();
         }
         return -1L;
     }
@@ -132,7 +135,8 @@ public class DbHelper {
             QueryRunner runner = new QueryRunner();
             runner.update(conn, sql, params);
             //获取新增记录的自增主键
-            return (Long) runner.query(conn, "SELECT LAST_INSERT_ID()", new ScalarHandler(1));
+            java.math.BigInteger id = (BigInteger) runner.query(conn, "SELECT LAST_INSERT_ID()", new ScalarHandler(1));
+            return id.longValue();
         }
         return -1L;
     }

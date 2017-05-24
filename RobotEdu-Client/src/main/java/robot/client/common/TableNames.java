@@ -5,6 +5,6 @@ package robot.client.common;
  */
 public class TableNames {
     public static final String EDU_CARD_INFO = "edu_card_info";
-
     public static final String EDU_CUSTOMER_INFO = "edu_customer_info";
+    public static final String EDU_SWIPE_CARD_RECORDS = "edu_swipe_card_records";
 }

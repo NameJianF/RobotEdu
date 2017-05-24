@@ -7,11 +7,8 @@ import java.util.Map;
 
 public class EduSwipeCardRecords extends BaseModel {
 
-    public static final String tableName = "edu_swipe_card_records";
-
-
     private Long id;
-    private Integer cardNo;
+    private Long cardNo;
     private String upload;
     private Long createTime;
 
@@ -27,11 +24,11 @@ public class EduSwipeCardRecords extends BaseModel {
         this.id = id;
     }
 
-    public Integer getCardNo() {
+    public Long getCardNo() {
         return cardNo;
     }
 
-    public void setCardNo(Integer cardNo) {
+    public void setCardNo(Long cardNo) {
         this.cardNo = cardNo;
     }
 
@@ -51,11 +48,19 @@ public class EduSwipeCardRecords extends BaseModel {
         this.createTime = createTime;
     }
 
+    public EduSwipeCardRecords(){
+        this.setApikey(Config.MODULE_APP_KEY);
+        this.setTimestamp(System.currentTimeMillis());
+        if (Config.LoginUser != null) {
+            this.setSid(Config.LoginUser.getSid());
+        }
+    }
+
 
     public static EduSwipeCardRecords getBean(Map<String, Object> item) {
         EduSwipeCardRecords bean = new EduSwipeCardRecords();
         bean.setId((Long) item.get("id"));
-        bean.setCardNo((Integer) item.get("card_no"));
+        bean.setCardNo((Long) item.get("card_no"));
         bean.setUpload((String) item.get("upload"));
         bean.setCreateTime((Long) item.get("create_time"));
 

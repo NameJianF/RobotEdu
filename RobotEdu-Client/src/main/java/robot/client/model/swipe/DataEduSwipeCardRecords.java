@@ -10,6 +10,7 @@ import java.util.Map;
 public class DataEduSwipeCardRecords {
     private final LongProperty id = new SimpleLongProperty();
     private final LongProperty cardNo = new SimpleLongProperty();
+    private final StringProperty childName = new SimpleStringProperty();
     private final StringProperty upload = new SimpleStringProperty();
     private final LongProperty createTime = new SimpleLongProperty();
 
@@ -31,6 +32,18 @@ public class DataEduSwipeCardRecords {
 
     public long getCardNo() {
         return cardNo.get();
+    }
+
+    public String getChildName() {
+        return childName.get();
+    }
+
+    public StringProperty childNameProperty() {
+        return childName;
+    }
+
+    public void setChildName(String childName) {
+        this.childName.set(childName);
     }
 
     public LongProperty cardNoProperty() {
@@ -68,7 +81,7 @@ public class DataEduSwipeCardRecords {
     public static DataEduSwipeCardRecords getBean(Map<String, Object> item) {
         DataEduSwipeCardRecords bean = new DataEduSwipeCardRecords();
         bean.setId((Long) item.get("id"));
-        bean.setCardNo((Integer) item.get("card_no"));
+        bean.setCardNo((Long) item.get("card_no"));
         bean.setUpload((String) item.get("upload"));
         bean.setCreateTime((Long) item.get("create_time"));
 

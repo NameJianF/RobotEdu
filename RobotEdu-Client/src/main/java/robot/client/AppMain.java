@@ -44,9 +44,7 @@ public class AppMain extends Application {
         primaryStage.setScene(new Scene(root, 1000, 600));
 //        primaryStage.setFullScreen(true);
 
-        String logoUrl = getClass().getResource("/img/logo.png").toExternalForm();
-        Image logo = new Image(logoUrl);
-        primaryStage.getIcons().add(logo);
+        primaryStage.getIcons().add(PageUtil.getLogo());
 
         primaryStage.show();
 

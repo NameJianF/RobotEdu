@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.apache.commons.lang3.StringUtils;
 import robot.client.AppMain;
 import robot.client.api.customer.CustomerApi;
 import robot.client.dao.CustomerDao;
@@ -96,12 +97,23 @@ public class EditContorller extends Subject implements Initializable {
         Integer ret = CustomerDao.insert(customerInfo);
         if (ret > 0) {
             // upload
+            customerInfo.setId(ret);
             this.nodifyObservers(customerInfo);
         }
     }
 
     @FXML
     private void buttonSaveClick(MouseEvent event) {
+        if (StringUtils.isEmpty(txtAdviser.getText())) {
+            return;
+        }
+        if (StringUtils.isEmpty(txtChildName.getText())) {
+            return;
+        }
+        if (cmbChildSex.getSelectionModel().getSelectedItem() == null) {
+            return;
+        }
+
         insert();
     }
 

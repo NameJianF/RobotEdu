@@ -33,7 +33,7 @@ public class CustomerDao {
             List list = DbHelper.query(sql, new MapListHandler());
             if (list != null && list.size() > 0) {
                 Iterator iterator = list.iterator();
-                if (iterator.hasNext()) {
+                while (iterator.hasNext()) {
                     Map<String, Object> item = (Map<String, Object>) iterator.next();
                     DataEduCustomerInfo info = DataEduCustomerInfo.getBean(item);
                     customerInfos.add(info);
@@ -47,16 +47,16 @@ public class CustomerDao {
     }
 
     public static Integer insert(EduCustomerInfo customerInfo) {
-        if (StringUtils.isNotEmpty(customerInfo.getAdviser())) {
+        if (StringUtils.isEmpty(customerInfo.getAdviser())) {
             Logger.error("adviser is null");
             return 0;
         }
-        if (StringUtils.isNotEmpty(customerInfo.getChildName())) {
+        if (StringUtils.isEmpty(customerInfo.getChildName())) {
             Logger.error("child name is null");
             return 0;
         }
 
-        if (StringUtils.isNotEmpty(customerInfo.getChildSex())) {
+        if (StringUtils.isEmpty(customerInfo.getChildSex())) {
             Logger.error("child sex is null");
             return 0;
         }
@@ -100,5 +100,20 @@ public class CustomerDao {
             Logger.error(e.getMessage(), e);
         }
         return -1;
+    }
+
+    public static EduCustomerInfo select(Long cardNo) {
+        try {
+            String sql = " select * from " + TableNames.EDU_CUSTOMER_INFO + " where card_no = " + cardNo;
+
+            List list = DbHelper.query(sql, new MapListHandler());
+            if (list != null && list.size() > 0) {
+                Map<String, Object> item = (Map<String, Object>) list.get(0);
+                return EduCustomerInfo.getBean(item);
+            }
+        } catch (SQLException e) {
+            Logger.error(e.getMessage(), e);
+        }
+        return null;
     }
 }
