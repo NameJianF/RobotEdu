@@ -39,47 +39,56 @@
                 <Font size="14.0"/>
             </font>
         </Label>
+        <TextField fx:id="txtCardNo" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+
         <Label text="类型" GridPane.rowIndex="2">
             <font>
                 <Font size="14.0"/>
             </font>
         </Label>
+        <ComboBox fx:id="cmbCardType" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="2"
+                  GridPane.rowIndex="2"/>
+
         <Label text="总次数" GridPane.rowIndex="3">
             <font>
                 <Font size="14.0"/>
             </font>
         </Label>
+        <TextField fx:id="txtTotalTimes" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+
         <Label text="价格" GridPane.rowIndex="4">
             <font>
                 <Font size="14.0"/>
             </font>
         </Label>
+        <TextField fx:id="txtPrice" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+
         <Label text="折扣" GridPane.rowIndex="5">
             <font>
                 <Font size="14.0"/>
             </font>
         </Label>
+        <TextField fx:id="txtDiscount" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+
         <Label text="销售顾问" GridPane.rowIndex="6">
             <font>
                 <Font size="14.0"/>
             </font>
         </Label>
+        <TextField fx:id="txtAdviser" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+
         <Label text="是否可用" GridPane.rowIndex="7">
             <font>
                 <Font size="14.0"/>
             </font>
         </Label>
-        <TextField GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-        <ComboBox prefHeight="23.0" prefWidth="142.0" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-        <TextField GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-        <TextField GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-        <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-        <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
-        <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+        <ComboBox fx:id="cmbEnable" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+
         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2"
               GridPane.rowIndex="9">
             <children>
-                <Button mnemonicParsing="false" prefWidth="80.0" text="保存">
+                <Button fx:id="btnSave" mnemonicParsing="false" prefWidth="80.0" text="保存"
+                        onMouseClicked="#buttonSaveClick">
                     <HBox.margin>
                         <Insets right="20.0"/>
                     </HBox.margin>
@@ -87,7 +96,8 @@
                         <Font size="14.0"/>
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" prefWidth="80.0" text="取消">
+                <Button fx:id="btnCancel" mnemonicParsing="false" prefWidth="80.0" text="取消"
+                        onMouseClicked="#buttonCancelClick">
                     <font>
                         <Font size="14.0"/>
                     </font>

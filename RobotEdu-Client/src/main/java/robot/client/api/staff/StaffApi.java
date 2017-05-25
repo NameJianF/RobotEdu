@@ -68,9 +68,7 @@ public class StaffApi extends AbstractApi implements Observer {
             }
             JSONObject resOject = JSON.parseObject(res);
             if (resOject.getInteger("code") != null && resOject.get("data") != null) {
-                User loginUser = JSON.parseObject(resOject.getString("data"), User.class);
-                Config.LoginUser = loginUser;
-
+                Config.LoginUser = JSON.parseObject(resOject.getString("data"), User.class);
                 return ErrorCode.SUCCESS;
             }
 

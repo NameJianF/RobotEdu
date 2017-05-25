@@ -2,10 +2,15 @@ package robot.client.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import robot.client.common.App;
+import robot.client.common.Config;
 import robot.client.util.PageUtil;
 
 import java.net.URL;
@@ -87,18 +92,46 @@ public class MainController implements Initializable {
 
     @FXML
     private void customerManagerClick(MouseEvent event) {
-        changeMainBorderPane(FLAG_CUSTOMER);
+        if (this.checkLogin()) {
+            changeMainBorderPane(FLAG_CUSTOMER);
+        }
     }
 
     @FXML
     private void staffManagerClick(MouseEvent event) {
-        changeMainBorderPane(FLAG_STAFF);
+        if (this.checkLogin()) {
+            changeMainBorderPane(FLAG_STAFF);
+        }
     }
 
     @FXML
     private void settingManagerClick(MouseEvent event) {
-        changeMainBorderPane(FLAG_CARD);
+        if (this.checkLogin()) {
+            changeMainBorderPane(FLAG_CARD);
+        }
     }
 
+    private Boolean checkLogin() {
+        if (Config.LoginUser == null) {
+            return this.showLoginWindow();
+        }
 
+        return true;
+    }
+
+    private Boolean showLoginWindow() {
+        Stage stage = new Stage();
+        AnchorPane dialog = PageUtil.getAnchorPane("/ui/login.fxml");
+        stage.setScene(new Scene(dialog));
+        stage.setTitle("登录");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(App.primaryStage.getScene().getWindow());
+        stage.getIcons().add(PageUtil.getLogo());
+        stage.showAndWait();
+
+        if (Config.LoginUser == null) {
+            return false;
+        }
+        return true;
+    }
 }

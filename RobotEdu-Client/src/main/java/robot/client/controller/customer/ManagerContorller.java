@@ -59,6 +59,7 @@ public class ManagerContorller extends Subject implements Initializable {
     }
 
     private void loadDatas(String childName) {
+        dataSource.clear();
 
         // select datas from db
         LinkedList<DataEduCustomerInfo> dataEduCardInfos = CustomerDao.selectDatas(childName);

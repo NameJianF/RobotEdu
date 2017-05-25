@@ -50,6 +50,7 @@ public class ManagerController extends Subject implements Initializable {
     }
 
     private void loadDatas(String cardNo) {
+        dataSource.clear();
 
         // select datas from db
         LinkedList<DataEduSwipeCardRecords> dataEduSwipeCardRecords = SwipeCardRecordsDao.selectDatas(cardNo);
@@ -83,7 +84,6 @@ public class ManagerController extends Subject implements Initializable {
             EduCustomerInfo customerInfo = CustomerDao.select(no);
 
             this.insert();
-            this.dataSource.clear();
             this.loadDatas(null);
         }
     }

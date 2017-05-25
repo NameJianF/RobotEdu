@@ -5,7 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import robot.client.common.App;
 import robot.client.common.Config;
@@ -34,21 +37,15 @@ public class AppMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         App.primaryStage = primaryStage;
 
         URL url = getClass().getResource("/ui/main.fxml");
-
         Parent root = FXMLLoader.load(url);
         primaryStage.setTitle("机器人教育");
         primaryStage.setScene(new Scene(root, 1000, 600));
 //        primaryStage.setFullScreen(true);
-
         primaryStage.getIcons().add(PageUtil.getLogo());
-
         primaryStage.show();
-
-
     }
 
 
@@ -63,7 +60,6 @@ public class AppMain extends Application {
         // 启动后，执行一次数据上报
         DatabaseService.getInstance().init();
 //        DbHelper.testDb();
-//        new StaffApi().login("fjf789@126.com", "123456");
         launch(args);
 
         Logger.debug(" >>>>>> Application Closed ... <<<<<< ");
@@ -110,4 +106,5 @@ public class AppMain extends Application {
 
         Config.printValues();
     }
+
 }

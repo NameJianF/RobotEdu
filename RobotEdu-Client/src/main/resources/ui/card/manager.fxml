@@ -19,12 +19,12 @@
             <left>
                 <HBox prefHeight="40.0" prefWidth="300.0" BorderPane.alignment="CENTER_RIGHT">
                     <children>
-                        <TextField prefHeight="23.0" prefWidth="200.0" promptText="卡号">
+                        <TextField prefHeight="23.0" prefWidth="200.0" promptText="卡号" fx:id="txtCardNo">
                             <font>
                                 <Font size="14.0"/>
                             </font>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" text="查询">
+                        <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" text="查询" fx:id="btnSelect">
                             <HBox.margin>
                                 <Insets left="10.0"/>
                             </HBox.margin>
@@ -38,6 +38,37 @@
                     </padding>
                 </HBox>
             </left>
+
+            <right>
+                <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="265.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button mnemonicParsing="false" text="添加" fx:id="btnNew" onMouseClicked="#buttonNewClick">
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets right="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" text="修改" fx:id="btnModity" onMouseClicked="#buttonModifyClick">
+                            <HBox.margin>
+                                <Insets right="10.0"/>
+                            </HBox.margin>
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" text="删除" fx:id="btnDelete" onMouseClicked="#buttonDeleteClick">
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets right="10.0"/>
+                    </padding>
+                </HBox>
+            </right>
         </BorderPane>
     </top>
     <center>

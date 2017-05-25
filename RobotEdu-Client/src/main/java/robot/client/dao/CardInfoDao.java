@@ -48,4 +48,52 @@ public class CardInfoDao {
         }
         return cardInfoList;
     }
+
+    public static Integer insert(EduCardInfo cardInfo) {
+        if (cardInfo.getCardNo() == null) {
+            Logger.error("card NO is null");
+            return 0;
+        }
+        if (StringUtils.isEmpty(cardInfo.getCardType())) {
+            Logger.error("card type is null");
+            return 0;
+        }
+        if (StringUtils.isEmpty(cardInfo.getAdviser())) {
+            Logger.error("adviser is null");
+            return 0;
+        }
+
+        if (cardInfo.getPrice() == null) {
+            Logger.error("card prive is null");
+            return 0;
+        }
+
+
+        List<Object> params = new ArrayList<Object>();
+        StringBuffer sqlBuffer = new StringBuffer("insert into " + TableNames.EDU_CARD_INFO);
+        sqlBuffer.append(" (card_no,card_type,total_times,used_times,price,");
+        sqlBuffer.append(" discount,adviser,flag,create_time,update_time)");
+        sqlBuffer.append(" values(?,?,?,?,?,");
+        sqlBuffer.append(" ?,?,?,?,?)");
+
+        params.add(cardInfo.getCardNo());
+        params.add(cardInfo.getCardType());
+        params.add(cardInfo.getTotalTimes());
+        params.add(cardInfo.getUsedTimes());
+        params.add(cardInfo.getPrice());
+
+        params.add(cardInfo.getDiscount());
+        params.add(cardInfo.getAdviser());
+        params.add(cardInfo.getFlag());
+        params.add(cardInfo.getCreateTime());
+        params.add(cardInfo.getUpdateTime());
+
+        try {
+            Long ret = DbHelper.insert(sqlBuffer.toString(), params.toArray());
+            return ret.intValue();
+        } catch (SQLException e) {
+            Logger.error(e.getMessage(), e);
+        }
+        return -1;
+    }
 }

@@ -4,15 +4,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.apache.commons.lang3.StringUtils;
 import robot.client.api.card.CardApi;
+import robot.client.common.App;
 import robot.client.dao.CardInfoDao;
 import robot.client.db.DbHelper;
 import robot.client.model.card.DataEduCardInfo;
 import robot.client.model.card.EduCardInfo;
 import robot.client.observer.Subject;
+import robot.client.util.PageUtil;
 
 import java.net.URL;
 import java.util.LinkedList;
@@ -25,6 +35,16 @@ public class ManagerController extends Subject implements Initializable {
 
     @FXML
     private TableView cardInfoTableView;
+    @FXML
+    private TextField txtCardNo;
+    @FXML
+    private Button btnSelect;
+    @FXML
+    private Button btnNew;
+    @FXML
+    private Button btnModity;
+    @FXML
+    private Button btnDelete;
 
     private ObservableList<DataEduCardInfo> dataSource = FXCollections.observableArrayList();
 
@@ -34,13 +54,14 @@ public class ManagerController extends Subject implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.loadDatas();
+        this.loadDatas(null);
     }
 
-    private void loadDatas() {
+    private void loadDatas(Long cardNo) {
+        dataSource.clear();
 
         // select datas from db
-        LinkedList<DataEduCardInfo> dataEduCardInfos = CardInfoDao.selectDatas(null);
+        LinkedList<DataEduCardInfo> dataEduCardInfos = CardInfoDao.selectDatas(cardNo);
 
         for (DataEduCardInfo info : dataEduCardInfos) {
             dataSource.add(info);
@@ -62,6 +83,40 @@ public class ManagerController extends Subject implements Initializable {
 
         cardInfoTableView.setItems(dataSource);
     }
+
+
+    @FXML
+    private void buttonSelectClick(MouseEvent event) {
+        if (StringUtils.isEmpty(txtCardNo.getText())) {
+            loadDatas(null);
+        } else {
+            loadDatas(Long.valueOf(txtCardNo.getText()));
+        }
+    }
+
+    @FXML
+    private void buttonNewClick(MouseEvent event) {
+        Stage stage = new Stage();
+        GridPane dialog = PageUtil.getGridPane("/ui/card/edit.fxml");
+        stage.setScene(new Scene(dialog));
+        stage.setTitle("添加会员卡");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(App.primaryStage.getScene().getWindow());
+
+        stage.getIcons().add(PageUtil.getLogo());
+        stage.showAndWait();
+
+        this.loadDatas(null);
+    }
+
+    @FXML
+    private void buttonModifyClick(MouseEvent event) {
+    }
+
+    @FXML
+    private void buttonDeleteClick(MouseEvent event) {
+    }
+
 
     /**
      * 保存数据到数据库
