@@ -3,6 +3,7 @@ package robot.client.api.swipe;
 import com.alibaba.fastjson.JSON;
 import robot.client.api.AbstractApi;
 import robot.client.common.Config;
+import robot.client.common.DataOp;
 import robot.client.common.TableNames;
 import robot.client.model.swipe.EduSwipeCardRecords;
 import robot.client.observer.Observer;
@@ -34,9 +35,16 @@ public class SwipeCardApi extends AbstractApi implements Observer {
     }
 
     @Override
-    public void upload(Object object) {
+    public void upload(Object object, DataOp dataOp) {
         EduSwipeCardRecords info = (EduSwipeCardRecords) object;
-        info.setOp("swipeCardRecords.add");
+        if (DataOp.INSERT.equals(dataOp)) {
+            info.setOp("swipeCardRecords.add");
+        } else if (DataOp.MODIFY.equals(dataOp)) {
+            info.setOp("swipeCardRecords.modify");
+        } else if (DataOp.DELETE.equals(dataOp)) {
+            info.setOp("swipeCardRecords.delete");
+        }
+
         this.postJsonString(info);
     }
 }

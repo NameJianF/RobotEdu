@@ -6,7 +6,6 @@ import robot.client.model.BaseModel;
 import java.util.Map;
 
 public class EduStaffInfo extends BaseModel {
-    public static final String tableName = "edu_swipe_card_records";
 
     private Integer id;
     private String staffNo;
@@ -19,6 +18,14 @@ public class EduStaffInfo extends BaseModel {
     private String upload;
     private Long createTime;
     private Long updateTime;
+
+    public EduStaffInfo(){
+        this.setApikey(Config.MODULE_APP_KEY);
+        this.setTimestamp(System.currentTimeMillis());
+        if (Config.LoginUser != null) {
+            this.setSid(Config.LoginUser.getSid());
+        }
+    }
 
     public static String getUrl() {
         return Config.SERVER_URL + "";

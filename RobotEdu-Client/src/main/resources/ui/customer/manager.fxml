@@ -76,21 +76,14 @@
         <TableView fx:id="tableViewCustomer" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn maxWidth="60.0" prefWidth="60.0" text="ID"/>
-                <TableColumn maxWidth="120.0" prefWidth="100.0" text="卡号"/>
-                <TableColumn maxWidth="120.0" prefWidth="100.0" text="宝宝姓名"/>
+                <TableColumn maxWidth="120.0" prefWidth="120.0" text="卡号"/>
+                <TableColumn maxWidth="120.0" prefWidth="120.0" text="宝宝姓名"/>
                 <TableColumn maxWidth="60.0" prefWidth="60.0" text="宝宝性别"/>
-                <TableColumn maxWidth="60.0" prefWidth="60.0" text="宝宝生日"/>
-                <!--<TableColumn maxWidth="60.0" prefWidth="60.0" text="头像"/>-->
-                <TableColumn maxWidth="100.0" prefWidth="100.0" text="妈妈姓名"/>
-                <TableColumn maxWidth="100.0" prefWidth="100.0" text="妈妈手机"/>
-                <TableColumn maxWidth="100.0" prefWidth="100.0" text="妈妈邮箱"/>
-                <TableColumn maxWidth="60.0" prefWidth="60.0" text="爸爸姓名"/>
-                <TableColumn maxWidth="60.0" prefWidth="60.0" text="爸爸手机"/>
-                <TableColumn maxWidth="60.0" prefWidth="60.0" text="爸爸邮箱"/>
-                <TableColumn maxWidth="60.0" prefWidth="60.0" text="住址"/>
-                <TableColumn maxWidth="60.0" prefWidth="60.0" text="备注"/>
-                <TableColumn maxWidth="120.0" prefWidth="120.0" text="创建时间"/>
-                <TableColumn maxWidth="120.0" prefWidth="120.0" text="修改时间"/>
+                <TableColumn maxWidth="120.0" prefWidth="120.0" text="宝宝生日"/>
+                <TableColumn maxWidth="300.0" prefWidth="300.0" text="住址"/>
+                <TableColumn maxWidth="300.0" prefWidth="300.0" text="备注"/>
+                <TableColumn maxWidth="150.0" prefWidth="150.0" text="创建时间"/>
+                <TableColumn maxWidth="150.0" prefWidth="150.0" text="修改时间"/>
             </columns>
         </TableView>
     </center>

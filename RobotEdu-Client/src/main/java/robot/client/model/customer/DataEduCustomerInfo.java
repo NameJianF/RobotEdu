@@ -1,6 +1,7 @@
 package robot.client.model.customer;
 
 import javafx.beans.property.*;
+import robot.client.util.DateTimeUtil;
 
 import java.util.Map;
 
@@ -24,8 +25,8 @@ public class DataEduCustomerInfo {
     private StringProperty address = new SimpleStringProperty();
     private StringProperty remarks = new SimpleStringProperty();
     private StringProperty upload = new SimpleStringProperty();
-    private LongProperty createTime = new SimpleLongProperty();
-    private LongProperty updateTime = new SimpleLongProperty();
+    private StringProperty createTime = new SimpleStringProperty();
+    private StringProperty updateTime = new SimpleStringProperty();
 
     public int getId() {
         return id.get();
@@ -219,27 +220,27 @@ public class DataEduCustomerInfo {
         this.upload.set(upload);
     }
 
-    public long getCreateTime() {
+    public String getCreateTime() {
         return createTime.get();
     }
 
-    public LongProperty createTimeProperty() {
+    public StringProperty createTimeProperty() {
         return createTime;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime.set(createTime);
     }
 
-    public long getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime.get();
     }
 
-    public LongProperty updateTimeProperty() {
+    public StringProperty updateTimeProperty() {
         return updateTime;
     }
 
-    public void setUpdateTime(long updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime.set(updateTime);
     }
 
@@ -249,9 +250,10 @@ public class DataEduCustomerInfo {
         bean.setAdviser((String) item.get("adviser"));
         bean.setCardNo((Long) item.get("card_no"));
         bean.setChildName((String) item.get("child_name"));
-        bean.setChildSex((String) item.get("child_sex"));
+        String sex = (String) item.get("child_sex");
+        bean.setChildSex(sex.equals("1") ? "男" : "女");
         bean.setBirthday((String) item.get("birthday"));
-        bean.setChildName((String) item.get("child_image"));
+        bean.setChildImage((String) item.get("child_image"));
         bean.setMomName((String) item.get("mom_name"));
         bean.setMomMobile((String) item.get("mom_mobile"));
         bean.setMomEmail((String) item.get("mom_email"));
@@ -261,8 +263,8 @@ public class DataEduCustomerInfo {
         bean.setAddress((String) item.get("address"));
         bean.setRemarks((String) item.get("remarks"));
         bean.setUpload((String) item.get("upload"));
-        bean.setCreateTime((Long) item.get("create_time"));
-        bean.setUpdateTime((Long) item.get("update_time"));
+        bean.setCreateTime(DateTimeUtil.getStrByLong((Long) item.get("create_time")));
+        bean.setUpdateTime(DateTimeUtil.getStrByLong((Long) item.get("update_time")));
 
         return bean;
     }

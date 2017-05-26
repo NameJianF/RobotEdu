@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import robot.client.api.http.HttpUtils;
+import robot.client.common.DataOp;
 import robot.client.common.ErrorCode;
 import robot.client.db.DbHelper;
 import robot.client.util.Logger;
@@ -119,6 +120,7 @@ public class SystemService {
         private String json;
         private String tableName;
         private Long rowId;
+        private DataOp dataOp;
 
         public String getUrl() {
             return url;
@@ -150,6 +152,14 @@ public class SystemService {
 
         public void setRowId(Long rowId) {
             this.rowId = rowId;
+        }
+
+        public DataOp getDataOp() {
+            return dataOp;
+        }
+
+        public void setDataOp(DataOp dataOp) {
+            this.dataOp = dataOp;
         }
     }
 }

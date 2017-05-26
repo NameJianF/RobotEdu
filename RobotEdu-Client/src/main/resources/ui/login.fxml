@@ -11,10 +11,10 @@
             fx:controller="robot.client.controller.LoginController">
     <children>
         <Label layoutX="85.0" layoutY="72.0" text="用户名"/>
-        <TextField fx:id="txtUserName" layoutX="155.0" layoutY="68.0"/>
+        <TextField fx:id="txtUserName" layoutX="155.0" layoutY="68.0" text="fjf789@126.com"/>
 
         <Label layoutX="85.0" layoutY="126.0" text="密码"/>
-        <PasswordField fx:id="txtPwd" layoutX="155.0" layoutY="122.0"/>
+        <PasswordField fx:id="txtPwd" layoutX="155.0" layoutY="122.0" text="123456"/>
 
         <Button fx:id="btnLogin" layoutX="85.0" layoutY="189.0" mnemonicParsing="false"
                 onMouseClicked="#loginClick" prefHeight="23.0" prefWidth="96.0" text="登录"/>

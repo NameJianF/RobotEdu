@@ -3,8 +3,10 @@
 <mapper namespace="live.itrip.admin.dao.EduCustomerInfoMapper">
     <resultMap id="BaseResultMap" type="live.itrip.admin.model.EduCustomerInfo">
         <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="client_id" property="clientId" jdbcType="INTEGER"/>
         <result column="shop_no" property="shopNo" jdbcType="VARCHAR"/>
         <result column="adviser" property="adviser" jdbcType="VARCHAR"/>
+        <result column="card_no" property="cardNo" jdbcType="BIGINT"/>
         <result column="child_name" property="childName" jdbcType="VARCHAR"/>
         <result column="child_sex" property="childSex" jdbcType="CHAR"/>
         <result column="birthday" property="birthday" jdbcType="VARCHAR"/>
@@ -23,7 +25,7 @@
         <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, shop_no, adviser, child_name, child_sex, birthday, child_image, mom_name, mom_mobile, 
+    id, client_id,shop_no, adviser,card_no, child_name, child_sex, birthday, child_image, mom_name, mom_mobile,
     mom_email, dad_name, dad_mobile, dad_email, address, remarks, client_create_time, 
     client_update_time, create_time, update_time
   </sql>
@@ -38,14 +40,14 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="live.itrip.admin.model.EduCustomerInfo" useGeneratedKeys="true" keyProperty="id">
-    insert into edu_customer_info (id, shop_no, adviser, 
+    insert into edu_customer_info (id,client_id, shop_no, adviser, card_no,
       child_name, child_sex, birthday, 
       child_image, mom_name, mom_mobile, 
       mom_email, dad_name, dad_mobile, 
       dad_email, address, remarks, 
       client_create_time, client_update_time, create_time, 
       update_time)
-    values (#{id,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, #{adviser,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER},#{clientId,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, #{adviser,jdbcType=VARCHAR}, #{cardNo,jdbcType=BIGINT},
       #{childName,jdbcType=VARCHAR}, #{childSex,jdbcType=CHAR}, #{birthday,jdbcType=VARCHAR}, 
       #{childImage,jdbcType=VARCHAR}, #{momName,jdbcType=VARCHAR}, #{momMobile,jdbcType=VARCHAR}, 
       #{momEmail,jdbcType=VARCHAR}, #{dadName,jdbcType=VARCHAR}, #{dadMobile,jdbcType=VARCHAR}, 
@@ -60,11 +62,17 @@
             <if test="id != null">
                 id,
             </if>
+            <if test="clientId != null">
+                client_id,
+            </if>
             <if test="shopNo != null">
                 shop_no,
             </if>
             <if test="adviser != null">
                 adviser,
+            </if>
+            <if test="cardNo != null">
+                card_no,
             </if>
             <if test="childName != null">
                 child_name,
@@ -119,11 +127,17 @@
             <if test="id != null">
                 #{id,jdbcType=INTEGER},
             </if>
+            <if test="clientId != null">
+                #{clientId,jdbcType=INTEGER},
+            </if>
             <if test="shopNo != null">
                 #{shopNo,jdbcType=VARCHAR},
             </if>
             <if test="adviser != null">
                 #{adviser,jdbcType=VARCHAR},
+            </if>
+            <if test="cardNo != null">
+                #{cardNo,jdbcType=BIGINT},
             </if>
             <if test="childName != null">
                 #{childName,jdbcType=VARCHAR},
@@ -178,11 +192,17 @@
     <update id="updateByPrimaryKeySelective" parameterType="live.itrip.admin.model.EduCustomerInfo">
         update edu_customer_info
         <set>
+            <if test="clientId != null">
+                client_id = #{clientId,jdbcType=INTEGER},
+            </if>
             <if test="shopNo != null">
                 shop_no = #{shopNo,jdbcType=VARCHAR},
             </if>
             <if test="adviser != null">
                 adviser = #{adviser,jdbcType=VARCHAR},
+            </if>
+            <if test="cardNo != null">
+                card_no = #{cardNo,jdbcType=BIGINT},
             </if>
             <if test="childName != null">
                 child_name = #{childName,jdbcType=VARCHAR},
@@ -237,8 +257,10 @@
     </update>
     <update id="updateByPrimaryKey" parameterType="live.itrip.admin.model.EduCustomerInfo">
     update edu_customer_info
-    set shop_no = #{shopNo,jdbcType=VARCHAR},
+    set client_id = #{clientId,jdbcType=INTEGER},
+      shop_no = #{shopNo,jdbcType=VARCHAR},
       adviser = #{adviser,jdbcType=VARCHAR},
+      card_no = #{cardNo,jdbcType=BIGINT},
       child_name = #{childName,jdbcType=VARCHAR},
       child_sex = #{childSex,jdbcType=CHAR},
       birthday = #{birthday,jdbcType=VARCHAR},
@@ -257,4 +279,25 @@
       update_time = #{updateTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <update id="updateClientIdAndShopNo" parameterType="live.itrip.admin.model.EduCustomerInfo">
+        update edu_customer_info
+        set adviser = #{adviser,jdbcType=VARCHAR},
+        card_no = #{cardNo,jdbcType=BIGINT},
+        child_name = #{childName,jdbcType=VARCHAR},
+        child_sex = #{childSex,jdbcType=CHAR},
+        birthday = #{birthday,jdbcType=VARCHAR},
+        child_image = #{childImage,jdbcType=VARCHAR},
+        mom_name = #{momName,jdbcType=VARCHAR},
+        mom_mobile = #{momMobile,jdbcType=VARCHAR},
+        mom_email = #{momEmail,jdbcType=VARCHAR},
+        dad_name = #{dadName,jdbcType=VARCHAR},
+        dad_mobile = #{dadMobile,jdbcType=VARCHAR},
+        dad_email = #{dadEmail,jdbcType=VARCHAR},
+        address = #{address,jdbcType=VARCHAR},
+        remarks = #{remarks,jdbcType=VARCHAR},
+        client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
+        update_time = #{updateTime,jdbcType=BIGINT}
+        where client_id = #{clientId,jdbcType=INTEGER} AND shop_no = #{shopNo,jdbcType=VARCHAR}
+    </update>
 </mapper>

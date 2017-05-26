@@ -1,11 +1,12 @@
 package live.itrip.admin.model;
 
-public class EduCustomerInfo extends BaseModel{
+public class EduCustomerInfo extends BaseModel {
     private Integer id;
-
+    private Integer clientId;
     private String shopNo;
 
     private String adviser;
+    private Long cardNo;
 
     private String childName;
 
@@ -47,6 +48,14 @@ public class EduCustomerInfo extends BaseModel{
         this.id = id;
     }
 
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
+    }
+
     public String getShopNo() {
         return shopNo;
     }
@@ -61,6 +70,14 @@ public class EduCustomerInfo extends BaseModel{
 
     public void setAdviser(String adviser) {
         this.adviser = adviser == null ? null : adviser.trim();
+    }
+
+    public Long getCardNo() {
+        return cardNo;
+    }
+
+    public void setCardNo(Long cardNo) {
+        this.cardNo = cardNo;
     }
 
     public String getChildName() {

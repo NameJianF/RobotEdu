@@ -48,4 +48,27 @@ public class EduCustomerInfoService extends BaseService implements IEduCustomerI
         result.setError(ErrorCode.UNKNOWN);
         this.writeResponse(response, result);
     }
+
+    @Override
+    public void modify(String shopNo, String decodeJson, HttpServletResponse response, HttpServletRequest request) {
+        BaseResult result = new BaseResult();
+        EduCustomerInfo info = JSON.parseObject(decodeJson, EduCustomerInfo.class);
+        info.setId(null);
+        info.setClientUpdateTime(info.getUpdateTime());
+        info.setUpdateTime(System.currentTimeMillis());
+
+        Integer ret = eduCustomerInfoMapper.updateClientIdAndShopNo(info);
+
+        if (ret > 0) {
+            result.setCode(ErrorCode.SUCCESS.getCode());
+            JSONObject data = new JSONObject();
+            data.put("id", ret);
+            result.setData(data);
+            this.writeResponse(response, result);
+            return;
+        }
+
+        result.setError(ErrorCode.UNKNOWN);
+        this.writeResponse(response, result);
+    }
 }

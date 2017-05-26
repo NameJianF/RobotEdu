@@ -6,14 +6,6 @@ import robot.client.model.BaseModel;
 import java.util.Map;
 
 public class EduCustomerInfo extends BaseModel {
-    public EduCustomerInfo() {
-        this.setApikey(Config.MODULE_APP_KEY);
-        this.setTimestamp(System.currentTimeMillis());
-        if (Config.LoginUser != null) {
-            this.setSid(Config.LoginUser.getSid());
-        }
-    }
-
     private Integer id;
     private String adviser;
     private Long cardNo;
@@ -32,6 +24,14 @@ public class EduCustomerInfo extends BaseModel {
     private String upload;
     private Long createTime;
     private Long updateTime;
+
+    public EduCustomerInfo() {
+        this.setApikey(Config.MODULE_APP_KEY);
+        this.setTimestamp(System.currentTimeMillis());
+        if (Config.LoginUser != null) {
+            this.setSid(Config.LoginUser.getSid());
+        }
+    }
 
     public static String getUrl() {
         return Config.SERVER_URL + "";
@@ -189,7 +189,7 @@ public class EduCustomerInfo extends BaseModel {
         bean.setChildName((String) item.get("child_name"));
         bean.setChildSex((String) item.get("child_sex"));
         bean.setBirthday((String) item.get("birthday"));
-        bean.setChildName((String) item.get("child_image"));
+        bean.setChildImage((String) item.get("child_image"));
         bean.setMomName((String) item.get("mom_name"));
         bean.setMomMobile((String) item.get("mom_mobile"));
         bean.setMomEmail((String) item.get("mom_email"));

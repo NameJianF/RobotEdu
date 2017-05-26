@@ -5,7 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import robot.client.api.AbstractApi;
 import robot.client.common.Config;
+import robot.client.common.DataOp;
 import robot.client.common.ErrorCode;
+import robot.client.common.TableNames;
 import robot.client.model.staff.EduStaffInfo;
 import robot.client.model.staff.User;
 import robot.client.observer.Observer;
@@ -31,7 +33,7 @@ public class StaffApi extends AbstractApi implements Observer {
         String json = JSON.toJSONString(info);
         SystemService.UploadDatas datas = new SystemService.UploadDatas();
         datas.setRowId(info.getId().longValue());
-        datas.setTableName(EduStaffInfo.tableName);
+        datas.setTableName(TableNames.EDU_STAFF_INFO);
         datas.setUrl(getUrl());
         datas.setJson(json);
         SystemService.getInstance().addUploadDatas(datas);
@@ -80,9 +82,16 @@ public class StaffApi extends AbstractApi implements Observer {
     }
 
     @Override
-    public void upload(Object object) {
+    public void upload(Object object, DataOp dataOp) {
         EduStaffInfo info = (EduStaffInfo) object;
-        info.setOp("staffInfo.add");
+        if (DataOp.INSERT.equals(dataOp)) {
+            info.setOp("staffInfo.add");
+        } else if (DataOp.MODIFY.equals(dataOp)) {
+            info.setOp("staffInfo.modify");
+        } else if (DataOp.DELETE.equals(dataOp)) {
+            info.setOp("staffInfo.delete");
+        }
+
         this.postJsonString(info);
     }
 }

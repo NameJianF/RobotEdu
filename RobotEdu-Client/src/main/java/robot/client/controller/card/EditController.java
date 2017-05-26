@@ -9,10 +9,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.apache.commons.lang3.StringUtils;
 import robot.client.api.card.CardApi;
+import robot.client.common.DataOp;
 import robot.client.dao.CardInfoDao;
 import robot.client.model.CardTypeModel;
 import robot.client.model.card.EduCardInfo;
-import robot.client.model.swipe.EnableModel;
+import robot.client.model.EnableModel;
 import robot.client.observer.Subject;
 
 import java.net.URL;
@@ -78,7 +79,7 @@ public class EditController extends Subject implements Initializable {
         if (ret > 0) {
             // upload
             cardInfo.setId(ret);
-            this.nodifyObservers(cardInfo);
+            this.nodifyObservers(cardInfo, DataOp.INSERT);
         }
     }
 

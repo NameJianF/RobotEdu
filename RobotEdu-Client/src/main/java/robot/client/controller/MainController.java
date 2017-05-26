@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -27,6 +29,8 @@ public class MainController implements Initializable {
     private Button btnStaffManager;
     @FXML
     private Button btnSettingManager;
+    @FXML
+    private Label txtUser;
 
     private BorderPane cardsBorderPane;
     private BorderPane customerBorderPane;
@@ -63,22 +67,22 @@ public class MainController implements Initializable {
     private BorderPane getBorderPane(String flag) {
         if (FLAG_CARD.equalsIgnoreCase(flag)) {
             if (cardsBorderPane == null) {
-                cardsBorderPane = PageUtil.getBorderPane("/ui/card/manager.fxml");
+                cardsBorderPane = (BorderPane) PageUtil.getPageInfo("/ui/card/manager.fxml").getNode();
             }
             return cardsBorderPane;
         } else if (FLAG_CUSTOMER.equalsIgnoreCase(flag)) {
             if (customerBorderPane == null) {
-                customerBorderPane = PageUtil.getBorderPane("/ui/customer/manager.fxml");
+                customerBorderPane = (BorderPane) PageUtil.getPageInfo("/ui/customer/manager.fxml").getNode();
             }
             return customerBorderPane;
         } else if (FLAG_STAFF.equalsIgnoreCase(flag)) {
             if (staffBorderPane == null) {
-                staffBorderPane = PageUtil.getBorderPane("/ui/staff/manager.fxml");
+                staffBorderPane = (BorderPane) PageUtil.getPageInfo("/ui/staff/manager.fxml").getNode();
             }
             return staffBorderPane;
         } else if (FLAG_SWIPE.equalsIgnoreCase(flag)) {
             if (swipeBorderPane == null) {
-                swipeBorderPane = PageUtil.getBorderPane("/ui/swipe/manager.fxml");
+                swipeBorderPane = (BorderPane) PageUtil.getPageInfo("/ui/swipe/manager.fxml").getNode();
             }
             return swipeBorderPane;
         }
@@ -121,7 +125,7 @@ public class MainController implements Initializable {
 
     private Boolean showLoginWindow() {
         Stage stage = new Stage();
-        AnchorPane dialog = PageUtil.getAnchorPane("/ui/login.fxml");
+        AnchorPane dialog = (AnchorPane) PageUtil.getPageInfo("/ui/login.fxml").getNode();
         stage.setScene(new Scene(dialog));
         stage.setTitle("登录");
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -132,6 +136,7 @@ public class MainController implements Initializable {
         if (Config.LoginUser == null) {
             return false;
         }
+        txtUser.setText(String.format("当前登录账号：%s", Config.LoginUser.getEmail()));
         return true;
     }
 }

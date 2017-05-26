@@ -1,4 +1,4 @@
-package robot.client.model.swipe;
+package robot.client.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -12,13 +12,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.apache.commons.lang3.StringUtils;
 import robot.client.api.swipe.SwipeCardApi;
+import robot.client.common.DataOp;
 import robot.client.dao.CustomerDao;
 import robot.client.dao.SwipeCardRecordsDao;
 import robot.client.model.customer.EduCustomerInfo;
 import robot.client.model.swipe.DataEduSwipeCardRecords;
 import robot.client.model.swipe.EduSwipeCardRecords;
 import robot.client.observer.Subject;
-import robot.client.service.SystemService;
 import robot.client.util.Logger;
 
 import java.net.URL;
@@ -46,7 +46,7 @@ public class ManagerController extends Subject implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.loadDatas(null);
+//        this.loadDatas(null);
     }
 
     private void loadDatas(String cardNo) {
@@ -83,8 +83,13 @@ public class ManagerController extends Subject implements Initializable {
             // select customer info
             EduCustomerInfo customerInfo = CustomerDao.select(no);
 
-            this.insert();
+            EduSwipeCardRecords swipeCardRecords = new EduSwipeCardRecords();
+            swipeCardRecords.setCardNo(Long.valueOf(txtSwipeNo.getText()));
+            swipeCardRecords.setCreateTime(System.currentTimeMillis());
+            swipeCardRecords.setChildName(customerInfo.getChildName());
+            this.insert(swipeCardRecords);
             this.loadDatas(null);
+            this.txtSwipeNo.setText("");
         }
     }
 
@@ -92,15 +97,14 @@ public class ManagerController extends Subject implements Initializable {
     /**
      * 保存数据到数据库
      */
-    private EduSwipeCardRecords insert() {
-        EduSwipeCardRecords swipeCardRecords = new EduSwipeCardRecords();
-        swipeCardRecords.setCardNo(Long.valueOf(txtSwipeNo.getText()));
-        swipeCardRecords.setCreateTime(System.currentTimeMillis());
+    private EduSwipeCardRecords insert(EduSwipeCardRecords swipeCardRecords) {
         Integer ret = SwipeCardRecordsDao.insert(swipeCardRecords);
         if (ret > 0) {
+            // update card info
+
             // upload
             swipeCardRecords.setId(ret.longValue());
-            this.nodifyObservers(swipeCardRecords);
+            this.nodifyObservers(swipeCardRecords, DataOp.INSERT);
         }
         return swipeCardRecords;
     }

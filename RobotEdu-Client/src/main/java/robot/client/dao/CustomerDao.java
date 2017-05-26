@@ -116,4 +116,91 @@ public class CustomerDao {
         }
         return null;
     }
+
+    public static Integer update(EduCustomerInfo customerInfo) {
+        if (StringUtils.isEmpty(customerInfo.getAdviser())) {
+            Logger.error("adviser is null");
+            return 0;
+        }
+        if (StringUtils.isEmpty(customerInfo.getChildName())) {
+            Logger.error("child name is null");
+            return 0;
+        }
+
+        if (StringUtils.isEmpty(customerInfo.getChildSex())) {
+            Logger.error("child sex is null");
+            return 0;
+        }
+
+        List<Object> params = new ArrayList<Object>();
+        StringBuffer sqlBuffer = new StringBuffer("update " + TableNames.EDU_CUSTOMER_INFO + " set ");
+
+        sqlBuffer.append(" adviser = ?, ");
+        params.add(customerInfo.getAdviser());
+        if (customerInfo.getCardNo() != null) {
+            sqlBuffer.append(" card_no = ?, ");
+            params.add(customerInfo.getCardNo());
+        }
+        sqlBuffer.append(" child_name = ?, ");
+        params.add(customerInfo.getChildName());
+        sqlBuffer.append(" child_sex = ?, ");
+        params.add(customerInfo.getChildSex());
+        if (StringUtils.isNotEmpty(customerInfo.getBirthday())) {
+            sqlBuffer.append(" birthday = ?, ");
+            params.add(customerInfo.getBirthday());
+        }
+
+        if (StringUtils.isNotEmpty(customerInfo.getChildImage())) {
+            sqlBuffer.append(" child_image = ?, ");
+            params.add(customerInfo.getChildImage());
+        }
+        if (StringUtils.isNotEmpty(customerInfo.getMomName())) {
+            sqlBuffer.append(" mom_name = ?, ");
+            params.add(customerInfo.getMomName());
+        }
+        if (StringUtils.isNotEmpty(customerInfo.getMomMobile())) {
+            sqlBuffer.append(" mom_mobile = ?, ");
+            params.add(customerInfo.getMomMobile());
+        }
+        if (StringUtils.isNotEmpty(customerInfo.getMomEmail())) {
+            sqlBuffer.append(" mom_email = ?, ");
+            params.add(customerInfo.getMomEmail());
+        }
+        if (StringUtils.isNotEmpty(customerInfo.getDadName())) {
+            sqlBuffer.append(" dad_name = ?, ");
+            params.add(customerInfo.getDadName());
+        }
+
+        if (StringUtils.isNotEmpty(customerInfo.getDadMobile())) {
+            sqlBuffer.append(" dad_mobile = ?, ");
+            params.add(customerInfo.getDadMobile());
+        }
+        if (StringUtils.isNotEmpty(customerInfo.getDadEmail())) {
+            sqlBuffer.append(" dad_email = ?, ");
+            params.add(customerInfo.getDadEmail());
+        }
+        if (StringUtils.isNotEmpty(customerInfo.getAddress())) {
+            sqlBuffer.append(" address = ?, ");
+            params.add(customerInfo.getAddress());
+        }
+        if (StringUtils.isNotEmpty(customerInfo.getRemarks())) {
+            sqlBuffer.append(" remarks = ?, ");
+            params.add(customerInfo.getAddress());
+        }
+
+        sqlBuffer.append(" upload = ?, ");
+        params.add("0");
+
+        sqlBuffer.append(" update_time = ? ");
+        params.add(System.currentTimeMillis());
+
+        sqlBuffer.append(" where id = ? ");
+        params.add(customerInfo.getId());
+        try {
+            return DbHelper.update(sqlBuffer.toString(), params.toArray());
+        } catch (SQLException e) {
+            Logger.error(e.getMessage(), e);
+        }
+        return -1;
+    }
 }

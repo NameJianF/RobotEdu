@@ -70,10 +70,14 @@ public class DatabaseService {
             if (list != null && list.size() > 0) {
                 CardApi api = new CardApi();
                 Iterator iterator = list.iterator();
-                if (iterator.hasNext()) {
+                while (iterator.hasNext()) {
                     Map<String, Object> item = (Map<String, Object>) iterator.next();
                     EduCardInfo info = EduCardInfo.getBean(item);
-                    info.setOp("cardInfo.add");
+                    if (info.getCreateTime().equals(info.getUpdateTime())) {
+                        info.setOp("cardInfo.add");
+                    } else {
+                        info.setOp("cardInfo.modify");
+                    }
                     api.postJsonString(info);
                 }
             }
@@ -89,10 +93,14 @@ public class DatabaseService {
             if (list != null && list.size() > 0) {
                 CustomerApi api = new CustomerApi();
                 Iterator iterator = list.iterator();
-                if (iterator.hasNext()) {
+                while (iterator.hasNext()) {
                     Map<String, Object> item = (Map<String, Object>) iterator.next();
                     EduCustomerInfo info = EduCustomerInfo.getBean(item);
-                    info.setOp("customerInfo.add");
+                    if (info.getCreateTime().equals(info.getUpdateTime())) {
+                        info.setOp("customerInfo.add");
+                    } else {
+                        info.setOp("customerInfo.modify");
+                    }
                     api.postJsonString(info);
                 }
             }
@@ -109,7 +117,7 @@ public class DatabaseService {
             if (list != null && list.size() > 0) {
                 SwipeCardApi api = new SwipeCardApi();
                 Iterator iterator = list.iterator();
-                if (iterator.hasNext()) {
+                while (iterator.hasNext()) {
                     Map<String, Object> item = (Map<String, Object>) iterator.next();
                     EduSwipeCardRecords info = EduSwipeCardRecords.getBean(item);
                     info.setOp("swipeCardRecords.add");
@@ -123,16 +131,20 @@ public class DatabaseService {
 
     private void selectUploadStaffInfos() {
         try {
-            String sql = "select * from " + EduStaffInfo.tableName + " WHERE upload = '0';";
+            String sql = "select * from " + TableNames.EDU_STAFF_INFO + " WHERE upload = '0';";
             List list = DbHelper.query(sql, new MapListHandler());
 
             if (list != null && list.size() > 0) {
                 StaffApi api = new StaffApi();
                 Iterator iterator = list.iterator();
-                if (iterator.hasNext()) {
+                while (iterator.hasNext()) {
                     Map<String, Object> item = (Map<String, Object>) iterator.next();
                     EduStaffInfo info = EduStaffInfo.getBean(item);
-                    info.setOp("staffInfo.add");
+                    if (info.getCreateTime().equals(info.getUpdateTime())) {
+                        info.setOp("staffInfo.add");
+                    } else {
+                        info.setOp("staffInfo.modify");
+                    }
                     api.postJsonString(info);
                 }
             }

@@ -1,25 +1,27 @@
 package robot.client.model.course;
 
+import robot.client.common.Config;
 import robot.client.model.BaseModel;
 
 import java.util.Map;
 
 public class EduTeacherCustomer extends BaseModel {
     private Long id;
-
     private String staffNo;
-
     private String staffName;
-
     private Integer customerId;
-
     private String childName;
-
     private String upload;
-
     private Long createTime;
-
     private Long updateTime;
+
+    public EduTeacherCustomer() {
+        this.setApikey(Config.MODULE_APP_KEY);
+        this.setTimestamp(System.currentTimeMillis());
+        if (Config.LoginUser != null) {
+            this.setSid(Config.LoginUser.getSid());
+        }
+    }
 
     public Long getId() {
         return id;

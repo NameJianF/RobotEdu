@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import org.apache.commons.lang3.StringUtils;
 import robot.client.api.card.CardApi;
 import robot.client.common.App;
+import robot.client.common.DataOp;
 import robot.client.dao.CardInfoDao;
 import robot.client.db.DbHelper;
 import robot.client.model.card.DataEduCardInfo;
@@ -31,7 +32,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Feng on 2017/5/18.
  */
-public class ManagerController extends Subject implements Initializable {
+public class ManagerController implements Initializable {
 
     @FXML
     private TableView cardInfoTableView;
@@ -49,7 +50,6 @@ public class ManagerController extends Subject implements Initializable {
     private ObservableList<DataEduCardInfo> dataSource = FXCollections.observableArrayList();
 
     public ManagerController() {
-        this.attach(new CardApi());
     }
 
     @Override
@@ -97,7 +97,7 @@ public class ManagerController extends Subject implements Initializable {
     @FXML
     private void buttonNewClick(MouseEvent event) {
         Stage stage = new Stage();
-        GridPane dialog = PageUtil.getGridPane("/ui/card/edit.fxml");
+        GridPane dialog = (GridPane) PageUtil.getPageInfo("/ui/card/edit.fxml").getNode();
         stage.setScene(new Scene(dialog));
         stage.setTitle("添加会员卡");
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -115,15 +115,6 @@ public class ManagerController extends Subject implements Initializable {
 
     @FXML
     private void buttonDeleteClick(MouseEvent event) {
-    }
-
-
-    /**
-     * 保存数据到数据库
-     */
-    private void insert() {
-        EduCardInfo cardInfo = new EduCardInfo();
-        this.nodifyObservers(cardInfo);
     }
 
 }

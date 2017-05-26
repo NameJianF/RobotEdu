@@ -1,6 +1,7 @@
 package robot.client.model.card;
 
 import javafx.beans.property.*;
+import robot.client.util.DateTimeUtil;
 
 import java.util.Map;
 
@@ -18,8 +19,8 @@ public class DataEduCardInfo {
     private final StringProperty adviser = new SimpleStringProperty();
     private final StringProperty flag = new SimpleStringProperty();
     private final StringProperty upload = new SimpleStringProperty();
-    private final LongProperty createTime = new SimpleLongProperty();
-    private final LongProperty updateTime = new SimpleLongProperty();
+    private final StringProperty createTime = new SimpleStringProperty();
+    private final StringProperty updateTime = new SimpleStringProperty();
 
     public int getId() {
         return id.get();
@@ -141,27 +142,27 @@ public class DataEduCardInfo {
         this.upload.set(upload);
     }
 
-    public long getCreateTime() {
+    public String getCreateTime() {
         return createTime.get();
     }
 
-    public LongProperty createTimeProperty() {
+    public StringProperty createTimeProperty() {
         return createTime;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime.set(createTime);
     }
 
-    public long getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime.get();
     }
 
-    public LongProperty updateTimeProperty() {
+    public StringProperty updateTimeProperty() {
         return updateTime;
     }
 
-    public void setUpdateTime(long updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime.set(updateTime);
     }
 
@@ -177,8 +178,8 @@ public class DataEduCardInfo {
         bean.setAdviser((String) item.get("adviser"));
         bean.setFlag((String) item.get("flag"));
         bean.setUpload((String) item.get("upload"));
-        bean.setCreateTime((Long) item.get("create_time"));
-        bean.setUpdateTime((Long) item.get("update_time"));
+        bean.setCreateTime(DateTimeUtil.getStrByLong((Long) item.get("create_time")));
+        bean.setUpdateTime(DateTimeUtil.getStrByLong((Long) item.get("update_time")));
         return bean;
     }
 }

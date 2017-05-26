@@ -65,6 +65,8 @@ public class EduDatasController extends AbstractController {
                 // CustomerInfo
                 if ("customerInfo.add".equalsIgnoreCase(op)) {
                     iEduCustomerInfoService.insert(getShopNo(header.getApikey()), decodeJson, response, request);
+                } else if ("customerInfo.modify".equalsIgnoreCase(op)) {
+                    iEduCustomerInfoService.modify(getShopNo(header.getApikey()), decodeJson, response, request);
                 }
 
                 // StaffInfo

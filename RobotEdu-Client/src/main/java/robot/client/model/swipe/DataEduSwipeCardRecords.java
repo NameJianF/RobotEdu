@@ -1,6 +1,7 @@
 package robot.client.model.swipe;
 
 import javafx.beans.property.*;
+import robot.client.util.DateTimeUtil;
 
 import java.util.Map;
 
@@ -12,7 +13,7 @@ public class DataEduSwipeCardRecords {
     private final LongProperty cardNo = new SimpleLongProperty();
     private final StringProperty childName = new SimpleStringProperty();
     private final StringProperty upload = new SimpleStringProperty();
-    private final LongProperty createTime = new SimpleLongProperty();
+    private final StringProperty createTime = new SimpleStringProperty();
 
     public long getId() {
         return id.get();
@@ -66,15 +67,15 @@ public class DataEduSwipeCardRecords {
         this.upload.set(upload);
     }
 
-    public long getCreateTime() {
+    public String getCreateTime() {
         return createTime.get();
     }
 
-    public LongProperty createTimeProperty() {
+    public StringProperty createTimeProperty() {
         return createTime;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime.set(createTime);
     }
 
@@ -82,8 +83,10 @@ public class DataEduSwipeCardRecords {
         DataEduSwipeCardRecords bean = new DataEduSwipeCardRecords();
         bean.setId((Long) item.get("id"));
         bean.setCardNo((Long) item.get("card_no"));
+        bean.setChildName((String) item.get("child_name"));
         bean.setUpload((String) item.get("upload"));
-        bean.setCreateTime((Long) item.get("create_time"));
+        Long createtime = (Long) item.get("create_time");
+        bean.setCreateTime(DateTimeUtil.getStrByLong(createtime));
 
         return bean;
     }

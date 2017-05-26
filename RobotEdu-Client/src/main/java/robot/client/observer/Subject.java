@@ -1,5 +1,7 @@
 package robot.client.observer;
 
+import robot.client.common.DataOp;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +38,10 @@ public abstract class Subject {
     /**
      * 通知所有注册的观察者对象
      */
-    public void nodifyObservers(Object object) {
+    public void nodifyObservers(Object object, DataOp dataOp) {
 
         for (Observer observer : list) {
-            observer.upload(object);
+            observer.upload(object, dataOp);
         }
     }
 }

@@ -1,6 +1,7 @@
 package robot.client.controller.staff;
 
 import robot.client.api.staff.StaffApi;
+import robot.client.common.DataOp;
 import robot.client.model.staff.EduStaffInfo;
 import robot.client.observer.Subject;
 
@@ -18,6 +19,6 @@ public class EditController extends Subject {
      */
     private void insert() {
         EduStaffInfo info = new EduStaffInfo();
-        this.nodifyObservers(info);
+        this.nodifyObservers(info, DataOp.INSERT);
     }
 }

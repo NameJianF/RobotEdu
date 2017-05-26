@@ -6,6 +6,18 @@ import robot.client.model.BaseModel;
 import java.util.Map;
 
 public class EduCardInfo extends BaseModel {
+    private Integer id;
+    private Long cardNo;
+    private String cardType;
+    private Integer totalTimes;
+    private Integer usedTimes;
+    private Integer price;
+    private Integer discount;
+    private String adviser;
+    private String flag;
+    private String upload;
+    private Long createTime;
+    private Long updateTime;
 
     public EduCardInfo() {
         this.setApikey(Config.MODULE_APP_KEY);
@@ -14,31 +26,6 @@ public class EduCardInfo extends BaseModel {
             this.setSid(Config.LoginUser.getSid());
         }
     }
-
-
-    private Integer id;
-
-    private Long cardNo;
-
-    private String cardType;
-
-    private Integer totalTimes;
-
-    private Integer usedTimes;
-
-    private Integer price;
-
-    private Integer discount;
-
-    private String adviser;
-
-    private String flag;
-
-    private String upload;
-
-    private Long createTime;
-
-    private Long updateTime;
 
     public Integer getId() {
         return id;

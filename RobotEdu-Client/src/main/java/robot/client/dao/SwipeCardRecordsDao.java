@@ -47,10 +47,11 @@ public class SwipeCardRecordsDao {
 
         List<Object> params = new ArrayList<Object>();
         StringBuffer sqlBuffer = new StringBuffer("insert into " + TableNames.EDU_SWIPE_CARD_RECORDS);
-        sqlBuffer.append(" (card_no,create_time)");
-        sqlBuffer.append(" values(?,?)");
+        sqlBuffer.append(" (card_no,child_name,create_time)");
+        sqlBuffer.append(" values(?,?,?)");
 
         params.add(swipeCardRecords.getCardNo());
+        params.add(swipeCardRecords.getChildName());
         params.add(swipeCardRecords.getCreateTime());
 
         try {

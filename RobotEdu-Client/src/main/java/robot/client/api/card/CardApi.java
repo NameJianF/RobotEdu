@@ -1,8 +1,10 @@
 package robot.client.api.card;
 
 import com.alibaba.fastjson.JSON;
+import com.mysql.fabric.xmlrpc.base.Data;
 import robot.client.api.AbstractApi;
 import robot.client.common.Config;
+import robot.client.common.DataOp;
 import robot.client.common.TableNames;
 import robot.client.model.card.EduCardInfo;
 import robot.client.observer.Observer;
@@ -37,9 +39,15 @@ public class CardApi extends AbstractApi implements Observer {
     }
 
     @Override
-    public void upload(Object object) {
+    public void upload(Object object, DataOp dataOp) {
         EduCardInfo info = (EduCardInfo) object;
-        info.setOp("cardInfo.add");
+        if (DataOp.INSERT.equals(dataOp)) {
+            info.setOp("cardInfo.add");
+        } else if (DataOp.MODIFY.equals(dataOp)) {
+            info.setOp("cardInfo.modify");
+        } else if (DataOp.DELETE.equals(dataOp)) {
+            info.setOp("cardInfo.delete");
+        }
         this.postJsonString(info);
     }
 }

@@ -3,6 +3,7 @@ package robot.client.api.customer;
 import com.alibaba.fastjson.JSON;
 import robot.client.api.AbstractApi;
 import robot.client.common.Config;
+import robot.client.common.DataOp;
 import robot.client.common.TableNames;
 import robot.client.model.customer.EduCustomerInfo;
 import robot.client.observer.Observer;
@@ -34,9 +35,15 @@ public class CustomerApi extends AbstractApi implements Observer {
     }
 
     @Override
-    public void upload(Object object) {
+    public void upload(Object object, DataOp dataOp) {
         EduCustomerInfo info = (EduCustomerInfo) object;
-        info.setOp("customerInfo.add");
+        if (DataOp.INSERT.equals(dataOp)) {
+            info.setOp("customerInfo.add");
+        } else if (DataOp.MODIFY.equals(dataOp)) {
+            info.setOp("customerInfo.modify");
+        } else if (DataOp.DELETE.equals(dataOp)) {
+            info.setOp("customerInfo.delete");
+        }
         this.postJsonString(info);
     }
 }
