@@ -2,6 +2,7 @@ package live.itrip.admin.controller;
 
 import com.alibaba.fastjson.JSON;
 import live.itrip.admin.controller.base.AbstractController;
+import live.itrip.admin.model.ClientApiKey;
 import live.itrip.admin.service.intefaces.*;
 import live.itrip.common.Logger;
 import live.itrip.common.request.RequestHeader;
@@ -32,7 +33,6 @@ public class EduDatasController extends AbstractController {
     @Autowired
     private IEduTeacherCustomerService iEduTeacherCustomerService;
 
-
     /**
      * 系统配置模块
      *
@@ -47,7 +47,7 @@ public class EduDatasController extends AbstractController {
         String decodeJson = JsonStringUtils.decoderForJsonString(json);
         Logger.debug(
                 String.format("timestamp:%s action:%s json:%s",
-                        System.currentTimeMillis(), "systemConfig", decodeJson));
+                        System.currentTimeMillis(), "eduDatas", decodeJson));
         if (StringUtils.isEmpty(decodeJson)) {
             this.paramInvalid(response, "JSON");
             return;
@@ -60,27 +60,31 @@ public class EduDatasController extends AbstractController {
                 // cardInfo
                 if ("cardInfo.add".equalsIgnoreCase(op)) {
                     iEduCardInfoService.insert(getShopNo(header.getApikey()), decodeJson, response, request);
+                } else if ("cardInfo.modify".equalsIgnoreCase(op)) {
+                    iEduCardInfoService.modify(getShopNo(header.getApikey()), decodeJson, response, request);
                 }
 
                 // CustomerInfo
-                if ("customerInfo.add".equalsIgnoreCase(op)) {
+                else if ("customerInfo.add".equalsIgnoreCase(op)) {
                     iEduCustomerInfoService.insert(getShopNo(header.getApikey()), decodeJson, response, request);
                 } else if ("customerInfo.modify".equalsIgnoreCase(op)) {
                     iEduCustomerInfoService.modify(getShopNo(header.getApikey()), decodeJson, response, request);
                 }
 
                 // StaffInfo
-                if ("staffInfo.add".equalsIgnoreCase(op)) {
+                else if ("staffInfo.add".equalsIgnoreCase(op)) {
                     iEduStaffInfoService.insert(getShopNo(header.getApikey()), decodeJson, response, request);
+                } else if ("staffInfo.modify".equalsIgnoreCase(op)) {
+                    iEduStaffInfoService.modify(getShopNo(header.getApikey()), decodeJson, response, request);
                 }
 
                 // SwipeCardRecords
-                if ("swipeCardRecords.add".equalsIgnoreCase(op)) {
+                else if ("swipeCardRecords.add".equalsIgnoreCase(op)) {
                     iEduSwipeCardRecordsService.insert(getShopNo(header.getApikey()), decodeJson, response, request);
                 }
 
                 // TeacherCustomer
-                if ("teacherCustomer.add".equalsIgnoreCase(op)) {
+                else if ("teacherCustomer.add".equalsIgnoreCase(op)) {
                     iEduTeacherCustomerService.insert(getShopNo(header.getApikey()), decodeJson, response, request);
                 }
             }
@@ -90,6 +94,7 @@ public class EduDatasController extends AbstractController {
     }
 
     private String getShopNo(String apikey) {
-        return "";
+        ClientApiKey clientApiKey = this.validateClientApiKey(apikey);
+        return clientApiKey.getId().toString();
     }
 }

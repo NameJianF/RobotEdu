@@ -21,15 +21,13 @@
     delete from edu_swipe_card_records
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="live.itrip.admin.model.EduSwipeCardRecords" useGeneratedKeys="true"
-            keyProperty="id">
+    <insert id="insert" parameterType="live.itrip.admin.model.EduSwipeCardRecords">
     insert into edu_swipe_card_records (id, shop_no, card_no, 
       client_create_time, create_time)
     values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{cardNo,jdbcType=INTEGER}, 
       #{clientCreateTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT})
   </insert>
-    <insert id="insertSelective" parameterType="live.itrip.admin.model.EduSwipeCardRecords" useGeneratedKeys="true"
-            keyProperty="id">
+    <insert id="insertSelective" parameterType="live.itrip.admin.model.EduSwipeCardRecords">
         insert into edu_swipe_card_records
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">

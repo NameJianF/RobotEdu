@@ -16,4 +16,5 @@ public interface EduCustomerInfoMapper {
     int updateByPrimaryKey(EduCustomerInfo record);
 
     Integer updateClientIdAndShopNo(EduCustomerInfo info);
+
 }

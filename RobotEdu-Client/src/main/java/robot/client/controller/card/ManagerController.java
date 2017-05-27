@@ -5,24 +5,17 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.commons.lang3.StringUtils;
-import robot.client.api.card.CardApi;
 import robot.client.common.App;
-import robot.client.common.DataOp;
+import robot.client.common.PageInfo;
 import robot.client.dao.CardInfoDao;
-import robot.client.db.DbHelper;
 import robot.client.model.card.DataEduCardInfo;
-import robot.client.model.card.EduCardInfo;
-import robot.client.observer.Subject;
 import robot.client.util.PageUtil;
 
 import java.net.URL;
@@ -55,6 +48,16 @@ public class ManagerController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.loadDatas(null);
+        this.cardInfoTableView.setRowFactory(tv -> {
+            TableRow<DataEduCardInfo> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    DataEduCardInfo rowData = row.getItem();
+                    tableViewRowDoubleClick(rowData);
+                }
+            });
+            return row;
+        });
     }
 
     private void loadDatas(Long cardNo) {
@@ -111,10 +114,27 @@ public class ManagerController implements Initializable {
 
     @FXML
     private void buttonModifyClick(MouseEvent event) {
+        DataEduCardInfo rowData = (DataEduCardInfo) this.cardInfoTableView.getSelectionModel().getSelectedItem();
+        tableViewRowDoubleClick(rowData);
+        this.loadDatas(null);
     }
 
     @FXML
     private void buttonDeleteClick(MouseEvent event) {
     }
 
+    private void tableViewRowDoubleClick(DataEduCardInfo rowData) {
+        Stage stage = new Stage();
+        PageInfo pageInfo = PageUtil.getPageInfo("/ui/card/edit.fxml");
+        stage.setScene(new Scene((GridPane) pageInfo.getNode()));
+        stage.setTitle("会员卡信息");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(App.primaryStage.getScene().getWindow());
+        stage.getIcons().add(PageUtil.getLogo());
+
+        EditController contorller = (EditController) pageInfo.getController();
+        contorller.setDataEduCardInfo(rowData);
+
+        stage.showAndWait();
+    }
 }

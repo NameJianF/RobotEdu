@@ -1,11 +1,14 @@
 package live.itrip.admin.model;
 
-public class EduCustomerInfo extends BaseModel {
+public class EduCustomerInfo {
     private Integer id;
+
     private Integer clientId;
+
     private String shopNo;
 
     private String adviser;
+
     private Long cardNo;
 
     private String childName;

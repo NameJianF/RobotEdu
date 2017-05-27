@@ -27,6 +27,7 @@ public class EduCardInfoService extends BaseService implements IEduCardInfoServi
     public void insert(String shopNo, String decodeJson, HttpServletResponse response, HttpServletRequest request) {
         BaseResult result = new BaseResult();
         EduCardInfo info = JSON.parseObject(decodeJson, EduCardInfo.class);
+        info.setClientId(info.getId());
         info.setId(null);
         info.setShopNo(shopNo);
         info.setClientCreateTime(info.getCreateTime());
@@ -35,6 +36,31 @@ public class EduCardInfoService extends BaseService implements IEduCardInfoServi
         info.setUpdateTime(info.getCreateTime());
 
         Integer ret = eduCardInfoMapper.insertSelective(info);
+
+        if (ret > 0) {
+            result.setCode(ErrorCode.SUCCESS.getCode());
+            JSONObject data = new JSONObject();
+            data.put("id", ret);
+            result.setData(data);
+            this.writeResponse(response, result);
+            return;
+        }
+
+        result.setError(ErrorCode.UNKNOWN);
+        this.writeResponse(response, result);
+    }
+
+    @Override
+    public void modify(String shopNo, String decodeJson, HttpServletResponse response, HttpServletRequest request) {
+        BaseResult result = new BaseResult();
+        EduCardInfo info = JSON.parseObject(decodeJson, EduCardInfo.class);
+        info.setClientId(info.getId());
+        info.setId(null);
+        info.setShopNo(shopNo);
+        info.setClientUpdateTime(info.getUpdateTime());
+        info.setUpdateTime(info.getCreateTime());
+
+        Integer ret = eduCardInfoMapper.updateClientIdAndShopNo(info);
 
         if (ret > 0) {
             result.setCode(ErrorCode.SUCCESS.getCode());

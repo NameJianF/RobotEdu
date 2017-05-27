@@ -3,6 +3,7 @@
 <mapper namespace="live.itrip.admin.dao.EduCardInfoMapper">
     <resultMap id="BaseResultMap" type="live.itrip.admin.model.EduCardInfo">
         <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="client_id" property="clientId" jdbcType="INTEGER"/>
         <result column="shop_no" property="shopNo" jdbcType="VARCHAR"/>
         <result column="card_no" property="cardNo" jdbcType="BIGINT"/>
         <result column="card_type" property="cardType" jdbcType="CHAR"/>
@@ -18,8 +19,8 @@
         <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, shop_no, card_no, card_type, total_times, used_times, price, discount, adviser, 
-    flag, client_create_time, client_update_time, create_time, update_time
+    id, client_id, shop_no, card_no, card_type, total_times, used_times, price, discount, 
+    adviser, flag, client_create_time, client_update_time, create_time, update_time
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -31,24 +32,28 @@
     delete from edu_card_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="live.itrip.admin.model.EduCardInfo" useGeneratedKeys="true" keyProperty="id">
-    insert into edu_card_info (id, shop_no, card_no, 
-      card_type, total_times, used_times, 
-      price, discount, adviser, 
-      flag, client_create_time, client_update_time, 
-      create_time, update_time)
-    values (#{id,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, #{cardNo,jdbcType=BIGINT}, 
-      #{cardType,jdbcType=CHAR}, #{totalTimes,jdbcType=INTEGER}, #{usedTimes,jdbcType=INTEGER}, 
-      #{price,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER}, #{adviser,jdbcType=VARCHAR}, 
-      #{flag,jdbcType=CHAR}, #{clientCreateTime,jdbcType=BIGINT}, #{clientUpdateTime,jdbcType=BIGINT}, 
-      #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT})
+    <insert id="insert" parameterType="live.itrip.admin.model.EduCardInfo">
+    insert into edu_card_info (id, client_id, shop_no, 
+      card_no, card_type, total_times, 
+      used_times, price, discount, 
+      adviser, flag, client_create_time, 
+      client_update_time, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{clientId,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, 
+      #{cardNo,jdbcType=BIGINT}, #{cardType,jdbcType=CHAR}, #{totalTimes,jdbcType=INTEGER}, 
+      #{usedTimes,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER}, 
+      #{adviser,jdbcType=VARCHAR}, #{flag,jdbcType=CHAR}, #{clientCreateTime,jdbcType=BIGINT}, 
+      #{clientUpdateTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}
+      )
   </insert>
-    <insert id="insertSelective" parameterType="live.itrip.admin.model.EduCardInfo" useGeneratedKeys="true"
-            keyProperty="id">
+    <insert id="insertSelective" parameterType="live.itrip.admin.model.EduCardInfo">
         insert into edu_card_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
+            </if>
+            <if test="clientId != null">
+                client_id,
             </if>
             <if test="shopNo != null">
                 shop_no,
@@ -94,6 +99,9 @@
             <if test="id != null">
                 #{id,jdbcType=INTEGER},
             </if>
+            <if test="clientId != null">
+                #{clientId,jdbcType=INTEGER},
+            </if>
             <if test="shopNo != null">
                 #{shopNo,jdbcType=VARCHAR},
             </if>
@@ -138,6 +146,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="live.itrip.admin.model.EduCardInfo">
         update edu_card_info
         <set>
+            <if test="clientId != null">
+                client_id = #{clientId,jdbcType=INTEGER},
+            </if>
             <if test="shopNo != null">
                 shop_no = #{shopNo,jdbcType=VARCHAR},
             </if>
@@ -181,20 +192,35 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="live.itrip.admin.model.EduCardInfo">
-    update edu_card_info
-    set shop_no = #{shopNo,jdbcType=VARCHAR},
-      card_no = #{cardNo,jdbcType=BIGINT},
-      card_type = #{cardType,jdbcType=CHAR},
-      total_times = #{totalTimes,jdbcType=INTEGER},
-      used_times = #{usedTimes,jdbcType=INTEGER},
-      price = #{price,jdbcType=INTEGER},
-      discount = #{discount,jdbcType=INTEGER},
-      adviser = #{adviser,jdbcType=VARCHAR},
-      flag = #{flag,jdbcType=CHAR},
-      client_create_time = #{clientCreateTime,jdbcType=BIGINT},
-      client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=BIGINT},
-      update_time = #{updateTime,jdbcType=BIGINT}
-    where id = #{id,jdbcType=INTEGER}
+        update edu_card_info
+        set client_id = #{clientId,jdbcType=INTEGER},
+          shop_no = #{shopNo,jdbcType=VARCHAR},
+          card_no = #{cardNo,jdbcType=BIGINT},
+          card_type = #{cardType,jdbcType=CHAR},
+          total_times = #{totalTimes,jdbcType=INTEGER},
+          used_times = #{usedTimes,jdbcType=INTEGER},
+          price = #{price,jdbcType=INTEGER},
+          discount = #{discount,jdbcType=INTEGER},
+          adviser = #{adviser,jdbcType=VARCHAR},
+          flag = #{flag,jdbcType=CHAR},
+          client_create_time = #{clientCreateTime,jdbcType=BIGINT},
+          client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
+          create_time = #{createTime,jdbcType=BIGINT},
+          update_time = #{updateTime,jdbcType=BIGINT}
+        where id = #{id,jdbcType=INTEGER}
   </update>
+    <update id="updateClientIdAndShopNo" parameterType="live.itrip.admin.model.EduCardInfo">
+        update edu_card_info
+        set card_no = #{cardNo,jdbcType=BIGINT},
+        card_type = #{cardType,jdbcType=CHAR},
+        total_times = #{totalTimes,jdbcType=INTEGER},
+        used_times = #{usedTimes,jdbcType=INTEGER},
+        price = #{price,jdbcType=INTEGER},
+        discount = #{discount,jdbcType=INTEGER},
+        adviser = #{adviser,jdbcType=VARCHAR},
+        flag = #{flag,jdbcType=CHAR},
+        client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
+        update_time = #{updateTime,jdbcType=BIGINT}
+        where client_id = #{clientId,jdbcType=INTEGER} AND shop_no = #{shopNo,jdbcType=VARCHAR}
+    </update>
 </mapper>

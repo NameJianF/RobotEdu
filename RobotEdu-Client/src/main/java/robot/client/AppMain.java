@@ -72,13 +72,17 @@ public class AppMain extends Application {
      */
     private static void loadConfig() {
         Properties prop = new Properties();
-        URL uri = AppMain.class.getClass().getResource("/config.properties");
+//        URL uri = AppMain.class.getClass().getResource("/config.properties");
+//        String fileName = uri.getFile();
 
-        String fileName = uri.getFile();
         try {
 
-            InputStream in = new BufferedInputStream(new FileInputStream(fileName));
-            prop.load(in);
+//            InputStream in = new BufferedInputStream(new FileInputStream(fileName));
+//            prop.load(in);
+
+            // 最前面有斜杠
+            InputStream input = AppMain.class.getClass().getResourceAsStream("/config.properties");
+            prop.load(input);
         } catch (Exception ex) {
             Logger.error(ex.getMessage(), new Throwable(ex));
         }

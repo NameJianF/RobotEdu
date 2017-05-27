@@ -3,6 +3,7 @@
 <mapper namespace="live.itrip.admin.dao.EduStaffInfoMapper">
     <resultMap id="BaseResultMap" type="live.itrip.admin.model.EduStaffInfo">
         <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="client_id" property="clientId" jdbcType="INTEGER"/>
         <result column="shop_no" property="shopNo" jdbcType="VARCHAR"/>
         <result column="staff_no" property="staffNo" jdbcType="VARCHAR"/>
         <result column="staff_type" property="staffType" jdbcType="CHAR"/>
@@ -17,8 +18,8 @@
         <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, shop_no, staff_no, staff_type, staff_name, mobile, sex, birthday, address, client_create_time, 
-    client_update_time, create_time, update_time
+    id, client_id, shop_no, staff_no, staff_type, staff_name, mobile, sex, birthday, 
+    address, client_create_time, client_update_time, create_time, update_time
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -30,24 +31,26 @@
     delete from edu_staff_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="live.itrip.admin.model.EduStaffInfo" useGeneratedKeys="true" keyProperty="id">
-    insert into edu_staff_info (id, shop_no, staff_no, 
-      staff_type, staff_name, mobile, 
-      sex, birthday, address, 
-      client_create_time, client_update_time, create_time, 
-      update_time)
-    values (#{id,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, #{staffNo,jdbcType=VARCHAR}, 
-      #{staffType,jdbcType=CHAR}, #{staffName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=CHAR}, #{birthday,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{clientCreateTime,jdbcType=BIGINT}, #{clientUpdateTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, 
-      #{updateTime,jdbcType=BIGINT})
+    <insert id="insert" parameterType="live.itrip.admin.model.EduStaffInfo">
+    insert into edu_staff_info (id, client_id, shop_no, 
+      staff_no, staff_type, staff_name, 
+      mobile, sex, birthday, 
+      address, client_create_time, client_update_time, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{clientId,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, 
+      #{staffNo,jdbcType=VARCHAR}, #{staffType,jdbcType=CHAR}, #{staffName,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{clientCreateTime,jdbcType=BIGINT}, #{clientUpdateTime,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT})
   </insert>
-    <insert id="insertSelective" parameterType="live.itrip.admin.model.EduStaffInfo" useGeneratedKeys="true"
-            keyProperty="id">
+    <insert id="insertSelective" parameterType="live.itrip.admin.model.EduStaffInfo">
         insert into edu_staff_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
+            </if>
+            <if test="clientId != null">
+                client_id,
             </if>
             <if test="shopNo != null">
                 shop_no,
@@ -90,6 +93,9 @@
             <if test="id != null">
                 #{id,jdbcType=INTEGER},
             </if>
+            <if test="clientId != null">
+                #{clientId,jdbcType=INTEGER},
+            </if>
             <if test="shopNo != null">
                 #{shopNo,jdbcType=VARCHAR},
             </if>
@@ -131,6 +137,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="live.itrip.admin.model.EduStaffInfo">
         update edu_staff_info
         <set>
+            <if test="clientId != null">
+                client_id = #{clientId,jdbcType=INTEGER},
+            </if>
             <if test="shopNo != null">
                 shop_no = #{shopNo,jdbcType=VARCHAR},
             </if>
@@ -171,19 +180,33 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="live.itrip.admin.model.EduStaffInfo">
-    update edu_staff_info
-    set shop_no = #{shopNo,jdbcType=VARCHAR},
-      staff_no = #{staffNo,jdbcType=VARCHAR},
-      staff_type = #{staffType,jdbcType=CHAR},
-      staff_name = #{staffName,jdbcType=VARCHAR},
-      mobile = #{mobile,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=CHAR},
-      birthday = #{birthday,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      client_create_time = #{clientCreateTime,jdbcType=BIGINT},
-      client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=BIGINT},
-      update_time = #{updateTime,jdbcType=BIGINT}
-    where id = #{id,jdbcType=INTEGER}
+        update edu_staff_info
+        set client_id = #{clientId,jdbcType=INTEGER},
+          shop_no = #{shopNo,jdbcType=VARCHAR},
+          staff_no = #{staffNo,jdbcType=VARCHAR},
+          staff_type = #{staffType,jdbcType=CHAR},
+          staff_name = #{staffName,jdbcType=VARCHAR},
+          mobile = #{mobile,jdbcType=VARCHAR},
+          sex = #{sex,jdbcType=CHAR},
+          birthday = #{birthday,jdbcType=VARCHAR},
+          address = #{address,jdbcType=VARCHAR},
+          client_create_time = #{clientCreateTime,jdbcType=BIGINT},
+          client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
+          create_time = #{createTime,jdbcType=BIGINT},
+          update_time = #{updateTime,jdbcType=BIGINT}
+        where id = #{id,jdbcType=INTEGER}
   </update>
+    <update id="updateClientIdAndShopNo" parameterType="live.itrip.admin.model.EduStaffInfo">
+        update edu_staff_info
+        set staff_no = #{staffNo,jdbcType=VARCHAR},
+        staff_type = #{staffType,jdbcType=CHAR},
+        staff_name = #{staffName,jdbcType=VARCHAR},
+        mobile = #{mobile,jdbcType=VARCHAR},
+        sex = #{sex,jdbcType=CHAR},
+        birthday = #{birthday,jdbcType=VARCHAR},
+        address = #{address,jdbcType=VARCHAR},
+        client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
+        update_time = #{updateTime,jdbcType=BIGINT}
+        where client_id = #{clientId,jdbcType=INTEGER} AND shop_no = #{shopNo,jdbcType=VARCHAR}
+    </update>
 </mapper>

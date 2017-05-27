@@ -14,4 +14,6 @@ public interface EduCardInfoMapper {
     int updateByPrimaryKeySelective(EduCardInfo record);
 
     int updateByPrimaryKey(EduCardInfo record);
+
+    Integer updateClientIdAndShopNo(EduCardInfo info);
 }

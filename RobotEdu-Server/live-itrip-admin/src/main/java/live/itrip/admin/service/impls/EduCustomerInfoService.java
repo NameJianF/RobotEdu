@@ -27,6 +27,7 @@ public class EduCustomerInfoService extends BaseService implements IEduCustomerI
     public void insert(String shopNo, String decodeJson, HttpServletResponse response, HttpServletRequest request) {
         BaseResult result = new BaseResult();
         EduCustomerInfo info = JSON.parseObject(decodeJson, EduCustomerInfo.class);
+        info.setClientId(info.getId());
         info.setId(null);
         info.setShopNo(shopNo);
         info.setClientCreateTime(info.getCreateTime());
@@ -53,7 +54,10 @@ public class EduCustomerInfoService extends BaseService implements IEduCustomerI
     public void modify(String shopNo, String decodeJson, HttpServletResponse response, HttpServletRequest request) {
         BaseResult result = new BaseResult();
         EduCustomerInfo info = JSON.parseObject(decodeJson, EduCustomerInfo.class);
+
+        info.setClientId(info.getId());
         info.setId(null);
+        info.setShopNo(shopNo);
         info.setClientUpdateTime(info.getUpdateTime());
         info.setUpdateTime(System.currentTimeMillis());
 

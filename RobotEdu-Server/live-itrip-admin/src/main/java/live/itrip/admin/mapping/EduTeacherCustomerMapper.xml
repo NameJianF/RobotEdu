@@ -3,6 +3,7 @@
 <mapper namespace="live.itrip.admin.dao.EduTeacherCustomerMapper">
     <resultMap id="BaseResultMap" type="live.itrip.admin.model.EduTeacherCustomer">
         <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="client_id" property="clientId" jdbcType="BIGINT"/>
         <result column="shop_no" property="shopNo" jdbcType="VARCHAR"/>
         <result column="staff_no" property="staffNo" jdbcType="VARCHAR"/>
         <result column="staff_name" property="staffName" jdbcType="VARCHAR"/>
@@ -14,8 +15,8 @@
         <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, shop_no, staff_no, staff_name, customer_id, child_name, client_create_time, client_update_time, 
-    create_time, update_time
+    id, client_id, shop_no, staff_no, staff_name, customer_id, child_name, client_create_time, 
+    client_update_time, create_time, update_time
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
@@ -27,23 +28,24 @@
     delete from edu_teacher_customer
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="live.itrip.admin.model.EduTeacherCustomer" useGeneratedKeys="true"
-            keyProperty="id">
-    insert into edu_teacher_customer (id, shop_no, staff_no, 
-      staff_name, customer_id, child_name, 
-      client_create_time, client_update_time, create_time, 
-      update_time)
-    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{staffNo,jdbcType=VARCHAR}, 
-      #{staffName,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, #{childName,jdbcType=VARCHAR}, 
-      #{clientCreateTime,jdbcType=BIGINT}, #{clientUpdateTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, 
-      #{updateTime,jdbcType=BIGINT})
+    <insert id="insert" parameterType="live.itrip.admin.model.EduTeacherCustomer">
+    insert into edu_teacher_customer (id, client_id, shop_no, 
+      staff_no, staff_name, customer_id, 
+      child_name, client_create_time, client_update_time, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{clientId,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR},
+      #{staffNo,jdbcType=VARCHAR}, #{staffName,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, 
+      #{childName,jdbcType=VARCHAR}, #{clientCreateTime,jdbcType=BIGINT}, #{clientUpdateTime,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT})
   </insert>
-    <insert id="insertSelective" parameterType="live.itrip.admin.model.EduTeacherCustomer" useGeneratedKeys="true"
-            keyProperty="id">
+    <insert id="insertSelective" parameterType="live.itrip.admin.model.EduTeacherCustomer">
         insert into edu_teacher_customer
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
+            </if>
+            <if test="clientId != null">
+                client_id,
             </if>
             <if test="shopNo != null">
                 shop_no,
@@ -77,6 +79,9 @@
             <if test="id != null">
                 #{id,jdbcType=BIGINT},
             </if>
+            <if test="clientId != null">
+                #{clientId,jdbcType=BIGINT},
+            </if>
             <if test="shopNo != null">
                 #{shopNo,jdbcType=VARCHAR},
             </if>
@@ -109,6 +114,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="live.itrip.admin.model.EduTeacherCustomer">
         update edu_teacher_customer
         <set>
+            <if test="clientId != null">
+                client_id = #{clientId,jdbcType=BIGINT},
+            </if>
             <if test="shopNo != null">
                 shop_no = #{shopNo,jdbcType=VARCHAR},
             </if>
@@ -141,7 +149,8 @@
     </update>
     <update id="updateByPrimaryKey" parameterType="live.itrip.admin.model.EduTeacherCustomer">
     update edu_teacher_customer
-    set shop_no = #{shopNo,jdbcType=VARCHAR},
+    set client_id = #{clientId,jdbcType=BIGINT},
+      shop_no = #{shopNo,jdbcType=VARCHAR},
       staff_no = #{staffNo,jdbcType=VARCHAR},
       staff_name = #{staffName,jdbcType=VARCHAR},
       customer_id = #{customerId,jdbcType=INTEGER},

@@ -1,7 +1,9 @@
 package live.itrip.admin.model;
 
-public class EduStaffInfo extends BaseModel{
+public class EduStaffInfo {
     private Integer id;
+
+    private Integer clientId;
 
     private String shopNo;
 
@@ -33,6 +35,14 @@ public class EduStaffInfo extends BaseModel{
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 
     public String getShopNo() {

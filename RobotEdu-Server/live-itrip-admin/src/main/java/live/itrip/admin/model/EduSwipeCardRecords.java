@@ -1,6 +1,6 @@
 package live.itrip.admin.model;
 
-public class EduSwipeCardRecords extends BaseModel{
+public class EduSwipeCardRecords {
     private Long id;
 
     private String shopNo;

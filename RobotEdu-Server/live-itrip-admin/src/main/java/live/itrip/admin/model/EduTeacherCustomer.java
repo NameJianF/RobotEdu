@@ -1,7 +1,9 @@
 package live.itrip.admin.model;
 
-public class EduTeacherCustomer extends BaseModel{
+public class EduTeacherCustomer {
     private Long id;
+
+    private Long clientId;
 
     private String shopNo;
 
@@ -27,6 +29,14 @@ public class EduTeacherCustomer extends BaseModel{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
     public String getShopNo() {

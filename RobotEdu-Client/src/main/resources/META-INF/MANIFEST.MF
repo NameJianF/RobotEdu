@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Class-Path: lib\commons-logging-1.2.jar lib\log4j-1.2.17.jar lib\commo
+ ns-email-1.4.jar lib\fastjson-1.2.31.jar lib\commons-codec-1.2.jar li
+ b\commons-lang3-3.4.jar lib\javax.mail-1.5.2.jar lib\commons-collecti
+ ons-20040616.jar lib\commons-httpclient-3.1.jar lib\commons-io-1.3.2.
+ jar lib\commons-dbutils-1.6.jar lib\controlsfx-8.40.12.jar lib\activa
+ tion-1.1.1.jar lib\mysql-connector-java-5.1.36.jar
+Main-Class: robot.client.AppMain
+

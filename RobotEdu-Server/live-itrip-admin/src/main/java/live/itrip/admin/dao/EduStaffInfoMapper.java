@@ -14,4 +14,6 @@ public interface EduStaffInfoMapper {
     int updateByPrimaryKeySelective(EduStaffInfo record);
 
     int updateByPrimaryKey(EduStaffInfo record);
+
+    Integer updateClientIdAndShopNo(EduStaffInfo info);
 }

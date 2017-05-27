@@ -95,34 +95,6 @@ public class EditContorller extends Subject implements Initializable {
         txtRemarks.setText(this.customerInfo.getRemarks());
     }
 
-    /**
-     * 保存数据到数据库
-     */
-    private void insert(EduCustomerInfo customerInfo) {
-        customerInfo.setCreateTime(System.currentTimeMillis());
-        customerInfo.setUpdateTime(customerInfo.getCreateTime());
-
-        // insert to db
-        Integer ret = CustomerDao.insert(customerInfo);
-        if (ret > 0) {
-            // upload
-            customerInfo.setId(ret);
-            this.nodifyObservers(customerInfo, DataOp.INSERT);
-        }
-    }
-
-    private void modify(EduCustomerInfo customerInfo) {
-        customerInfo.setId(this.customerInfo.getId());
-        customerInfo.setUpdateTime(customerInfo.getCreateTime());
-
-        // update to db
-        Integer ret = CustomerDao.update(customerInfo);
-        if (ret > 0) {
-            // upload
-            this.nodifyObservers(customerInfo, DataOp.MODIFY);
-        }
-    }
-
     @FXML
     private void buttonSaveClick(MouseEvent event) {
         if (StringUtils.isEmpty(txtAdviser.getText())) {
@@ -158,6 +130,34 @@ public class EditContorller extends Subject implements Initializable {
         }
 
         this.close();
+    }
+
+    /**
+     * 保存数据到数据库
+     */
+    private void insert(EduCustomerInfo customerInfo) {
+        customerInfo.setCreateTime(System.currentTimeMillis());
+        customerInfo.setUpdateTime(customerInfo.getCreateTime());
+
+        // insert to db
+        Integer ret = CustomerDao.insert(customerInfo);
+        if (ret > 0) {
+            // upload
+            customerInfo.setId(ret);
+            this.nodifyObservers(customerInfo, DataOp.INSERT);
+        }
+    }
+
+    private void modify(EduCustomerInfo customerInfo) {
+        customerInfo.setId(this.customerInfo.getId());
+        customerInfo.setUpdateTime(System.currentTimeMillis());
+
+        // update to db
+        Integer ret = CustomerDao.update(customerInfo);
+        if (ret > 0) {
+            // upload
+            this.nodifyObservers(customerInfo, DataOp.MODIFY);
+        }
     }
 
     @FXML

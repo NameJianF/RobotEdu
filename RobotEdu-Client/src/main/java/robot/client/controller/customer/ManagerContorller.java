@@ -55,7 +55,6 @@ public class ManagerContorller implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     DataEduCustomerInfo rowData = row.getItem();
-//                    System.out.println(rowData);
                     tableViewRowDoubleClick(rowData);
                 }
             });
@@ -122,6 +121,8 @@ public class ManagerContorller implements Initializable {
     private void buttonModifyClick(MouseEvent event) {
         DataEduCustomerInfo rowData = (DataEduCustomerInfo) this.tableViewCustomer.getSelectionModel().getSelectedItem();
         tableViewRowDoubleClick(rowData);
+        this.loadDatas(null);
+
     }
 
     @FXML

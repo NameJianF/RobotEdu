@@ -25,9 +25,9 @@
         <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, client_id,shop_no, adviser,card_no, child_name, child_sex, birthday, child_image, mom_name, mom_mobile,
-    mom_email, dad_name, dad_mobile, dad_email, address, remarks, client_create_time, 
-    client_update_time, create_time, update_time
+    id, client_id, shop_no, adviser, card_no, child_name, child_sex, birthday, child_image, 
+    mom_name, mom_mobile, mom_email, dad_name, dad_mobile, dad_email, address, remarks, 
+    client_create_time, client_update_time, create_time, update_time
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -39,24 +39,25 @@
     delete from edu_customer_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="live.itrip.admin.model.EduCustomerInfo" useGeneratedKeys="true" keyProperty="id">
-    insert into edu_customer_info (id,client_id, shop_no, adviser, card_no,
-      child_name, child_sex, birthday, 
-      child_image, mom_name, mom_mobile, 
-      mom_email, dad_name, dad_mobile, 
-      dad_email, address, remarks, 
-      client_create_time, client_update_time, create_time, 
-      update_time)
-    values (#{id,jdbcType=INTEGER},#{clientId,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, #{adviser,jdbcType=VARCHAR}, #{cardNo,jdbcType=BIGINT},
-      #{childName,jdbcType=VARCHAR}, #{childSex,jdbcType=CHAR}, #{birthday,jdbcType=VARCHAR}, 
-      #{childImage,jdbcType=VARCHAR}, #{momName,jdbcType=VARCHAR}, #{momMobile,jdbcType=VARCHAR}, 
-      #{momEmail,jdbcType=VARCHAR}, #{dadName,jdbcType=VARCHAR}, #{dadMobile,jdbcType=VARCHAR}, 
-      #{dadEmail,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
-      #{clientCreateTime,jdbcType=BIGINT}, #{clientUpdateTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, 
-      #{updateTime,jdbcType=BIGINT})
+    <insert id="insert" parameterType="live.itrip.admin.model.EduCustomerInfo">
+    insert into edu_customer_info (id, client_id, shop_no, 
+      adviser, card_no, child_name, 
+      child_sex, birthday, child_image, 
+      mom_name, mom_mobile, mom_email, 
+      dad_name, dad_mobile, dad_email, 
+      address, remarks, client_create_time, 
+      client_update_time, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{clientId,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, 
+      #{adviser,jdbcType=VARCHAR}, #{cardNo,jdbcType=BIGINT}, #{childName,jdbcType=VARCHAR}, 
+      #{childSex,jdbcType=CHAR}, #{birthday,jdbcType=VARCHAR}, #{childImage,jdbcType=VARCHAR}, 
+      #{momName,jdbcType=VARCHAR}, #{momMobile,jdbcType=VARCHAR}, #{momEmail,jdbcType=VARCHAR}, 
+      #{dadName,jdbcType=VARCHAR}, #{dadMobile,jdbcType=VARCHAR}, #{dadEmail,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{clientCreateTime,jdbcType=BIGINT}, 
+      #{clientUpdateTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}
+      )
   </insert>
-    <insert id="insertSelective" parameterType="live.itrip.admin.model.EduCustomerInfo" useGeneratedKeys="true"
-            keyProperty="id">
+    <insert id="insertSelective" parameterType="live.itrip.admin.model.EduCustomerInfo">
         insert into edu_customer_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -256,34 +257,33 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="live.itrip.admin.model.EduCustomerInfo">
-    update edu_customer_info
-    set client_id = #{clientId,jdbcType=INTEGER},
-      shop_no = #{shopNo,jdbcType=VARCHAR},
-      adviser = #{adviser,jdbcType=VARCHAR},
-      card_no = #{cardNo,jdbcType=BIGINT},
-      child_name = #{childName,jdbcType=VARCHAR},
-      child_sex = #{childSex,jdbcType=CHAR},
-      birthday = #{birthday,jdbcType=VARCHAR},
-      child_image = #{childImage,jdbcType=VARCHAR},
-      mom_name = #{momName,jdbcType=VARCHAR},
-      mom_mobile = #{momMobile,jdbcType=VARCHAR},
-      mom_email = #{momEmail,jdbcType=VARCHAR},
-      dad_name = #{dadName,jdbcType=VARCHAR},
-      dad_mobile = #{dadMobile,jdbcType=VARCHAR},
-      dad_email = #{dadEmail,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      remarks = #{remarks,jdbcType=VARCHAR},
-      client_create_time = #{clientCreateTime,jdbcType=BIGINT},
-      client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=BIGINT},
-      update_time = #{updateTime,jdbcType=BIGINT}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update edu_customer_info
+        set client_id = #{clientId,jdbcType=INTEGER},
+          shop_no = #{shopNo,jdbcType=VARCHAR},
+          adviser = #{adviser,jdbcType=VARCHAR},
+          card_no = #{cardNo,jdbcType=BIGINT},
+          child_name = #{childName,jdbcType=VARCHAR},
+          child_sex = #{childSex,jdbcType=CHAR},
+          birthday = #{birthday,jdbcType=VARCHAR},
+          child_image = #{childImage,jdbcType=VARCHAR},
+          mom_name = #{momName,jdbcType=VARCHAR},
+          mom_mobile = #{momMobile,jdbcType=VARCHAR},
+          mom_email = #{momEmail,jdbcType=VARCHAR},
+          dad_name = #{dadName,jdbcType=VARCHAR},
+          dad_mobile = #{dadMobile,jdbcType=VARCHAR},
+          dad_email = #{dadEmail,jdbcType=VARCHAR},
+          address = #{address,jdbcType=VARCHAR},
+          remarks = #{remarks,jdbcType=VARCHAR},
+          client_create_time = #{clientCreateTime,jdbcType=BIGINT},
+          client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
+          create_time = #{createTime,jdbcType=BIGINT},
+          update_time = #{updateTime,jdbcType=BIGINT}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 
     <update id="updateClientIdAndShopNo" parameterType="live.itrip.admin.model.EduCustomerInfo">
         update edu_customer_info
         set adviser = #{adviser,jdbcType=VARCHAR},
-        card_no = #{cardNo,jdbcType=BIGINT},
         child_name = #{childName,jdbcType=VARCHAR},
         child_sex = #{childSex,jdbcType=CHAR},
         birthday = #{birthday,jdbcType=VARCHAR},

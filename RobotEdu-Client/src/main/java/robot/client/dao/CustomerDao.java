@@ -185,7 +185,7 @@ public class CustomerDao {
         }
         if (StringUtils.isNotEmpty(customerInfo.getRemarks())) {
             sqlBuffer.append(" remarks = ?, ");
-            params.add(customerInfo.getAddress());
+            params.add(customerInfo.getRemarks());
         }
 
         sqlBuffer.append(" upload = ?, ");
