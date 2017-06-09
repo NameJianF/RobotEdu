@@ -4,7 +4,7 @@
     <resultMap id="BaseResultMap" type="live.itrip.admin.model.EduSwipeCardRecords">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="shop_no" property="shopNo" jdbcType="VARCHAR"/>
-        <result column="card_no" property="cardNo" jdbcType="INTEGER"/>
+        <result column="card_no" property="cardNo" jdbcType="VARCHAR"/>
         <result column="client_create_time" property="clientCreateTime" jdbcType="BIGINT"/>
         <result column="create_time" property="createTime" jdbcType="BIGINT"/>
     </resultMap>
@@ -24,7 +24,7 @@
     <insert id="insert" parameterType="live.itrip.admin.model.EduSwipeCardRecords">
     insert into edu_swipe_card_records (id, shop_no, card_no, 
       client_create_time, create_time)
-    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{cardNo,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR},
       #{clientCreateTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT})
   </insert>
     <insert id="insertSelective" parameterType="live.itrip.admin.model.EduSwipeCardRecords">
@@ -54,7 +54,7 @@
                 #{shopNo,jdbcType=VARCHAR},
             </if>
             <if test="cardNo != null">
-                #{cardNo,jdbcType=INTEGER},
+                #{cardNo,jdbcType=VARCHAR},
             </if>
             <if test="clientCreateTime != null">
                 #{clientCreateTime,jdbcType=BIGINT},
@@ -71,7 +71,7 @@
                 shop_no = #{shopNo,jdbcType=VARCHAR},
             </if>
             <if test="cardNo != null">
-                card_no = #{cardNo,jdbcType=INTEGER},
+                card_no = #{cardNo,jdbcType=VARCHAR},
             </if>
             <if test="clientCreateTime != null">
                 client_create_time = #{clientCreateTime,jdbcType=BIGINT},
@@ -85,7 +85,7 @@
     <update id="updateByPrimaryKey" parameterType="live.itrip.admin.model.EduSwipeCardRecords">
     update edu_swipe_card_records
     set shop_no = #{shopNo,jdbcType=VARCHAR},
-      card_no = #{cardNo,jdbcType=INTEGER},
+      card_no = #{cardNo,jdbcType=VARCHAR},
       client_create_time = #{clientCreateTime,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}

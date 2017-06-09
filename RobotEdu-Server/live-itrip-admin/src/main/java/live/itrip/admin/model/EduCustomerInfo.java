@@ -9,7 +9,7 @@ public class EduCustomerInfo {
 
     private String adviser;
 
-    private Long cardNo;
+    private String cardNo;
 
     private String childName;
 
@@ -75,11 +75,11 @@ public class EduCustomerInfo {
         this.adviser = adviser == null ? null : adviser.trim();
     }
 
-    public Long getCardNo() {
+    public String getCardNo() {
         return cardNo;
     }
 
-    public void setCardNo(Long cardNo) {
+    public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
     }
 

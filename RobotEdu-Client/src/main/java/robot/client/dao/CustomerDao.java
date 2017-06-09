@@ -102,9 +102,9 @@ public class CustomerDao {
         return -1;
     }
 
-    public static EduCustomerInfo select(Long cardNo) {
+    public static EduCustomerInfo select(String cardNo) {
         try {
-            String sql = " select * from " + TableNames.EDU_CUSTOMER_INFO + " where card_no = " + cardNo;
+            String sql = " select * from " + TableNames.EDU_CUSTOMER_INFO + " where card_no = '" + cardNo + "' ";
 
             List list = DbHelper.query(sql, new MapListHandler());
             if (list != null && list.size() > 0) {
@@ -137,7 +137,7 @@ public class CustomerDao {
 
         sqlBuffer.append(" adviser = ?, ");
         params.add(customerInfo.getAdviser());
-        if (customerInfo.getCardNo() != null) {
+        if (StringUtils.isNotEmpty(customerInfo.getCardNo())) {
             sqlBuffer.append(" card_no = ?, ");
             params.add(customerInfo.getCardNo());
         }

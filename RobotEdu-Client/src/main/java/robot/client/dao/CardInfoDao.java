@@ -50,7 +50,7 @@ public class CardInfoDao {
     }
 
     public static Integer insert(EduCardInfo cardInfo) {
-        if (cardInfo.getCardNo() == null) {
+        if (StringUtils.isEmpty(cardInfo.getCardNo())) {
             Logger.error("card NO is null");
             return 0;
         }
@@ -98,7 +98,7 @@ public class CardInfoDao {
     }
 
     public static Integer update(EduCardInfo cardInfo) {
-        if (cardInfo.getCardNo() == null) {
+        if (StringUtils.isEmpty(cardInfo.getCardNo())) {
             Logger.error("card NO is null");
             return 0;
         }

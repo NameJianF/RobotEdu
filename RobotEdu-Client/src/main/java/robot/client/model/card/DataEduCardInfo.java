@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class DataEduCardInfo {
     private final IntegerProperty id = new SimpleIntegerProperty();
-    private final LongProperty cardNo = new SimpleLongProperty();
+    private final StringProperty cardNo = new SimpleStringProperty();
     private final StringProperty cardType = new SimpleStringProperty();
     private final IntegerProperty totalTimes = new SimpleIntegerProperty();
     private final IntegerProperty usedTimes = new SimpleIntegerProperty();
@@ -34,15 +34,15 @@ public class DataEduCardInfo {
         this.id.set(id);
     }
 
-    public long getCardNo() {
+    public String getCardNo() {
         return cardNo.get();
     }
 
-    public LongProperty cardNoProperty() {
+    public StringProperty cardNoProperty() {
         return cardNo;
     }
 
-    public void setCardNo(long cardNo) {
+    public void setCardNo(String cardNo) {
         this.cardNo.set(cardNo);
     }
 
@@ -169,7 +169,7 @@ public class DataEduCardInfo {
     public static DataEduCardInfo getBean(Map<String, Object> item) {
         DataEduCardInfo bean = new DataEduCardInfo();
         bean.setId((Integer) item.get("id"));
-        bean.setCardNo((Long) item.get("card_no"));
+        bean.setCardNo((String) item.get("card_no"));
         bean.setCardType((String) item.get("card_type"));
         bean.setTotalTimes((Integer) item.get("total_times"));
         bean.setUsedTimes((Integer) item.get("used_times"));

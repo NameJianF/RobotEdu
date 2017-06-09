@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class DataEduSwipeCardRecords {
     private final LongProperty id = new SimpleLongProperty();
-    private final LongProperty cardNo = new SimpleLongProperty();
+    private final StringProperty cardNo = new SimpleStringProperty();
     private final StringProperty childName = new SimpleStringProperty();
     private final StringProperty upload = new SimpleStringProperty();
     private final StringProperty createTime = new SimpleStringProperty();
@@ -31,8 +31,16 @@ public class DataEduSwipeCardRecords {
         this.id.set(id);
     }
 
-    public long getCardNo() {
+    public String getCardNo() {
         return cardNo.get();
+    }
+
+    public StringProperty cardNoProperty() {
+        return cardNo;
+    }
+
+    public void setCardNo(String cardNo) {
+        this.cardNo.set(cardNo);
     }
 
     public String getChildName() {
@@ -47,13 +55,6 @@ public class DataEduSwipeCardRecords {
         this.childName.set(childName);
     }
 
-    public LongProperty cardNoProperty() {
-        return cardNo;
-    }
-
-    public void setCardNo(long cardNo) {
-        this.cardNo.set(cardNo);
-    }
 
     public String getUpload() {
         return upload.get();
@@ -82,7 +83,7 @@ public class DataEduSwipeCardRecords {
     public static DataEduSwipeCardRecords getBean(Map<String, Object> item) {
         DataEduSwipeCardRecords bean = new DataEduSwipeCardRecords();
         bean.setId((Long) item.get("id"));
-        bean.setCardNo((Long) item.get("card_no"));
+        bean.setCardNo((String) item.get("card_no"));
         bean.setChildName((String) item.get("child_name"));
         bean.setUpload((String) item.get("upload"));
         Long createtime = (Long) item.get("create_time");

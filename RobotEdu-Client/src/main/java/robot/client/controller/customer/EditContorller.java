@@ -110,7 +110,7 @@ public class EditContorller extends Subject implements Initializable {
         SexModel sex = (SexModel) cmbChildSex.getSelectionModel().getSelectedItem();
         EduCustomerInfo customerInfo = new EduCustomerInfo();
         customerInfo.setAdviser(txtAdviser.getText());
-        customerInfo.setCardNo(Long.valueOf(txtCardNo.getText()));
+        customerInfo.setCardNo(txtCardNo.getText());
         customerInfo.setChildName(txtChildName.getText());
         customerInfo.setChildSex(sex.getValue());
         customerInfo.setBirthday(dateChildBirthday.getValue().toString());

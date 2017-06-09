@@ -8,7 +8,7 @@ import java.util.Map;
 public class EduCustomerInfo extends BaseModel {
     private Integer id;
     private String adviser;
-    private Long cardNo;
+    private String cardNo;
     private String childName;
     private String childSex;
     private String birthday;
@@ -53,11 +53,11 @@ public class EduCustomerInfo extends BaseModel {
         this.adviser = adviser == null ? null : adviser.trim();
     }
 
-    public Long getCardNo() {
+    public String getCardNo() {
         return cardNo;
     }
 
-    public void setCardNo(Long cardNo) {
+    public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
     }
 
@@ -185,7 +185,7 @@ public class EduCustomerInfo extends BaseModel {
         EduCustomerInfo bean = new EduCustomerInfo();
         bean.setId((Integer) item.get("id"));
         bean.setAdviser((String) item.get("adviser"));
-        bean.setCardNo((Long) item.get("card_no"));
+        bean.setCardNo((String) item.get("card_no"));
         bean.setChildName((String) item.get("child_name"));
         bean.setChildSex((String) item.get("child_sex"));
         bean.setBirthday((String) item.get("birthday"));

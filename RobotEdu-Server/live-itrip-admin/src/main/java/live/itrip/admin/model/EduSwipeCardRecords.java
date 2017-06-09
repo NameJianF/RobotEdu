@@ -5,7 +5,7 @@ public class EduSwipeCardRecords {
 
     private String shopNo;
 
-    private Integer cardNo;
+    private String cardNo;
 
     private Long clientCreateTime;
 
@@ -27,11 +27,11 @@ public class EduSwipeCardRecords {
         this.shopNo = shopNo == null ? null : shopNo.trim();
     }
 
-    public Integer getCardNo() {
+    public String getCardNo() {
         return cardNo;
     }
 
-    public void setCardNo(Integer cardNo) {
+    public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
     }
 

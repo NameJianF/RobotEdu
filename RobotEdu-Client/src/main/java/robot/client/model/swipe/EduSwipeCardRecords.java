@@ -8,7 +8,7 @@ import java.util.Map;
 public class EduSwipeCardRecords extends BaseModel {
 
     private Long id;
-    private Long cardNo;
+    private String cardNo;
     private String childName;
     private String upload;
     private Long createTime;
@@ -34,11 +34,11 @@ public class EduSwipeCardRecords extends BaseModel {
         this.id = id;
     }
 
-    public Long getCardNo() {
+    public String getCardNo() {
         return cardNo;
     }
 
-    public void setCardNo(Long cardNo) {
+    public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
     }
 
@@ -70,7 +70,7 @@ public class EduSwipeCardRecords extends BaseModel {
     public static EduSwipeCardRecords getBean(Map<String, Object> item) {
         EduSwipeCardRecords bean = new EduSwipeCardRecords();
         bean.setId((Long) item.get("id"));
-        bean.setCardNo((Long) item.get("card_no"));
+        bean.setCardNo((String) item.get("card_no"));
         bean.setChildName((String) item.get("child_name"));
         bean.setUpload((String) item.get("upload"));
         bean.setCreateTime((Long) item.get("create_time"));

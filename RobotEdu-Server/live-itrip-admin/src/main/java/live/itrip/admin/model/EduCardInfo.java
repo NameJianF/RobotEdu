@@ -7,7 +7,7 @@ public class EduCardInfo {
 
     private String shopNo;
 
-    private Long cardNo;
+    private String cardNo;
 
     private String cardType;
 
@@ -55,11 +55,11 @@ public class EduCardInfo {
         this.shopNo = shopNo == null ? null : shopNo.trim();
     }
 
-    public Long getCardNo() {
+    public String getCardNo() {
         return cardNo;
     }
 
-    public void setCardNo(Long cardNo) {
+    public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
     }
 

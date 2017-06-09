@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class EduCardInfo extends BaseModel {
     private Integer id;
-    private Long cardNo;
+    private String cardNo;
     private String cardType;
     private Integer totalTimes;
     private Integer usedTimes;
@@ -35,11 +35,11 @@ public class EduCardInfo extends BaseModel {
         this.id = id;
     }
 
-    public Long getCardNo() {
+    public String getCardNo() {
         return cardNo;
     }
 
-    public void setCardNo(Long cardNo) {
+    public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
     }
 
@@ -126,7 +126,7 @@ public class EduCardInfo extends BaseModel {
     public static EduCardInfo getBean(Map<String, Object> item) {
         EduCardInfo bean = new EduCardInfo();
         bean.setId((Integer) item.get("id"));
-        bean.setCardNo((Long) item.get("card_no"));
+        bean.setCardNo((String) item.get("card_no"));
         bean.setCardType((String) item.get("card_type"));
         bean.setTotalTimes((Integer) item.get("total_times"));
         bean.setUsedTimes((Integer) item.get("used_times"));

@@ -11,7 +11,7 @@ import java.util.Map;
 public class DataEduCustomerInfo {
     private final IntegerProperty id = new SimpleIntegerProperty();
     private StringProperty adviser = new SimpleStringProperty();
-    private LongProperty cardNo = new SimpleLongProperty();
+    private StringProperty cardNo = new SimpleStringProperty();
     private StringProperty childName = new SimpleStringProperty();
     private StringProperty childSex = new SimpleStringProperty();
     private StringProperty birthday = new SimpleStringProperty();
@@ -52,15 +52,16 @@ public class DataEduCustomerInfo {
         this.adviser.set(adviser);
     }
 
-    public long getCardNo() {
+
+    public String getCardNo() {
         return cardNo.get();
     }
 
-    public LongProperty cardNoProperty() {
+    public StringProperty cardNoProperty() {
         return cardNo;
     }
 
-    public void setCardNo(long cardNo) {
+    public void setCardNo(String cardNo) {
         this.cardNo.set(cardNo);
     }
 
@@ -248,7 +249,7 @@ public class DataEduCustomerInfo {
         DataEduCustomerInfo bean = new DataEduCustomerInfo();
         bean.setId((Integer) item.get("id"));
         bean.setAdviser((String) item.get("adviser"));
-        bean.setCardNo((Long) item.get("card_no"));
+        bean.setCardNo((String) item.get("card_no"));
         bean.setChildName((String) item.get("child_name"));
         String sex = (String) item.get("child_sex");
         bean.setChildSex(sex.equals("1") ? "男" : "女");

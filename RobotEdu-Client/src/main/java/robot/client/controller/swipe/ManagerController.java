@@ -78,13 +78,12 @@ public class ManagerController extends Subject implements Initializable {
                 return;
             }
 
-            Long no = Long.valueOf(txtSwipeNo.getText());
 
             // select customer info
-            EduCustomerInfo customerInfo = CustomerDao.select(no);
+            EduCustomerInfo customerInfo = CustomerDao.select(txtSwipeNo.getText());
 
             EduSwipeCardRecords swipeCardRecords = new EduSwipeCardRecords();
-            swipeCardRecords.setCardNo(Long.valueOf(txtSwipeNo.getText()));
+            swipeCardRecords.setCardNo(txtSwipeNo.getText());
             swipeCardRecords.setCreateTime(System.currentTimeMillis());
             swipeCardRecords.setChildName(customerInfo.getChildName());
             this.insert(swipeCardRecords);

@@ -76,7 +76,7 @@ public class EditController extends Subject implements Initializable {
         EnableModel enableModel = (EnableModel) cmbEnable.getSelectionModel().getSelectedItem();
 
         EduCardInfo cardInfo = new EduCardInfo();
-        cardInfo.setCardNo(Long.valueOf(txtCardNo.getText()));
+        cardInfo.setCardNo(txtCardNo.getText());
         cardInfo.setCardType(cardTypeModel.getValue());
         cardInfo.setTotalTimes(Integer.valueOf(txtTotalTimes.getText()));
         cardInfo.setUsedTimes(0);

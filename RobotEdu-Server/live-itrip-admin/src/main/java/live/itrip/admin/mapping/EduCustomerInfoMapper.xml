@@ -6,7 +6,7 @@
         <result column="client_id" property="clientId" jdbcType="INTEGER"/>
         <result column="shop_no" property="shopNo" jdbcType="VARCHAR"/>
         <result column="adviser" property="adviser" jdbcType="VARCHAR"/>
-        <result column="card_no" property="cardNo" jdbcType="BIGINT"/>
+        <result column="card_no" property="cardNo" jdbcType="VARCHAR"/>
         <result column="child_name" property="childName" jdbcType="VARCHAR"/>
         <result column="child_sex" property="childSex" jdbcType="CHAR"/>
         <result column="birthday" property="birthday" jdbcType="VARCHAR"/>
@@ -49,7 +49,7 @@
       client_update_time, create_time, update_time
       )
     values (#{id,jdbcType=INTEGER}, #{clientId,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, 
-      #{adviser,jdbcType=VARCHAR}, #{cardNo,jdbcType=BIGINT}, #{childName,jdbcType=VARCHAR}, 
+      #{adviser,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, #{childName,jdbcType=VARCHAR},
       #{childSex,jdbcType=CHAR}, #{birthday,jdbcType=VARCHAR}, #{childImage,jdbcType=VARCHAR}, 
       #{momName,jdbcType=VARCHAR}, #{momMobile,jdbcType=VARCHAR}, #{momEmail,jdbcType=VARCHAR}, 
       #{dadName,jdbcType=VARCHAR}, #{dadMobile,jdbcType=VARCHAR}, #{dadEmail,jdbcType=VARCHAR}, 
@@ -138,7 +138,7 @@
                 #{adviser,jdbcType=VARCHAR},
             </if>
             <if test="cardNo != null">
-                #{cardNo,jdbcType=BIGINT},
+                #{cardNo,jdbcType=VARCHAR},
             </if>
             <if test="childName != null">
                 #{childName,jdbcType=VARCHAR},
@@ -203,7 +203,7 @@
                 adviser = #{adviser,jdbcType=VARCHAR},
             </if>
             <if test="cardNo != null">
-                card_no = #{cardNo,jdbcType=BIGINT},
+                card_no = #{cardNo,jdbcType=VARCHAR},
             </if>
             <if test="childName != null">
                 child_name = #{childName,jdbcType=VARCHAR},
@@ -261,7 +261,7 @@
         set client_id = #{clientId,jdbcType=INTEGER},
           shop_no = #{shopNo,jdbcType=VARCHAR},
           adviser = #{adviser,jdbcType=VARCHAR},
-          card_no = #{cardNo,jdbcType=BIGINT},
+          card_no = #{cardNo,jdbcType=VARCHAR},
           child_name = #{childName,jdbcType=VARCHAR},
           child_sex = #{childSex,jdbcType=CHAR},
           birthday = #{birthday,jdbcType=VARCHAR},

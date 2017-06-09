@@ -5,7 +5,7 @@
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="client_id" property="clientId" jdbcType="INTEGER"/>
         <result column="shop_no" property="shopNo" jdbcType="VARCHAR"/>
-        <result column="card_no" property="cardNo" jdbcType="BIGINT"/>
+        <result column="card_no" property="cardNo" jdbcType="VARCHAR"/>
         <result column="card_type" property="cardType" jdbcType="CHAR"/>
         <result column="total_times" property="totalTimes" jdbcType="INTEGER"/>
         <result column="used_times" property="usedTimes" jdbcType="INTEGER"/>
@@ -40,7 +40,7 @@
       client_update_time, create_time, update_time
       )
     values (#{id,jdbcType=INTEGER}, #{clientId,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, 
-      #{cardNo,jdbcType=BIGINT}, #{cardType,jdbcType=CHAR}, #{totalTimes,jdbcType=INTEGER}, 
+      #{cardNo,jdbcType=VARCHAR}, #{cardType,jdbcType=CHAR}, #{totalTimes,jdbcType=INTEGER},
       #{usedTimes,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER}, 
       #{adviser,jdbcType=VARCHAR}, #{flag,jdbcType=CHAR}, #{clientCreateTime,jdbcType=BIGINT}, 
       #{clientUpdateTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}
@@ -106,7 +106,7 @@
                 #{shopNo,jdbcType=VARCHAR},
             </if>
             <if test="cardNo != null">
-                #{cardNo,jdbcType=BIGINT},
+                #{cardNo,jdbcType=VARCHAR},
             </if>
             <if test="cardType != null">
                 #{cardType,jdbcType=CHAR},
@@ -153,7 +153,7 @@
                 shop_no = #{shopNo,jdbcType=VARCHAR},
             </if>
             <if test="cardNo != null">
-                card_no = #{cardNo,jdbcType=BIGINT},
+                card_no = #{cardNo,jdbcType=VARCHAR},
             </if>
             <if test="cardType != null">
                 card_type = #{cardType,jdbcType=CHAR},
@@ -195,7 +195,7 @@
         update edu_card_info
         set client_id = #{clientId,jdbcType=INTEGER},
           shop_no = #{shopNo,jdbcType=VARCHAR},
-          card_no = #{cardNo,jdbcType=BIGINT},
+          card_no = #{cardNo,jdbcType=VARCHAR},
           card_type = #{cardType,jdbcType=CHAR},
           total_times = #{totalTimes,jdbcType=INTEGER},
           used_times = #{usedTimes,jdbcType=INTEGER},
@@ -211,7 +211,7 @@
   </update>
     <update id="updateClientIdAndShopNo" parameterType="live.itrip.admin.model.EduCardInfo">
         update edu_card_info
-        set card_no = #{cardNo,jdbcType=BIGINT},
+        set card_no = #{cardNo,jdbcType=VARCHAR},
         card_type = #{cardType,jdbcType=CHAR},
         total_times = #{totalTimes,jdbcType=INTEGER},
         used_times = #{usedTimes,jdbcType=INTEGER},
