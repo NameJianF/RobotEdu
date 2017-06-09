@@ -100,10 +100,10 @@ public class UserService extends BaseService implements IUserService {
             // 身份验证
             UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(loginData.getUserName(), loginData.getPwd());
             // 记住我
-            boolean rememberMe = true;
-            if (rememberMe) {
-                usernamePasswordToken.setRememberMe(rememberMe);
-            }
+//            boolean rememberMe = true;
+//            if (rememberMe) {
+//                usernamePasswordToken.setRememberMe(rememberMe);
+//            }
             currentSubject.login(usernamePasswordToken);
 
             // 用户信息正确,通过验证
@@ -207,10 +207,10 @@ public class UserService extends BaseService implements IUserService {
                     // 身份验证
                     UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getEmail(), oldPwd);
                     // 记住我
-                    boolean rememberMe = true;
-                    if (rememberMe) {
-                        usernamePasswordToken.setRememberMe(rememberMe);
-                    }
+//                    boolean rememberMe = true;
+//                    if (rememberMe) {
+//                        usernamePasswordToken.setRememberMe(rememberMe);
+//                    }
                     currentSubject.login(usernamePasswordToken);
 
                     // 写入session
