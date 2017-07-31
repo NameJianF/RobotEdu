@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import live.itrip.common.Logger;
 
 public class SigUtils {
 
@@ -37,7 +38,8 @@ public class SigUtils {
 
             if (entry.getValue() instanceof JSONObject
                     || entry.getValue() instanceof JSONArray) {
-                strvalue = getKeyValue(entry.getValue());
+                getKeyValue(buffer, entry.getValue());
+                continue;
             } else {
                 strvalue = entry.getValue().toString();
             }
@@ -48,16 +50,11 @@ public class SigUtils {
         buffer.append(secretkey);
         buffer.append("2016");
 
-        String sig = null;
-//		LoggerUtils.debug("json value:" + buffer.toString());
-//		System.out.println("json value:" + buffer.toString());
-        sig = Md5Utils.getStringMD5(buffer.toString());
-//		LoggerUtils.debug("sig:" + sig);
-        return sig;
+        Logger.debug("json value:" + buffer.toString());
+        return Md5Utils.getStringMD5(buffer.toString());
     }
 
-    private static String getKeyValue(Object object) {
-        StringBuffer buffer = new StringBuffer();
+    private static void getKeyValue(StringBuffer buffer, Object object) {
         TreeMap<String, Object> jsonMap = JSON.parseObject(
                 JSON.toJSONString(object),
                 new TypeReference<TreeMap<String, Object>>() {
@@ -65,15 +62,16 @@ public class SigUtils {
         for (Map.Entry<String, Object> entry : jsonMap.entrySet()) {
             String key = entry.getKey();
             String strvalue = "";
-            if (entry.getValue() instanceof JSONObject || entry.getValue() instanceof JSONArray) {
-                strvalue = getKeyValue(entry.getValue());
+
+            if (entry.getValue() instanceof JSONObject
+                    || entry.getValue() instanceof JSONArray) {
+                getKeyValue(buffer, entry.getValue());
             } else {
                 strvalue = entry.getValue().toString();
             }
 
             buffer.append(String.format("%s=%s", key, strvalue));
         }
-        return buffer.toString();
     }
 
 
