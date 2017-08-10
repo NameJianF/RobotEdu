@@ -1,7 +1,7 @@
 package live.itrip.admin.bean;
 
 import com.alibaba.fastjson.JSONArray;
-import com.sun.tools.javac.util.List;
+
 
 /**
  * Created by Feng on 2015/12/30.

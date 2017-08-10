@@ -42,6 +42,11 @@ public class AdminController extends AbstractController {
     private IAdminUserService iAdminUserService;
     @Autowired
     private IAdminRolePermissionService iAdminRolePermissionService;
+    @Autowired
+    private IAdminCityService iAdminCityService;
+    @Autowired
+    private IEduShopInfoService iEduShopInfoService;
+
 
     // =================== system config ==============
 
@@ -89,6 +94,8 @@ public class AdminController extends AbstractController {
                 iAdminUserService.selectAdminUsers(decodeJson, response, request);
             } else if ("modulePermissions".equalsIgnoreCase(flag)) {
                 iAdminModuleService.modulePermissions(decodeJson, response, request);
+            } else if ("city".equalsIgnoreCase(flag)) {
+//                iAdminCityService.modulePermissions(decodeJson, response, request);
             }
         } else {
             try {
@@ -175,10 +182,60 @@ public class AdminController extends AbstractController {
                     } else if ("rolePermission.edit".equalsIgnoreCase(op)) {
                         iAdminRolePermissionService.modifyPermissionsByRoleId(decodeJson, response, request);
                     }
+                    // city
+                    else if ("city.selectByProvinceCode".equalsIgnoreCase(op)) {
+                        iAdminCityService.selectByProvinceCode(decodeJson, response, request);
+                    }
                 }
             } catch (Exception ex) {
                 Logger.error("", ex);
             }
         }
+    }
+
+
+    // =================== edu action ==============
+
+    /**
+     * Shop 模块
+     *
+     * @param json
+     * @param response
+     * @param request
+     */
+    @RequestMapping("/shop")
+    public
+    @ResponseBody
+    void shopManager(@RequestBody String json, HttpServletResponse response, HttpServletRequest request) {
+        String decodeJson = JsonStringUtils.decoderForJsonString(json);
+        Logger.debug(
+                String.format("timestamp:%s action:%s json:%s",
+                        System.currentTimeMillis(), "shopManager", decodeJson));
+        if (StringUtils.isEmpty(decodeJson)) {
+            this.paramInvalid(response, "JSON");
+            return;
+        }
+        String flag = request.getParameter("flag");
+        // 1: from table select
+        try {
+            if (StringUtils.isNotEmpty(flag)) {
+                iEduShopInfoService.selectShopList(decodeJson, response, request);
+            } else {
+                RequestHeader header = JSON.parseObject(decodeJson, RequestHeader.class);
+                if (header != null && StringUtils.isNotEmpty(header.getOp())) {
+                    String op = header.getOp();
+                    if ("shop.detail".equalsIgnoreCase(op)) {
+                        iEduShopInfoService.selectShopById(decodeJson, response, request);
+                    } else if ("shop.delete".equalsIgnoreCase(op)) {
+                        iEduShopInfoService.deleteShopById(decodeJson, response, request);
+                    } else if ("shop.edit".equalsIgnoreCase(op)) {
+                        iEduShopInfoService.editShopById(decodeJson, response, request);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.error("", ex);
+        }
+
     }
 }

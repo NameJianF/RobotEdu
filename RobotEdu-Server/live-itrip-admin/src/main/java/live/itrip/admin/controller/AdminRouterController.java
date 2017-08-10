@@ -3,10 +3,12 @@ package live.itrip.admin.controller;
 import live.itrip.admin.controller.base.AbstractController;
 import live.itrip.admin.model.AdminDepart;
 import live.itrip.admin.model.AdminDict;
+import live.itrip.admin.model.AdminProvince;
 import live.itrip.admin.model.AdminUser;
 import live.itrip.admin.service.intefaces.IAdminDepartService;
 import live.itrip.admin.service.intefaces.IAdminDictItemService;
 import live.itrip.admin.service.intefaces.IAdminDictService;
+import live.itrip.admin.service.intefaces.IAdminProvinceService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ import java.util.List;
 
 /**
  * Created by Feng on 2016/8/4.
- * <p/>
+ * <p>
  * 后台管理 页面路由
  */
 @Controller
@@ -33,6 +35,9 @@ public class AdminRouterController extends AbstractController {
     private IAdminDepartService iAdminDepartService;
     @Autowired
     private IAdminDictItemService iAdminDictItemService;
+    @Autowired
+    private IAdminProvinceService iAdminProvinceService;
+
 
     @RequestMapping(value = "/system/index", method = RequestMethod.GET)
     public String pagesIndex(HttpServletResponse response, HttpServletRequest request, Model model) {
@@ -128,5 +133,11 @@ public class AdminRouterController extends AbstractController {
     }
 
 
-
+    // ================== edu pages ========
+    @RequestMapping(value = "/edu/shop", method = RequestMethod.GET)
+    public String systemShop(HttpServletRequest request, Model model) {
+        List<AdminProvince> provinceList = iAdminProvinceService.selectAll();
+        model.addAttribute("provinceList", provinceList);
+        return "pages/edu/shop";
+    }
 }

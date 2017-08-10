@@ -4,11 +4,8 @@ import java.io.Serializable;
 
 public class AdminDepart implements Serializable {
     private Integer id;
-
     private String departName;
-
     private Long createTime;
-
     private Long updateTime;
 
     public Integer getId() {
