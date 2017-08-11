@@ -16,7 +16,7 @@
     </resultMap>
     <sql id="Base_Column_List">
     id, client_id, shop_no, staff_no, staff_name, customer_id, child_name, client_create_time, 
-    client_update_time, create_time, update_time
+    client_update_time,create_time, update_time
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
@@ -31,7 +31,7 @@
     <insert id="insert" parameterType="live.itrip.admin.model.EduTeacherCustomer">
     insert into edu_teacher_customer (id, client_id, shop_no, 
       staff_no, staff_name, customer_id, 
-      child_name, client_create_time, client_update_time, 
+      child_name, client_create_time, client_update_time,
       create_time, update_time)
     values (#{id,jdbcType=BIGINT}, #{clientId,jdbcType=BIGINT}, #{shopNo,jdbcType=VARCHAR},
       #{staffNo,jdbcType=VARCHAR}, #{staffName,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, 
@@ -160,5 +160,33 @@
       create_time = #{createTime,jdbcType=BIGINT},
       update_time = #{updateTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
-  </update>
+    </update>
+
+
+    <!--自定义查询-->
+    <!--<select id="countAll" resultType="int" parameterType="map">-->
+        <!--select count(id) from edu_teacher_customer WHERE TRUE-->
+
+        <!--<if test="shopNo != null and shopNo != '' ">-->
+            <!--AND shop_no =  '${shopNo}'-->
+        <!--</if>-->
+        <!--<if test="teacherName != null and teacherName != '' ">-->
+            <!--AND staff_name LIKE ${teacherName}-->
+        <!--</if>-->
+
+    <!--</select>-->
+    <!--<select id="selectTeacherCustomerList" resultMap="BaseResultMap" parameterType="map">-->
+        <!--select-->
+        <!--<include refid="Base_Column_List"/>-->
+        <!--from edu_teacher_customer WHERE TRUE-->
+
+        <!--<if test="shopNo != null and shopNo != '' ">-->
+            <!--AND shop_no =  '${shopNo}'-->
+        <!--</if>-->
+        <!--<if test="teacherName != null and teacherName != '' ">-->
+            <!--AND staff_name LIKE ${teacherName}-->
+        <!--</if>-->
+
+        <!--limit ${start},${length}-->
+    <!--</select>-->
 </mapper>

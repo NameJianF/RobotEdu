@@ -1,32 +1,29 @@
 package live.itrip.admin.model;
 
 public class EduStaffInfo {
+    /**
+     * 在职
+     */
+    public static final String STATUS_ON = "1";
+    /**
+     * 离职
+     */
+    public static final String STATUS_LEAVE = "0";
+
     private Integer id;
-
     private Integer clientId;
-
     private String shopNo;
-
     private String staffNo;
-
     private String staffType;
-
     private String staffName;
-
     private String mobile;
-
     private String sex;
-
     private String birthday;
-
     private String address;
-
     private Long clientCreateTime;
-
     private Long clientUpdateTime;
-
+    private String status;
     private Long createTime;
-
     private Long updateTime;
 
     public Integer getId() {
@@ -123,6 +120,14 @@ public class EduStaffInfo {
 
     public void setClientUpdateTime(Long clientUpdateTime) {
         this.clientUpdateTime = clientUpdateTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Long getCreateTime() {

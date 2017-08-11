@@ -46,6 +46,10 @@ public class AdminController extends AbstractController {
     private IAdminCityService iAdminCityService;
     @Autowired
     private IEduShopInfoService iEduShopInfoService;
+    @Autowired
+    private IEduStaffInfoService iEduStaffInfoService;
+    @Autowired
+    private IEduTeacherCustomerService iEduTeacherCustomerService;
 
 
     // =================== system config ==============
@@ -236,6 +240,90 @@ public class AdminController extends AbstractController {
         } catch (Exception ex) {
             Logger.error("", ex);
         }
+    }
 
+    /**
+     * Staff 模块
+     *
+     * @param json
+     * @param response
+     * @param request
+     */
+    @RequestMapping("/staff")
+    public
+    @ResponseBody
+    void staffManager(@RequestBody String json, HttpServletResponse response, HttpServletRequest request) {
+        String decodeJson = JsonStringUtils.decoderForJsonString(json);
+        Logger.debug(
+                String.format("timestamp:%s action:%s json:%s",
+                        System.currentTimeMillis(), "staffManager", decodeJson));
+        if (StringUtils.isEmpty(decodeJson)) {
+            this.paramInvalid(response, "JSON");
+            return;
+        }
+        String flag = request.getParameter("flag");
+        // 1: from table select
+        try {
+            if (StringUtils.isNotEmpty(flag)) {
+                iEduStaffInfoService.selectStaffList(decodeJson, response, request);
+            } else {
+                RequestHeader header = JSON.parseObject(decodeJson, RequestHeader.class);
+                if (header != null && StringUtils.isNotEmpty(header.getOp())) {
+                    String op = header.getOp();
+                    if ("staff.detail".equalsIgnoreCase(op)) {
+                        iEduStaffInfoService.selectStaffById(decodeJson, response, request);
+                    } else if ("staff.delete".equalsIgnoreCase(op)) {
+                        iEduStaffInfoService.deleteStaffById(decodeJson, response, request);
+                    } else if ("staff.edit".equalsIgnoreCase(op)) {
+                        iEduStaffInfoService.editStaffById(decodeJson, response, request);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.error("", ex);
+        }
+    }
+
+
+    /**
+     * Teacher Customer 模块
+     *
+     * @param json
+     * @param response
+     * @param request
+     */
+    @RequestMapping("/tc")
+    public
+    @ResponseBody
+    void teacherCustomerManager(@RequestBody String json, HttpServletResponse response, HttpServletRequest request) {
+        String decodeJson = JsonStringUtils.decoderForJsonString(json);
+        Logger.debug(
+                String.format("timestamp:%s action:%s json:%s",
+                        System.currentTimeMillis(), "teacherCustomerManager", decodeJson));
+        if (StringUtils.isEmpty(decodeJson)) {
+            this.paramInvalid(response, "JSON");
+            return;
+        }
+        String flag = request.getParameter("flag");
+        // 1: from table select
+        try {
+            if (StringUtils.isNotEmpty(flag)) {
+                iEduTeacherCustomerService.selectTeacherCustomerList(decodeJson, response, request);
+            } else {
+                RequestHeader header = JSON.parseObject(decodeJson, RequestHeader.class);
+                if (header != null && StringUtils.isNotEmpty(header.getOp())) {
+                    String op = header.getOp();
+                    if ("tc.detail".equalsIgnoreCase(op)) {
+                        iEduTeacherCustomerService.selectTeacherCustomerById(decodeJson, response, request);
+                    } else if ("tc.delete".equalsIgnoreCase(op)) {
+                        iEduTeacherCustomerService.deleteTeacherCustomerById(decodeJson, response, request);
+                    } else if ("tc.edit".equalsIgnoreCase(op)) {
+                        iEduTeacherCustomerService.editTeacherCustomerById(decodeJson, response, request);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.error("", ex);
+        }
     }
 }

@@ -14,12 +14,13 @@
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="client_create_time" property="clientCreateTime" jdbcType="BIGINT"/>
         <result column="client_update_time" property="clientUpdateTime" jdbcType="BIGINT"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="BIGINT"/>
         <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
     </resultMap>
     <sql id="Base_Column_List">
     id, client_id, shop_no, staff_no, staff_type, staff_name, mobile, sex, birthday, 
-    address, client_create_time, client_update_time, create_time, update_time
+    address, client_create_time, client_update_time,status, create_time, update_time
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -35,13 +36,13 @@
     insert into edu_staff_info (id, client_id, shop_no, 
       staff_no, staff_type, staff_name, 
       mobile, sex, birthday, 
-      address, client_create_time, client_update_time, 
+      address, client_create_time, client_update_time, status,
       create_time, update_time)
     values (#{id,jdbcType=INTEGER}, #{clientId,jdbcType=INTEGER}, #{shopNo,jdbcType=VARCHAR}, 
       #{staffNo,jdbcType=VARCHAR}, #{staffType,jdbcType=CHAR}, #{staffName,jdbcType=VARCHAR}, 
       #{mobile,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{birthday,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{clientCreateTime,jdbcType=BIGINT}, #{clientUpdateTime,jdbcType=BIGINT}, 
-      #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT})
+      #{status,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT})
   </insert>
     <insert id="insertSelective" parameterType="live.itrip.admin.model.EduStaffInfo">
         insert into edu_staff_info
@@ -81,6 +82,9 @@
             </if>
             <if test="clientUpdateTime != null">
                 client_update_time,
+            </if>
+            <if test="status != null">
+                status,
             </if>
             <if test="createTime != null">
                 create_time,
@@ -126,6 +130,9 @@
             <if test="clientUpdateTime != null">
                 #{clientUpdateTime,jdbcType=BIGINT},
             </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
             <if test="createTime != null">
                 #{createTime,jdbcType=BIGINT},
             </if>
@@ -170,6 +177,9 @@
             <if test="clientUpdateTime != null">
                 client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
             </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
             <if test="createTime != null">
                 create_time = #{createTime,jdbcType=BIGINT},
             </if>
@@ -192,6 +202,7 @@
           address = #{address,jdbcType=VARCHAR},
           client_create_time = #{clientCreateTime,jdbcType=BIGINT},
           client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
+          status = #{status,jdbcType=VARCHAR},
           create_time = #{createTime,jdbcType=BIGINT},
           update_time = #{updateTime,jdbcType=BIGINT}
         where id = #{id,jdbcType=INTEGER}
@@ -206,7 +217,36 @@
         birthday = #{birthday,jdbcType=VARCHAR},
         address = #{address,jdbcType=VARCHAR},
         client_update_time = #{clientUpdateTime,jdbcType=BIGINT},
+        status = #{status,jdbcType=VARCHAR},
         update_time = #{updateTime,jdbcType=BIGINT}
         where client_id = #{clientId,jdbcType=INTEGER} AND shop_no = #{shopNo,jdbcType=VARCHAR}
     </update>
+
+
+    <!--自定义查询-->
+    <select id="countAll" resultType="int" parameterType="map">
+        select count(id) from edu_staff_info WHERE TRUE
+
+        <if test="shopNo != null and shopNo != '' ">
+            AND shop_no = '${shopNo}'
+        </if>
+        <if test="staffName != null and staffName != '' ">
+            AND staff_name LIKE ${staffName}
+        </if>
+
+    </select>
+    <select id="selectStaffList" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from edu_staff_info WHERE TRUE
+
+        <if test="shopNo != null and shopNo != '' ">
+            AND shop_no = '${shopNo}'
+        </if>
+        <if test="staffName != null and staffName != '' ">
+            AND staff_name LIKE ${staffName}
+        </if>
+
+        limit ${start},${length}
+    </select>
 </mapper>

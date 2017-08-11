@@ -2,25 +2,16 @@ package live.itrip.admin.model;
 
 public class EduTeacherCustomer {
     private Long id;
-
     private Long clientId;
-
     private String shopNo;
-
     private String staffNo;
-
     private String staffName;
-
     private Integer customerId;
-
     private String childName;
-
     private Long clientCreateTime;
-
     private Long clientUpdateTime;
-
+    private String status;
     private Long createTime;
-
     private Long updateTime;
 
     public Long getId() {
@@ -93,6 +84,14 @@ public class EduTeacherCustomer {
 
     public void setClientUpdateTime(Long clientUpdateTime) {
         this.clientUpdateTime = clientUpdateTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Long getCreateTime() {
