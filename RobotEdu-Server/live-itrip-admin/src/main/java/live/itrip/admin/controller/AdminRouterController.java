@@ -131,6 +131,7 @@ public class AdminRouterController extends AbstractController {
 
     // ================== edu pages ========
 
+    // 门店
     @RequestMapping(value = "/edu/shop", method = RequestMethod.GET)
     public String systemShop(HttpServletRequest request, Model model) {
         List<AdminProvince> provinceList = iAdminProvinceService.selectAll();
@@ -138,10 +139,27 @@ public class AdminRouterController extends AbstractController {
         return "pages/edu/shop";
     }
 
+    // 员工
     @RequestMapping(value = "/edu/staff", method = RequestMethod.GET)
-    public String systemTeacher(HttpServletRequest request, Model model) {
+    public String systemStaff(HttpServletRequest request, Model model) {
         List<EduShopInfo> shopList = iEduShopInfoService.selectAll();
         model.addAttribute("shopList", shopList);
         return "pages/edu/staff";
+    }
+
+    // 学生/客户
+    @RequestMapping(value = "/edu/customer", method = RequestMethod.GET)
+    public String systemCustomer(HttpServletRequest request, Model model) {
+        List<EduShopInfo> shopList = iEduShopInfoService.selectAll();
+        model.addAttribute("shopList", shopList);
+        return "pages/edu/customer";
+    }
+
+    // 会员卡
+    @RequestMapping(value = "/edu/card", method = RequestMethod.GET)
+    public String systemCard(HttpServletRequest request, Model model) {
+        List<EduShopInfo> shopList = iEduShopInfoService.selectAll();
+        model.addAttribute("shopList", shopList);
+        return "pages/edu/card";
     }
 }

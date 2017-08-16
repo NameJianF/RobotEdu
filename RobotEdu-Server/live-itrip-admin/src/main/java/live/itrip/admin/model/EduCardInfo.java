@@ -2,33 +2,19 @@ package live.itrip.admin.model;
 
 public class EduCardInfo {
     private Integer id;
-
     private Integer clientId;
-
     private String shopNo;
-
     private String cardNo;
-
     private String cardType;
-
     private Integer totalTimes;
-
     private Integer usedTimes;
-
     private Integer price;
-
     private Integer discount;
-
-    private String adviser;
-
-    private String flag;
-
+    private String adviser;  // 客户顾问
+    private String flag;     // 标记，1：可用； 0：不可用
     private Long clientCreateTime;
-
     private Long clientUpdateTime;
-
     private Long createTime;
-
     private Long updateTime;
 
     public Integer getId() {

@@ -281,6 +281,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
+    <!--自定义查询-->
     <update id="updateClientIdAndShopNo" parameterType="live.itrip.admin.model.EduCustomerInfo">
         update edu_customer_info
         set adviser = #{adviser,jdbcType=VARCHAR},
@@ -300,4 +301,30 @@
         update_time = #{updateTime,jdbcType=BIGINT}
         where client_id = #{clientId,jdbcType=INTEGER} AND shop_no = #{shopNo,jdbcType=VARCHAR}
     </update>
+
+    <select id="countAll" resultType="int" parameterType="map">
+        select count(id) from edu_customer_info WHERE TRUE
+
+        <if test="shopNo != null and shopNo != '' ">
+            AND shop_no = '${shopNo}'
+        </if>
+        <if test="customerName != null and customerName != '' ">
+            AND child_name LIKE ${customerName}
+        </if>
+
+    </select>
+    <select id="selectCustomerList" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from edu_customer_info WHERE TRUE
+
+        <if test="shopNo != null and shopNo != '' ">
+            AND shop_no = '${shopNo}'
+        </if>
+        <if test="customerName != null and customerName != '' ">
+            AND child_name LIKE ${customerName}
+        </if>
+
+        limit ${start},${length}
+    </select>
 </mapper>

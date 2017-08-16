@@ -2,45 +2,25 @@ package live.itrip.admin.model;
 
 public class EduCustomerInfo {
     private Integer id;
-
     private Integer clientId;
-
     private String shopNo;
-
-    private String adviser;
-
+    private String adviser; // 客户顾问
     private String cardNo;
-
     private String childName;
-
     private String childSex;
-
     private String birthday;
-
     private String childImage;
-
     private String momName;
-
     private String momMobile;
-
     private String momEmail;
-
     private String dadName;
-
     private String dadMobile;
-
     private String dadEmail;
-
     private String address;
-
     private String remarks;
-
     private Long clientCreateTime;
-
     private Long clientUpdateTime;
-
     private Long createTime;
-
     private Long updateTime;
 
     public Integer getId() {

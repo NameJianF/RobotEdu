@@ -50,7 +50,10 @@ public class AdminController extends AbstractController {
     private IEduStaffInfoService iEduStaffInfoService;
     @Autowired
     private IEduTeacherCustomerService iEduTeacherCustomerService;
-
+    @Autowired
+    private IEduCustomerInfoService iEduCustomerInfoService;
+    @Autowired
+    private IEduCardInfoService iEduCardInfoService;
 
     // =================== system config ==============
 
@@ -276,6 +279,87 @@ public class AdminController extends AbstractController {
                         iEduStaffInfoService.deleteStaffById(decodeJson, response, request);
                     } else if ("staff.edit".equalsIgnoreCase(op)) {
                         iEduStaffInfoService.editStaffById(decodeJson, response, request);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.error("", ex);
+        }
+    }
+
+
+    /**
+     * 学生/客户端 模块
+     *
+     * @param json
+     * @param response
+     * @param request
+     */
+    @RequestMapping("/customer")
+    public
+    @ResponseBody
+    void customerManager(@RequestBody String json, HttpServletResponse response, HttpServletRequest request) {
+        String decodeJson = JsonStringUtils.decoderForJsonString(json);
+        Logger.debug(
+                String.format("timestamp:%s action:%s json:%s",
+                        System.currentTimeMillis(), "customerManager", decodeJson));
+        if (StringUtils.isEmpty(decodeJson)) {
+            this.paramInvalid(response, "JSON");
+            return;
+        }
+        String flag = request.getParameter("flag");
+        // 1: from table select
+        try {
+            if (StringUtils.isNotEmpty(flag)) {
+                iEduCustomerInfoService.selectCustomerList(decodeJson, response, request);
+            } else {
+                RequestHeader header = JSON.parseObject(decodeJson, RequestHeader.class);
+                if (header != null && StringUtils.isNotEmpty(header.getOp())) {
+                    String op = header.getOp();
+                    if ("customer.detail".equalsIgnoreCase(op)) {
+                        iEduCustomerInfoService.selectCustomerById(decodeJson, response, request);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.error("", ex);
+        }
+    }
+
+    /**
+     * card 模块
+     *
+     * @param json
+     * @param response
+     * @param request
+     */
+    @RequestMapping("/card")
+    public
+    @ResponseBody
+    void cardManager(@RequestBody String json, HttpServletResponse response, HttpServletRequest request) {
+        String decodeJson = JsonStringUtils.decoderForJsonString(json);
+        Logger.debug(
+                String.format("timestamp:%s action:%s json:%s",
+                        System.currentTimeMillis(), "cardManager", decodeJson));
+        if (StringUtils.isEmpty(decodeJson)) {
+            this.paramInvalid(response, "JSON");
+            return;
+        }
+        String flag = request.getParameter("flag");
+        // 1: from table select
+        try {
+            if (StringUtils.isNotEmpty(flag)) {
+                iEduCardInfoService.selectCardList(decodeJson, response, request);
+            } else {
+                RequestHeader header = JSON.parseObject(decodeJson, RequestHeader.class);
+                if (header != null && StringUtils.isNotEmpty(header.getOp())) {
+                    String op = header.getOp();
+                    if ("card.detail".equalsIgnoreCase(op)) {
+                        iEduCardInfoService.selectCardById(decodeJson, response, request);
+                    } else if ("card.delete".equalsIgnoreCase(op)) {
+                        iEduCardInfoService.deleteCardById(decodeJson, response, request);
+                    } else if ("card.edit".equalsIgnoreCase(op)) {
+                        iEduCardInfoService.editCardById(decodeJson, response, request);
                     }
                 }
             }

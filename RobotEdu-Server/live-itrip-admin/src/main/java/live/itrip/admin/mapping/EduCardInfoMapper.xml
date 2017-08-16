@@ -223,4 +223,33 @@
         update_time = #{updateTime,jdbcType=BIGINT}
         where client_id = #{clientId,jdbcType=INTEGER} AND shop_no = #{shopNo,jdbcType=VARCHAR}
     </update>
+
+
+    <!--自定义查询-->
+    <select id="countAll" resultType="int" parameterType="map">
+        select count(id) from edu_card_info WHERE TRUE
+
+        <if test="shopNo != null and shopNo != '' ">
+            AND shop_no = '${shopNo}'
+        </if>
+        <if test="cardNo != null and cardNo != '' ">
+            AND card_no = '${cardNo}'
+        </if>
+
+    </select>
+    <select id="selectCardList" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from edu_card_info WHERE TRUE
+
+        <if test="shopNo != null and shopNo != '' ">
+            AND shop_no = '${shopNo}'
+        </if>
+        <if test="cardNo != null and cardNo != '' ">
+            AND card_no = '${cardNo}'
+        </if>
+
+        limit ${start},${length}
+    </select>
+
 </mapper>
