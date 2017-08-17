@@ -41,7 +41,7 @@ public class AppMain extends Application {
 
         URL url = getClass().getResource("/ui/main.fxml");
         Parent root = FXMLLoader.load(url);
-        primaryStage.setTitle("机器人教育");
+        primaryStage.setTitle("扉渡国际教育");
         primaryStage.setScene(new Scene(root, 1000, 600));
 //        primaryStage.setFullScreen(true);
         primaryStage.getIcons().add(PageUtil.getLogo());

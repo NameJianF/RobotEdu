@@ -2,14 +2,14 @@ package live.itrip.admin.model;
 
 public class EduShopInfo {
 
-    public static final String LEVEL_NORMAL="1";
-    public static final String LEVEL_VIP="2";
+    public static final String LEVEL_NORMAL = "1";
+    public static final String LEVEL_VIP = "2";
 
-    public static final String STATUS_VALID="1";
-    public static final String STATUS_INVALID="0";
+    public static final String STATUS_VALID = "1";
+    public static final String STATUS_INVALID = "0";
 
     private Integer id;
-    private String code;
+    private String code; // shopNo
     private String name;
     private String province;
     private String city;

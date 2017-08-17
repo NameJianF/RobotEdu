@@ -180,5 +180,22 @@ public class EduCardInfoService extends BaseService implements IEduCardInfoServi
         this.writeResponse(response, result);
     }
 
+    @Override
+    public void selectCardByCardNo(String decodeJson, HttpServletResponse response, HttpServletRequest request) {
+        BaseResult result = new BaseResult();
+        JSONObject jsonObject = JSON.parseObject(decodeJson);
+        String cardNo = jsonObject.getString("cardNo");
+        if (cardNo != null) {
+            EduCardInfo info = this.eduCardInfoMapper.selectByCardNo(cardNo);
+            result.setCode(ErrorCode.SUCCESS.getCode());
+            result.setData(info);
+            this.writeResponse(response, result);
+            return;
+        }
+
+        result.setError(ErrorCode.UNKNOWN);
+        this.writeResponse(response, result);
+    }
+
 
 }

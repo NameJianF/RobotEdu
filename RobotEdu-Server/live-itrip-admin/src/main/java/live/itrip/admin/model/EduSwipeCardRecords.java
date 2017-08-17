@@ -2,13 +2,9 @@ package live.itrip.admin.model;
 
 public class EduSwipeCardRecords {
     private Long id;
-
     private String shopNo;
-
     private String cardNo;
-
     private Long clientCreateTime;
-
     private Long createTime;
 
     public Long getId() {

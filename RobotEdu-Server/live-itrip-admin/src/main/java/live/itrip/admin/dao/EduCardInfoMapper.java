@@ -26,4 +26,7 @@ public interface EduCardInfoMapper {
 
     List<EduCardInfo> selectCardList(@Param("shopNo") String shopNo, @Param("cardNo") String cardNo
             , @Param("start") Integer start, @Param("length") Integer length);
+
+    EduCardInfo selectByCardNo(@Param("cardNo") String cardNo);
+
 }

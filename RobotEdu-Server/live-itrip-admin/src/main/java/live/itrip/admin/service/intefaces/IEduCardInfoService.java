@@ -19,4 +19,6 @@ public interface IEduCardInfoService {
     void deleteCardById(String decodeJson, HttpServletResponse response, HttpServletRequest request);
 
     void editCardById(String decodeJson, HttpServletResponse response, HttpServletRequest request);
+
+    void selectCardByCardNo(String decodeJson, HttpServletResponse response, HttpServletRequest request);
 }

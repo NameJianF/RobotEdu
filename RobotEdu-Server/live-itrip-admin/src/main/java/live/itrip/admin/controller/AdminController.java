@@ -54,6 +54,8 @@ public class AdminController extends AbstractController {
     private IEduCustomerInfoService iEduCustomerInfoService;
     @Autowired
     private IEduCardInfoService iEduCardInfoService;
+    @Autowired
+    private IEduSwipeCardRecordsService iEduSwipeCardRecordsService;
 
     // =================== system config ==============
 
@@ -360,6 +362,46 @@ public class AdminController extends AbstractController {
                         iEduCardInfoService.deleteCardById(decodeJson, response, request);
                     } else if ("card.edit".equalsIgnoreCase(op)) {
                         iEduCardInfoService.editCardById(decodeJson, response, request);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.error("", ex);
+        }
+    }
+
+    /**
+     * swipe card 模块
+     *
+     * @param json
+     * @param response
+     * @param request
+     */
+    @RequestMapping("/swipe")
+    public
+    @ResponseBody
+    void swipeManager(@RequestBody String json, HttpServletResponse response, HttpServletRequest request) {
+        String decodeJson = JsonStringUtils.decoderForJsonString(json);
+        Logger.debug(
+                String.format("timestamp:%s action:%s json:%s",
+                        System.currentTimeMillis(), "swipe card Manager", decodeJson));
+        if (StringUtils.isEmpty(decodeJson)) {
+            this.paramInvalid(response, "JSON");
+            return;
+        }
+        String flag = request.getParameter("flag");
+        // 1: from table select
+        try {
+            if (StringUtils.isNotEmpty(flag)) {
+                iEduSwipeCardRecordsService.selectSwipeCardList(decodeJson, response, request);
+            } else {
+                RequestHeader header = JSON.parseObject(decodeJson, RequestHeader.class);
+                if (header != null && StringUtils.isNotEmpty(header.getOp())) {
+                    String op = header.getOp();
+                    if ("swipe.detail".equalsIgnoreCase(op)) {
+                        iEduSwipeCardRecordsService.selectSwipeCardById(decodeJson, response, request);
+                    } else if ("card.detail".equalsIgnoreCase(op)) {
+                        iEduCardInfoService.selectCardByCardNo(decodeJson, response, request);
                     }
                 }
             }

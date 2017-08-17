@@ -93,8 +93,14 @@ public class EduDatasController extends AbstractController {
         }
     }
 
+    /**
+     * 获取门店编号
+     *
+     * @param apikey
+     * @return
+     */
     private String getShopNo(String apikey) {
         ClientApiKey clientApiKey = this.validateClientApiKey(apikey);
-        return clientApiKey.getId().toString();
+        return clientApiKey.getClientName();
     }
 }

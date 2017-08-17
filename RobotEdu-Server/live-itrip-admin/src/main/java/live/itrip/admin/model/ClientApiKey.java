@@ -3,15 +3,10 @@ package live.itrip.admin.model;
 public class ClientApiKey extends BaseModel {
 
     private Integer id;
-
     private String clientName;
-
     private String apiKey;
-
     private String secretKey;
-
     private String source;
-
     private String description;
 
     public Integer getId() {

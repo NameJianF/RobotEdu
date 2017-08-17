@@ -50,8 +50,8 @@ public class Constants {
 
     public static class Sex {
         public static final String MAN = "1";
-        public static final String WOMEN = "0";
-        public static final String UNKNOWN = "-1";
+        public static final String WOMEN = "2";
+        public static final String UNKNOWN = "0";
     }
 
     public static class RoleName {

@@ -252,4 +252,10 @@
         limit ${start},${length}
     </select>
 
+    <select id="selectByCardNo" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from edu_card_info WHERE card_no = '${cardNo}'
+
+    </select>
 </mapper>

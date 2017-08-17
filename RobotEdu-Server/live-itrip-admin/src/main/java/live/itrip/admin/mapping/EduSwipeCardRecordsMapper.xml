@@ -90,4 +90,32 @@
       create_time = #{createTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
+    <!--自定义查询-->
+    <select id="countAll" resultType="int" parameterType="map">
+        select count(id) from edu_swipe_card_records WHERE TRUE
+
+        <if test="shopNo != null and shopNo != '' ">
+            AND shop_no = '${shopNo}'
+        </if>
+        <if test="cardNo != null and cardNo != '' ">
+            AND card_no = '${cardNo}'
+        </if>
+
+    </select>
+    <select id="selectSwipeCardList" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from edu_swipe_card_records WHERE TRUE
+
+        <if test="shopNo != null and shopNo != '' ">
+            AND shop_no = '${shopNo}'
+        </if>
+        <if test="cardNo != null and cardNo != '' ">
+            AND card_no = '${cardNo}'
+        </if>
+
+        limit ${start},${length}
+    </select>
 </mapper>

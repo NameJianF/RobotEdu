@@ -162,4 +162,12 @@ public class AdminRouterController extends AbstractController {
         model.addAttribute("shopList", shopList);
         return "pages/edu/card";
     }
+
+    // 刷卡/消费 记录
+    @RequestMapping(value = "/edu/swipe", method = RequestMethod.GET)
+    public String systemSwipeCard(HttpServletRequest request, Model model) {
+        List<EduShopInfo> shopList = iEduShopInfoService.selectAll();
+        model.addAttribute("shopList", shopList);
+        return "pages/edu/swipecard";
+    }
 }
