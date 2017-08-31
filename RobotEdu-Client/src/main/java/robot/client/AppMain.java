@@ -1,28 +1,28 @@
 package robot.client;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import robot.client.common.App;
 import robot.client.common.Config;
+import robot.client.common.PageInfo;
+import robot.client.controller.update.UpdateController;
 import robot.client.db.DbHelper;
 import robot.client.service.DatabaseService;
 import robot.client.service.SystemService;
+import robot.client.updater.Updater;
 import robot.client.util.Logger;
 import robot.client.util.PageUtil;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.Properties;
 
 public class AppMain extends Application {
@@ -32,6 +32,7 @@ public class AppMain extends Application {
     static {
         Logger.debug(" >>>>>> Application LoadConfig Start ... <<<<<< ");
         loadConfig();
+        checkUpdate();
         Logger.debug(" >>>>>> Application LoadConfig End ... <<<<<< ");
     }
 
@@ -111,4 +112,67 @@ public class AppMain extends Application {
         Config.printValues();
     }
 
+
+    private static void checkUpdate() {
+        Thread t = new Thread("UpdateChecker") {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(5 * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // 检查是否需要更新
+                Logger.info("Checking new version of feidu.");
+                if (Updater.getInstance().isUpdateNeeded()) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("在线更新");
+                            alert.setHeaderText("扉渡客户在线更新");
+                            alert.setContentText(Updater.getInstance().getUpdateChecker().getRemotePublishInfo());
+
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if(result.get()==ButtonType.OK)
+
+                            {
+                                // ... user chose OK
+                                doUpdate();
+                            }
+//                    else {
+//                        // ... user chose CANCEL or closed the dialog
+//                    }
+
+                        }
+                    });
+                }
+            }
+        };
+        t.start();
+    }
+
+    private static void doUpdate() {
+        String updateXml = "/ui/update/update.fxml";
+
+        final PageInfo updatePage;
+        updatePage = PageUtil.getPageInfo(updateXml);
+
+        Scene scene = new Scene((Parent) updatePage.getNode());
+        App.primaryStage.setScene(scene);
+        App.primaryStage.centerOnScreen();
+        App.primaryStage.sizeToScene();
+        final UpdateController updateController = (UpdateController) updatePage.getController();
+
+        if (Platform.isFxApplicationThread()) {
+            updateController.update();
+        } else {
+            Platform.runLater(new Runnable() {
+                public void run() {
+                    updateController.update();
+                }
+            });
+        }
+    }
 }

@@ -1,0 +1,126 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<summary>
+		<publishInfo>
+        日期: 2016-06-18
+        修复的问题/改进点：
+            1. 修复问题：组件录制，键盘显示时，按返回键，会同时收起键盘并返回了上一个界面
+            2. 修复问题：UIAutomator录制，用返回键切换界面时，有时会导致界面控件信息不更新
+            3. 修复问题：部分应用因大控件，无法使用组件方式录制       
+            4. 修复问题：联想手机安装失败问题
+            5. 改进：针对4.0.4设备，优化关闭networkbench网络监控的处理过程
+            6. 改进：组件录制方式下按Alt键录制坐标动作的体验
+            7. 改进：优化控件识别的算法
+                  
+        新增功能：
+            1. 支持录制工具主界面最大化显示 
+            2. 文本、账号等输入支持设置输入前是否清除输入框 
+            3. 支持同时连接多个设备，可以做设备切换（通过左上角的小设备图标打开设备管理界面，双击某个设备可切换当前设备） 
+            4. 在非录制，非回放状态下，点击截图步骤在映射屏上显示对应的截屏大图
+   		
+		</publishInfo>
+		<publishTime>
+				2016年06月18号
+		</publishTime>
+		<version>
+				4.5
+		</version>
+	</summary>		
+	<updateFiles>	
+		<!-- update files -->
+        <file lastver="4.5"	path="itestin.jar"	url="http://mirrors.testin.cn/iTestin/1001/update/4.5/itestin.jar"	size="2439098"	needRestart="true"/>
+        <file lastver="4.5"	path="tools/minicap/bin/arm64-v8a/minicap"	url="http://mirrors.testin.cn/iTestin/1001/update/4.5/tools/minicap/bin/arm64-v8a/minicap"	size="616664"	needRestart="true"/>
+        <file lastver="4.5"	path="tools/minicap/bin/arm64-v8a/minicap-nopie"	url="http://mirrors.testin.cn/iTestin/1001/update/4.5/tools/minicap/bin/arm64-v8a/minicap-nopie"	size="616664"	needRestart="true"/>
+        <file lastver="4.5"	path="tools/minicap/bin/armeabi-v7a/minicap"	url="http://mirrors.testin.cn/iTestin/1001/update/4.5/tools/minicap/bin/armeabi-v7a/minicap"	size="374520"	needRestart="true"/>
+        <file lastver="4.5"	path="tools/minicap/bin/armeabi-v7a/minicap-nopie"	url="http://mirrors.testin.cn/iTestin/1001/update/4.5/tools/minicap/bin/armeabi-v7a/minicap-nopie"	size="362232"	needRestart="true"/>
+        <file lastver="4.5"	path="tools/minicap/bin/x86/minicap"	url="http://mirrors.testin.cn/iTestin/1001/update/4.5/tools/minicap/bin/x86/minicap"	size="1058644"	needRestart="true"/>
+        <file lastver="4.5"	path="tools/minicap/bin/x86/minicap-nopie"	url="http://mirrors.testin.cn/iTestin/1001/update/4.5/tools/minicap/bin/x86/minicap-nopie"	size="1038164"	needRestart="true"/>
+        <file lastver="4.5"	path="tools/minicap/bin/x86_64/minicap"	url="http://mirrors.testin.cn/iTestin/1001/update/4.5/tools/minicap/bin/x86_64/minicap"	size="1010304"	needRestart="true"/>
+        <file lastver="4.5"	path="tools/minicap/bin/x86_64/minicap-nopie"	url="http://mirrors.testin.cn/iTestin/1001/update/4.5/tools/minicap/bin/x86_64/minicap-nopie"	size="1010304"	needRestart="true"/>
+        <file lastver="4.5"	path="tools/record/classes.dex"	url="http://mirrors.testin.cn/iTestin/1001/update/4.5/tools/record/classes.dex"	size="694504"	needRestart="true"/>
+        <file lastver="4.5"	path="tools/record/com/robotium/solo/my.js"	url="http://mirrors.testin.cn/iTestin/1001/update/4.5/tools/record/com/robotium/solo/my.js"	size="7566"	needRestart="true"/>
+
+        
+        <file lastver="4.4.7"	path="itestin_lib/curvesapi-1.03.jar"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/itestin_lib/curvesapi-1.03.jar"	size="92241"	needRestart="true"/>
+        <file lastver="4.4.7"	path="itestin_lib/itext-asian.jar"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/itestin_lib/itext-asian.jar"	size="2166560"	needRestart="true"/>
+        <file lastver="4.4.7"	path="itestin_lib/itextpdf-5.5.9.jar"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/itestin_lib/itextpdf-5.5.9.jar"	size="2287148"	needRestart="true"/>
+        <file lastver="4.4.7"	path="itestin_lib/poi-3.14-20160307.jar"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/itestin_lib/poi-3.14-20160307.jar"	size="2528204"	needRestart="true"/>
+        <file lastver="4.4.7"	path="itestin_lib/poi-excelant-3.14-20160307.jar"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/itestin_lib/poi-excelant-3.14-20160307.jar"	size="30562"	needRestart="true"/>
+        <file lastver="4.4.7"	path="itestin_lib/poi-ooxml-3.14-20160307.jar"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/itestin_lib/poi-ooxml-3.14-20160307.jar"	size="1286511"	needRestart="true"/>
+        <file lastver="4.4.7"	path="itestin_lib/poi-ooxml-schemas-3.14-20160307.jar"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/itestin_lib/poi-ooxml-schemas-3.14-20160307.jar"	size="5919795"	needRestart="true"/>
+        <file lastver="4.4.7"	path="itestin_lib/poi-scratchpad-3.14-20160307.jar"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/itestin_lib/poi-scratchpad-3.14-20160307.jar"	size="1316029"	needRestart="true"/>
+        <file lastver="4.4.7"	path="itestin_lib/xmlbeans-2.6.0.jar"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/itestin_lib/xmlbeans-2.6.0.jar"	size="2730866"	needRestart="true"/>
+        <file lastver="4.4.7"	path="tools/record/classes.dex"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/tools/record/classes.dex"	size="691512"	needRestart="true"/>
+        <file lastver="4.4.7"	path="tools/testinhelper.apk"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/tools/testinhelper.apk"	size="1245494"	needRestart="true"/>
+        <file lastver="4.4.7"	path="tools/uitest.jar"	url="http://mirrors.testin.cn/iTestin/1001/update/4.4.7/tools/uitest.jar"	size="62915"	needRestart="true"/>
+
+
+		<file lastver="4.4"	 path="tools/OpenCV/3_0/windows/cv.exe"	 								url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/OpenCV/3_0/windows/cv.exe" 			 	size="8368787" 			needRestart="true"/>		
+		<file lastver="4.4" path="tools/minicap/bin/arm64-v8a/minicap" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/bin/arm64-v8a/minicap" size="620760" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/bin/arm64-v8a/minicap-nopie" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/bin/arm64-v8a/minicap-nopie" size="620760" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/bin/armeabi-v7a/minicap" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/bin/armeabi-v7a/minicap" size="370424" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/bin/armeabi-v7a/minicap-nopie" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/bin/armeabi-v7a/minicap-nopie" size="362232" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/bin/x86/minicap" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/bin/x86/minicap" size="1058644" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/bin/x86/minicap-nopie" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/bin/x86/minicap-nopie" size="1038164" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/bin/x86_64/minicap" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/bin/x86_64/minicap" size="1006208" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/bin/x86_64/minicap-nopie" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/bin/x86_64/minicap-nopie" size="1006208" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-10/armeabi-v7a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-10/armeabi-v7a/minicap.so" size="9688" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-14/armeabi-v7a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-14/armeabi-v7a/minicap.so" size="9864" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-14/x86/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-14/x86/minicap.so" size="13760" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-15/armeabi-v7a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-15/armeabi-v7a/minicap.so" size="9864" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-15/x86/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-15/x86/minicap.so" size="13760" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-16/armeabi-v7a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-16/armeabi-v7a/minicap.so" size="9420" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-16/x86/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-16/x86/minicap.so" size="16708" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-17/armeabi-v7a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-17/armeabi-v7a/minicap.so" size="13472" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-17/x86/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-17/x86/minicap.so" size="28782" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-18/armeabi-v7a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-18/armeabi-v7a/minicap.so" size="13492" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-18/x86/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-18/x86/minicap.so" size="28364" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-19/armeabi-v7a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-19/armeabi-v7a/minicap.so" size="13488" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-19/x86/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-19/x86/minicap.so" size="54590" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-21/arm64-v8a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-21/arm64-v8a/minicap.so" size="22000" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-21/armeabi-v7a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-21/armeabi-v7a/minicap.so" size="13492" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-21/x86/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-21/x86/minicap.so" size="21676" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-21/x86_64/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-21/x86_64/minicap.so" size="26328" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-22/arm64-v8a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-22/arm64-v8a/minicap.so" size="22000" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-22/armeabi-v7a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-22/armeabi-v7a/minicap.so" size="13492" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-22/x86/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-22/x86/minicap.so" size="21676" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-22/x86_64/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-22/x86_64/minicap.so" size="26328" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-23/arm64-v8a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-23/arm64-v8a/minicap.so" size="30520" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-23/armeabi-v7a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-23/armeabi-v7a/minicap.so" size="26224" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-23/x86/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-23/x86/minicap.so" size="26028" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-23/x86_64/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-23/x86_64/minicap.so" size="30784" needRestart="true"/>
+		<file lastver="4.4" path="tools/minicap/shared/android-9/armeabi-v7a/minicap.so" url="http://mirrors.testin.cn/iTestin/1001/update/4.4/tools/minicap/shared/android-9/armeabi-v7a/minicap.so" size="9688" needRestart="true"/>
+		
+		<!-- old files -->
+		<!-- 4.3.6-->
+		<file lastver="4.3.6"	 path="iTestin使用教程.pdf"  								url="http://mirrors.testin.cn/iTestin/1001/update/4.3.6/iTestin使用教程.pdf"		size="3337983" 			needRestart="true"/>
+		<file lastver="4.3.6"	 path="iTestin快速入门.pdf"  								delete="true"/>	
+		<!-- 4.3.5.2-->
+		<file lastver="4.3.5.2"	 path="itestin_lib/jarchivelib-0.7.0-jar-with-dependencies.jar" url="http://mirrors.testin.cn/iTestin/1001/update/4.3.5.2/lib/jarchivelib-0.7.0-jar-with-dependencies.jar" size="18154474" needRestart="true"/>
+		<!-- 4.3.5-->
+		<file lastver="4.3.5"	 path="iTestin.exe"										url="http://mirrors.testin.cn/iTestin/1001/update/4.3.5/Windows/iTestin.exe" 					size="303104"		needRestart="true"/>
+		<file lastver="4.3.5"	 path="tools/tools.jar"									url="http://mirrors.testin.cn/iTestin/1001/update/4.3.5/tools/tools.jar"						size="18154474"		needRestart="true"/>	
+	</updateFiles>
+    <history>
+    日期: 2016-03-28
+        + 新增功能：
+            1. 脚本步骤加入了序列号，方便查找和定位步骤。
+            2. 可调整步骤顺序（长按并拖拽），解决了原来不能调整步骤位置的问题。
+            3. 动态加载脚本管理页内容，解决了当app很多，打开此页面很慢的问题。
+            4. 导出单个脚本的本地格式带应用时，打包在一个zip中，导入时，可以直接在App列表界面导入，也可以在此应用的脚本列表页导入（另：原整体导出的包也可以在此App的脚本列表页导入），解决了原来导入不方便的问题。
+            5. 输入类型加入了随机数字项，解决了之前随机不能输入纯数字的问题。
+            6. 导出云端格式选择依赖应用时，可选择安装时机，解决了之前不能测试覆盖旧版本的场景。
+            7. 优化了“找不到控件”时的提示规则，使脚本报错时的信息更加精准。
+            8. 可直接在步骤编辑界面添加多样图，使添加多样图更加方便。
+            9. 在录制界面，空闲时显示操作技巧提示，方便用户了解相关功能的使用技巧。
+        + 修复问题：
+            1. 组件录制输入后，输入框变成不可编辑的。
+            2. 问题反馈，发送后提示错误。
+            3. 添加控件到控件列表的规则错误。
+            4. 停止录制后，偶现“截图异常”的提示。
+            5. 签名加固闪退，或签名不一致的情况，丢失提示。
+            6. 图像步骤编辑界面，添加多样图的链接样式有问题。
+            7. 图像步骤编辑界面，多样图的分辨率下拉框中的内容，没有与下拉框同宽。
+    </history>
+</config>

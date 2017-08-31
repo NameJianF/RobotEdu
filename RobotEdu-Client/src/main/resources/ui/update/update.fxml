@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            onMouseDragged="#updateOnMouseDragged" onMousePressed="#updateOnMousePressed" prefHeight="180.0"
+            prefWidth="460.0" style="-fx-border-color: #E5E5E5" xmlns="http://javafx.com/javafx/8.0.40"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="robot.client.controller.update.UpdateController">
+    <children>
+        <!--<AnchorPane id="includeTop" pickOnBounds="false" prefHeight="30.0" prefWidth="460.0"-->
+                    <!--style="-fx-background-color: #1c8bd8;">-->
+            <!--<children>-->
+                <!--<Label layoutX="12.0" mouseTransparent="true" prefHeight="30.0" prefWidth="82.0" text="更新"-->
+                       <!--textFill="WHITE"/>-->
+                <!--<ImageView fitHeight="30.0" fitWidth="34.0" layoutX="426.0" onMouseClicked="#updateCloseWindow"-->
+                           <!--pickOnBounds="true" preserveRatio="true">-->
+                    <!--<image>-->
+                        <!--<Image preserveRatio="false" smooth="false" url="/img/close.png"/>-->
+                    <!--</image>-->
+                    <!--<cursor>-->
+                        <!--<Cursor fx:constant="HAND"/>-->
+                    <!--</cursor>-->
+                <!--</ImageView>-->
+                <!--<ImageView id="winMin" fitHeight="30.0" fitWidth="34.0" layoutX="392.0" onMouseClicked="#miniWindow"-->
+                           <!--pickOnBounds="true" preserveRatio="true">-->
+                    <!--<image>-->
+                        <!--<Image preserveRatio="false" smooth="false" url="/img/mini.png"/>-->
+                    <!--</image>-->
+                    <!--<cursor>-->
+                        <!--<Cursor fx:constant="HAND"/>-->
+                    <!--</cursor>-->
+                <!--</ImageView>-->
+            <!--</children>-->
+        <!--</AnchorPane>-->
+        <AnchorPane layoutY="30.0" prefHeight="150.0" prefWidth="460.0">
+            <children>
+                <ProgressBar fx:id="progressBar" layoutX="26.0" layoutY="80.0" maxWidth="409.0" minWidth="380.0"
+                             prefHeight="18.0" prefWidth="409.0" progress="0.0" AnchorPane.bottomAnchor="49.0"
+                             AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="83.0"/>
+                <HBox layoutX="26.0" layoutY="40.0">
+                    <children>
+                        <Label fx:id="label"  text="正在更新程序，请您稍候..."/>
+                        <Label fx:id="downLab"/>
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -46,8 +45,6 @@ public class MainController implements Initializable {
     public MainController() {
     }
 
-
-    @Override
     public void initialize(URL location, ResourceBundle resources) {
         changeMainBorderPane(FLAG_SWIPE);
     }

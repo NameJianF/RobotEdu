@@ -1,7 +1,9 @@
 package robot.client.util;
 
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -35,8 +37,8 @@ public class PageUtil {
         InputStream in = null;
         try {
             in = url.openStream();
-            pageInfo.setNode(loader.load(in));  // 对象方法的参数是InputStream，返回值是Object
-            pageInfo.setController(loader.getController());
+            pageInfo.setNode((Node) loader.load(in));  // 对象方法的参数是InputStream，返回值是Object
+            pageInfo.setController((Initializable) loader.getController());
         } catch (IOException e) {
             Logger.error(e.getMessage(), e);
         } finally {

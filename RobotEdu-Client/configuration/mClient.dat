@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Enabled>true</Enabled>
+<ServerUrl>http://47.94.236.83/update/clientConfig.xml</ServerUrl>
+<publishTime>2017年08月31号</publishTime>
+<version>1.1</version>
+<PublishInfo>日期: 2016-06-18
+        修复的问题/改进点：
+            1. 修复问题：组件录制，键盘显示时，按返回键，会同时收起键盘并返回了上一个界面
+            2. 修复问题：UIAutomator录制，用返回键切换界面时，有时会导致界面控件信息不更新
+            3. 修复问题：部分应用因大控件，无法使用组件方式录制                         
+        新增功能：
+            1. 支持录制工具主界面最大化显示 
+            2. 文本、账号等输入支持设置输入前是否清除输入框 
+            3. 支持同时连接多个设备，可以做设备切换（通过左上角的小设备图标打开设备管理界面，双击某个设备可切换当前设备） 
+            4. 在非录制，非回放状态下，点击截图步骤在映射屏上显示对应的截屏大图</PublishInfo>
+<UpdateFileList>
+<LocalFile path="RobotEdu.jar" lastver="1.1" size="234120" />
+</UpdateFileList>
+</Config>

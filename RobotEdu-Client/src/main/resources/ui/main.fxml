@@ -118,7 +118,7 @@
         <HBox alignment="CENTER_RIGHT" prefHeight="30.0" style="-fx-background-color: lightgray;"
               BorderPane.alignment="CENTER_RIGHT">
             <children>
-                <Label text="扉渡国际教育-管理系统 V0.1" textAlignment="CENTER">
+                <Label text="扉渡国际教育-管理系统 V 0.2" textAlignment="CENTER">
                     <HBox.margin>
                         <Insets right="20.0" top="2.0"/>
                     </HBox.margin>

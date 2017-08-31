@@ -2,7 +2,6 @@ package robot.client.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.lang3.StringUtils;
 import robot.client.api.http.HttpUtils;
 import robot.client.common.DataOp;
 import robot.client.common.ErrorCode;

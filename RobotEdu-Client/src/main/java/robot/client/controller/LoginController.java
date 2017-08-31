@@ -38,7 +38,7 @@ public class LoginController extends Subject implements Initializable {
     public void loginClick(MouseEvent event) {
         StaffApi staffApi = new StaffApi();
 
-        ErrorCode code = staffApi.login("fjf789@126.com", "123456");
+        ErrorCode code = staffApi.login(txtUserName.getText(), txtPwd.getText());
         if (ErrorCode.SUCCESS.equals(code)) {
             this.close();
         }
