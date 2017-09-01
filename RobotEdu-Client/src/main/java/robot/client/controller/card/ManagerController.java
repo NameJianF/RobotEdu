@@ -60,7 +60,7 @@ public class ManagerController implements Initializable {
         });
     }
 
-    private void loadDatas(Long cardNo) {
+    private void loadDatas(String cardNo) {
         dataSource.clear();
 
         // select datas from db
@@ -93,7 +93,7 @@ public class ManagerController implements Initializable {
         if (StringUtils.isEmpty(txtCardNo.getText())) {
             loadDatas(null);
         } else {
-            loadDatas(Long.valueOf(txtCardNo.getText()));
+            loadDatas(txtCardNo.getText());
         }
     }
 

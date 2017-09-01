@@ -6,7 +6,7 @@ import robot.client.model.BaseModel;
 import java.util.Map;
 
 public class EduTeacherCustomer extends BaseModel {
-    private Long id;
+    private Integer id;
     private String staffNo;
     private String staffName;
     private Integer customerId;
@@ -23,11 +23,11 @@ public class EduTeacherCustomer extends BaseModel {
         }
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -89,7 +89,7 @@ public class EduTeacherCustomer extends BaseModel {
 
     public static EduTeacherCustomer getBean(Map<String, Object> item) {
         EduTeacherCustomer bean = new EduTeacherCustomer();
-        bean.setId((Long) item.get("id"));
+        bean.setId((Integer) item.get("id"));
         bean.setStaffNo((String) item.get("staff_no"));
         bean.setStaffName((String) item.get("staff_name"));
         bean.setCustomerId((Integer) item.get("customer_id"));

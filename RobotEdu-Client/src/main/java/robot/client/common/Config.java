@@ -14,6 +14,9 @@ public class Config {
     public static String MODULE_SOURCE;
     public static String CLIENT_VERSION;
 
+    // client config
+    public static String CLIENT_CODE;
+    public static String CLIENT_NAME;
 
     //mysql
     public static String JDBC_URL;

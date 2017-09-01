@@ -18,6 +18,7 @@ import robot.client.service.SystemService;
 import robot.client.updater.Updater;
 import robot.client.util.Logger;
 import robot.client.util.PageUtil;
+import robot.client.util.PropertiesUtils;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -51,8 +52,10 @@ public class AppMain extends Application {
 
 
     public static void main(String[] args) throws SQLException {
-
         Logger.debug(" >>>>>> Application Start ... <<<<<< ");
+        // 加载客户端信息
+        PropertiesUtils.readClientProperties();
+
         // 初始化数据库
         DbHelper.initConnection();
         // 初始化系统服务
@@ -66,7 +69,6 @@ public class AppMain extends Application {
         Logger.debug(" >>>>>> Application Closed ... <<<<<< ");
         System.exit(0);
     }
-
 
     /**
      * 加载配置文件
@@ -89,7 +91,7 @@ public class AppMain extends Application {
         }
 
         Config.SERVER_URL = prop.getProperty("server.url");
-        Config.MODULE_APP_KEY = prop.getProperty("client.apikey");
+//        Config.MODULE_APP_KEY = prop.getProperty("client.apikey");
         Config.MODULE_APP_SECRET = prop.getProperty("client.secret");
         Config.MODULE_SOURCE = prop.getProperty("client.source");
         Config.CLIENT_VERSION = prop.getProperty("client.version");
@@ -135,9 +137,7 @@ public class AppMain extends Application {
                             alert.setContentText(Updater.getInstance().getUpdateChecker().getRemotePublishInfo());
 
                             Optional<ButtonType> result = alert.showAndWait();
-                            if(result.get()==ButtonType.OK)
-
-                            {
+                            if (result.get() == ButtonType.OK) {
                                 // ... user chose OK
                                 doUpdate();
                             }

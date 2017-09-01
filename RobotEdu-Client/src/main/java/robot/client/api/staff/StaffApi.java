@@ -32,7 +32,7 @@ public class StaffApi extends AbstractApi implements Observer {
         info.setSig(sig);
         String json = JSON.toJSONString(info);
         SystemService.UploadDatas datas = new SystemService.UploadDatas();
-        datas.setRowId(info.getId().longValue());
+        datas.setRowId(info.getId());
         datas.setTableName(TableNames.EDU_STAFF_INFO);
         datas.setUrl(getUrl());
         datas.setJson(json);
@@ -83,15 +83,16 @@ public class StaffApi extends AbstractApi implements Observer {
 
     @Override
     public void upload(Object object, DataOp dataOp) {
-        EduStaffInfo info = (EduStaffInfo) object;
-        if (DataOp.INSERT.equals(dataOp)) {
-            info.setOp("staffInfo.add");
-        } else if (DataOp.MODIFY.equals(dataOp)) {
-            info.setOp("staffInfo.modify");
-        } else if (DataOp.DELETE.equals(dataOp)) {
-            info.setOp("staffInfo.delete");
+        if (object instanceof EduStaffInfo) {
+            EduStaffInfo info = (EduStaffInfo) object;
+            if (DataOp.INSERT.equals(dataOp)) {
+                info.setOp("staffInfo.add");
+            } else if (DataOp.MODIFY.equals(dataOp)) {
+                info.setOp("staffInfo.modify");
+            } else if (DataOp.DELETE.equals(dataOp)) {
+                info.setOp("staffInfo.delete");
+            }
+            this.postJsonString(info);
         }
-
-        this.postJsonString(info);
     }
 }

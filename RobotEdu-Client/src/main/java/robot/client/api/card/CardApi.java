@@ -1,7 +1,6 @@
 package robot.client.api.card;
 
 import com.alibaba.fastjson.JSON;
-import com.mysql.fabric.xmlrpc.base.Data;
 import robot.client.api.AbstractApi;
 import robot.client.common.Config;
 import robot.client.common.DataOp;
@@ -31,7 +30,7 @@ public class CardApi extends AbstractApi implements Observer {
         cardInfo.setSig(sig);
         String json = JSON.toJSONString(cardInfo);
         SystemService.UploadDatas datas = new SystemService.UploadDatas();
-        datas.setRowId(cardInfo.getId().longValue());
+        datas.setRowId(cardInfo.getId());
         datas.setTableName(TableNames.EDU_CARD_INFO);
         datas.setUrl(getUrl());
         datas.setJson(json);
@@ -40,14 +39,16 @@ public class CardApi extends AbstractApi implements Observer {
 
     @Override
     public void upload(Object object, DataOp dataOp) {
-        EduCardInfo info = (EduCardInfo) object;
-        if (DataOp.INSERT.equals(dataOp)) {
-            info.setOp("cardInfo.add");
-        } else if (DataOp.MODIFY.equals(dataOp)) {
-            info.setOp("cardInfo.modify");
-        } else if (DataOp.DELETE.equals(dataOp)) {
-            info.setOp("cardInfo.delete");
+        if (object instanceof EduCardInfo) {
+            EduCardInfo info = (EduCardInfo) object;
+            if (DataOp.INSERT.equals(dataOp)) {
+                info.setOp("cardInfo.add");
+            } else if (DataOp.MODIFY.equals(dataOp)) {
+                info.setOp("cardInfo.modify");
+            } else if (DataOp.DELETE.equals(dataOp)) {
+                info.setOp("cardInfo.delete");
+            }
+            this.postJsonString(info);
         }
-        this.postJsonString(info);
     }
 }

@@ -118,7 +118,7 @@ public class SystemService {
         private String url;
         private String json;
         private String tableName;
-        private Long rowId;
+        private Integer rowId;
         private DataOp dataOp;
 
         public String getUrl() {
@@ -145,11 +145,11 @@ public class SystemService {
             this.tableName = tableName;
         }
 
-        public Long getRowId() {
+        public Integer getRowId() {
             return rowId;
         }
 
-        public void setRowId(Long rowId) {
+        public void setRowId(Integer rowId) {
             this.rowId = rowId;
         }
 

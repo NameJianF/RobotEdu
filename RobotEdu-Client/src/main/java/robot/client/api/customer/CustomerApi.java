@@ -27,7 +27,7 @@ public class CustomerApi extends AbstractApi implements Observer {
         customerInfo.setSig(sig);
         String json = JSON.toJSONString(customerInfo);
         SystemService.UploadDatas datas = new SystemService.UploadDatas();
-        datas.setRowId(customerInfo.getId().longValue());
+        datas.setRowId(customerInfo.getId());
         datas.setTableName(TableNames.EDU_CUSTOMER_INFO);
         datas.setUrl(getUrl());
         datas.setJson(json);
@@ -36,14 +36,16 @@ public class CustomerApi extends AbstractApi implements Observer {
 
     @Override
     public void upload(Object object, DataOp dataOp) {
-        EduCustomerInfo info = (EduCustomerInfo) object;
-        if (DataOp.INSERT.equals(dataOp)) {
-            info.setOp("customerInfo.add");
-        } else if (DataOp.MODIFY.equals(dataOp)) {
-            info.setOp("customerInfo.modify");
-        } else if (DataOp.DELETE.equals(dataOp)) {
-            info.setOp("customerInfo.delete");
+        if (object instanceof EduCustomerInfo) {
+            EduCustomerInfo info = (EduCustomerInfo) object;
+            if (DataOp.INSERT.equals(dataOp)) {
+                info.setOp("customerInfo.add");
+            } else if (DataOp.MODIFY.equals(dataOp)) {
+                info.setOp("customerInfo.modify");
+            } else if (DataOp.DELETE.equals(dataOp)) {
+                info.setOp("customerInfo.delete");
+            }
+            this.postJsonString(info);
         }
-        this.postJsonString(info);
     }
 }

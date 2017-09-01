@@ -5,7 +5,8 @@ RobotEdu-Client/bin/
 RobotEdu-Client/target/
 RobotEdu-Client/.idea/
 RobotEdu-Client/out/
-
+RobotEdu-Client/client.properties
+RobotEdu-Client/classes/
 
 RobotEdu-Server/.classpath
 RobotEdu-Server/.project

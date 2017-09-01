@@ -94,8 +94,7 @@ public class CustomerDao {
         params.add(customerInfo.getUpdateTime());
 
         try {
-            Long ret = DbHelper.insert(sqlBuffer.toString(), params.toArray());
-            return ret.intValue();
+            return DbHelper.insert(sqlBuffer.toString(), params.toArray());
         } catch (SQLException e) {
             Logger.error(e.getMessage(), e);
         }

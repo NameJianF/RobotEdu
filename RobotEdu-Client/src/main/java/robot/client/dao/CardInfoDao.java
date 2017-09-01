@@ -17,20 +17,43 @@ import java.util.*;
  */
 public class CardInfoDao {
 
+
+    /**
+     * 查询卡数据
+     *
+     * @param cardNo
+     * @return
+     */
+    public static EduCardInfo selectCardData(String cardNo) {
+        try {
+            String sql = "select * from " + TableNames.EDU_CARD_INFO + " WHERE card_no = '" + cardNo + "'; ";
+
+            List list = DbHelper.query(sql, new MapListHandler());
+            if (list != null && list.size() > 0) {
+                Map<String, Object> item = (Map<String, Object>) list.get(0);
+                return EduCardInfo.getBean(item);
+            }
+
+        } catch (SQLException e) {
+            Logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
     /**
      * 查询数据数据
      *
      * @param cardNo
      * @return
      */
-    public static LinkedList<DataEduCardInfo> selectDatas(Long cardNo) {
+    public static LinkedList<DataEduCardInfo> selectDatas(String cardNo) {
         LinkedList<DataEduCardInfo> cardInfoList = new LinkedList<>();
         try {
             String sql = null;
             if (cardNo == null) {
                 sql = "select * from " + TableNames.EDU_CARD_INFO + " order by id desc; ";
             } else {
-                sql = "select * from " + TableNames.EDU_CARD_INFO + " WHERE card_no = " + cardNo + " order by id desc; ";
+                sql = "select * from " + TableNames.EDU_CARD_INFO + " WHERE card_no = '" + cardNo + "' order by id desc; ";
             }
 
             List list = DbHelper.query(sql, new MapListHandler());
@@ -89,8 +112,8 @@ public class CardInfoDao {
         params.add(cardInfo.getUpdateTime());
 
         try {
-            Long ret = DbHelper.insert(sqlBuffer.toString(), params.toArray());
-            return ret.intValue();
+            Integer ret = DbHelper.insert(sqlBuffer.toString(), params.toArray());
+            return ret;
         } catch (SQLException e) {
             Logger.error(e.getMessage(), e);
         }
@@ -154,4 +177,33 @@ public class CardInfoDao {
         }
         return -1;
     }
+
+    /**
+     * 刷卡
+     *
+     * @param cardInfo
+     * @return
+     */
+    public static Integer swipeCard(EduCardInfo cardInfo) {
+        if (StringUtils.isEmpty(cardInfo.getCardNo())) {
+            Logger.error("card NO is null");
+            return 0;
+        }
+
+        List<Object> params = new ArrayList<Object>();
+        StringBuffer sqlBuffer = new StringBuffer("update " + TableNames.EDU_CARD_INFO + " set ");
+        if (cardInfo.getUsedTimes() != null) {
+            sqlBuffer.append(" used_times = ? ");
+            params.add(cardInfo.getUsedTimes());
+        }
+        sqlBuffer.append(" where card_no = ? ");
+        params.add(cardInfo.getCardNo());
+        try {
+            return DbHelper.update(sqlBuffer.toString(), params.toArray());
+        } catch (SQLException e) {
+            Logger.error(e.getMessage(), e);
+        }
+        return -1;
+    }
+
 }

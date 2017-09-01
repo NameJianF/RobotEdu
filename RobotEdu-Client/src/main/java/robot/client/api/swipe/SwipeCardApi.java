@@ -36,15 +36,17 @@ public class SwipeCardApi extends AbstractApi implements Observer {
 
     @Override
     public void upload(Object object, DataOp dataOp) {
-        EduSwipeCardRecords info = (EduSwipeCardRecords) object;
-        if (DataOp.INSERT.equals(dataOp)) {
-            info.setOp("swipeCardRecords.add");
-        } else if (DataOp.MODIFY.equals(dataOp)) {
-            info.setOp("swipeCardRecords.modify");
-        } else if (DataOp.DELETE.equals(dataOp)) {
-            info.setOp("swipeCardRecords.delete");
-        }
+        if (object instanceof EduSwipeCardRecords) {
+            EduSwipeCardRecords info = (EduSwipeCardRecords) object;
+            if (DataOp.INSERT.equals(dataOp)) {
+                info.setOp("swipeCardRecords.add");
+            } else if (DataOp.MODIFY.equals(dataOp)) {
+                info.setOp("swipeCardRecords.modify");
+            } else if (DataOp.DELETE.equals(dataOp)) {
+                info.setOp("swipeCardRecords.delete");
+            }
 
-        this.postJsonString(info);
+            this.postJsonString(info);
+        }
     }
 }

@@ -9,22 +9,18 @@ import java.util.Map;
  * Created by Feng on 2017/5/24.
  */
 public class DataEduSwipeCardRecords {
-    private final LongProperty id = new SimpleLongProperty();
+    private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty cardNo = new SimpleStringProperty();
     private final StringProperty childName = new SimpleStringProperty();
     private final StringProperty upload = new SimpleStringProperty();
     private final StringProperty createTime = new SimpleStringProperty();
 
-    public long getId() {
+    public int getId() {
         return id.get();
     }
 
-    public LongProperty idProperty() {
+    public IntegerProperty idProperty() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id.set(id);
     }
 
     public void setId(int id) {
@@ -82,7 +78,7 @@ public class DataEduSwipeCardRecords {
 
     public static DataEduSwipeCardRecords getBean(Map<String, Object> item) {
         DataEduSwipeCardRecords bean = new DataEduSwipeCardRecords();
-        bean.setId((Long) item.get("id"));
+        bean.setId((Integer) item.get("id"));
         bean.setCardNo((String) item.get("card_no"));
         bean.setChildName((String) item.get("child_name"));
         bean.setUpload((String) item.get("upload"));

@@ -1,20 +1,27 @@
 package robot.client.controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
+import org.apache.commons.lang3.StringUtils;
 import robot.client.common.App;
 import robot.client.common.Config;
 import robot.client.util.PageUtil;
+import robot.client.util.PropertiesUtils;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -30,6 +37,8 @@ public class MainController implements Initializable {
     private Button btnSettingManager;
     @FXML
     private Label txtUser;
+    @FXML
+    private Label labelBottom;
 
     private BorderPane cardsBorderPane;
     private BorderPane customerBorderPane;
@@ -46,7 +55,90 @@ public class MainController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
+        // 检查客户端配置信息
+        checkClientInfo();
+
+        labelBottom.setText(String.format("扉渡国际教育-管理系统(V0.2) >>> %s ", Config.CLIENT_NAME));
         changeMainBorderPane(FLAG_SWIPE);
+    }
+
+    private void checkClientInfo() {
+        if (StringUtils.isEmpty(Config.CLIENT_CODE)
+                || StringUtils.isEmpty(Config.CLIENT_NAME)
+                || StringUtils.isEmpty(Config.MODULE_APP_KEY)) {
+            createCustomerDialog();
+            if (StringUtils.isEmpty(Config.CLIENT_CODE)
+                    || StringUtils.isEmpty(Config.CLIENT_NAME)
+                    || StringUtils.isEmpty(Config.MODULE_APP_KEY)) {
+                // 退出系统
+                App.primaryStage.close();
+                System.exit(0);
+            }
+        }
+    }
+
+    private void createCustomerDialog() {
+        // Create the custom dialog.
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("配置");
+        dialog.setHeaderText("门店信息配置");
+
+        // Set the button types.
+        ButtonType saveButtonType = new ButtonType("保存", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
+
+        // Create the username and password labels and fields.
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        TextField textFieldCode = new TextField();
+        textFieldCode.setPromptText("Code");
+        TextField textFieldName = new TextField();
+        textFieldName.setPromptText("Name");
+        TextField textFieldKey = new TextField();
+        textFieldName.setPromptText("key");
+
+        grid.add(new Label("门店编号:"), 0, 0);
+        grid.add(textFieldCode, 1, 0);
+        grid.add(new Label("门店名称:"), 0, 1);
+        grid.add(textFieldName, 1, 1);
+        grid.add(new Label("Key:"), 0, 2);
+        grid.add(textFieldKey, 1, 2);
+
+        // Enable/Disable login button depending on whether a username was entered.
+        Node saveButton = dialog.getDialogPane().lookupButton(saveButtonType);
+        saveButton.setDisable(true);
+
+        // Do some validation (using the Java 8 lambda syntax).
+        textFieldCode.textProperty().addListener((observable, oldValue, newValue) -> {
+            saveButton.setDisable(newValue.trim().isEmpty());
+        });
+
+        dialog.getDialogPane().setContent(grid);
+
+        // Request focus on the username field by default.
+        Platform.runLater(() -> textFieldCode.requestFocus());
+
+        // Convert the result to a username-password-pair when the login button is clicked.
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == saveButtonType) {
+                Config.CLIENT_CODE = textFieldCode.getText();
+                Config.CLIENT_NAME = textFieldName.getText();
+                Config.MODULE_APP_KEY = textFieldKey.getText();
+                PropertiesUtils.writeClientProperties(Config.CLIENT_CODE, Config.CLIENT_NAME, Config.MODULE_APP_KEY);
+
+                return new Pair<>(textFieldCode.getText(), textFieldName.getText());
+            }
+            return null;
+        });
+
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+
+        result.ifPresent(codename -> {
+            System.err.println(String.format("code:%s,name%s", codename.getKey(), codename.getValue()));
+        });
     }
 
     private void changeMainBorderPane(String flag) {

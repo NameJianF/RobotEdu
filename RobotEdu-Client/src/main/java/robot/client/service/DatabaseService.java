@@ -38,10 +38,9 @@ public class DatabaseService {
     }
 
     private Long timeTicks = 1000L * 30;
-    private Thread threadDbDatas;
 
     public void init() {
-        threadDbDatas = new Thread(new Runnable() {
+        Thread threadDbDatas = new Thread(new Runnable() {
             @Override
             public void run() {
 //                try {
@@ -52,7 +51,7 @@ public class DatabaseService {
                 //swipe card
                 selectUploadSwipeRecords();
                 // staff info
-                selectUploadStaffInfos();
+//                selectUploadStaffInfos();
 
 //                    Thread.sleep(timeTicks);
 //                } catch (InterruptedException e) {
